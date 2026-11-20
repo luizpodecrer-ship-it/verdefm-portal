@@ -30,7 +30,8 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 - Claro e suave: fundo `#F7F8F6`, branco nos cartões, texto `#1B2420`, apoio `#55625A`.
 - Verde só como acento: `#17803A` (botões, links, etiquetas), `#EEF4F0` (fundos suaves), `#2DBE4E` só em detalhes decorativos. Rodapé grafite `#1B2420`.
 - Fontes (teste pedido pelo Luiz em 21/11/2026): **Inter** nos títulos (700) e **Aeonik** no texto (400/700). Aeonik é comercial: até os arquivos `.woff2` licenciados irem para `site/assets/fonts/` (o `@font-face` já está comentado no CSS), o texto cai para a Inter. Menu de navegação em 600. Antes: Archivo 600 nos títulos.
-- Cantos arredondados por igual (10–20 px), linhas finas, sombras discretas.
+- Cantos arredondados por igual, **pouco arredondados** (6, 8, 10 e 12 px; pedido do Luiz em 21/11/2026, antes 10–20 px); botões em pílula continuam. Linhas finas, sombras discretas.
+- Player: volume em trilho fino branco, sem contorno; equalizador "ao vivo" sempre se mexendo (calmo parado, forte tocando).
 - Protótipo aprovado (canvas): https://claude.ai/artifact/4QqTTzzLXqrU77uNBGwR7M
 
 ## Decisões aprovadas

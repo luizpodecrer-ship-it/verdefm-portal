@@ -242,11 +242,12 @@
     if (volume) volume.addEventListener('input', function () {
       audio.volume = Number(volume.value);
       audio.muted = audio.volume === 0;
+      volume.style.setProperty('--vfm-vol', Math.round(audio.volume * 100) + '%');
       mostrarSom();
     });
     if (mudo) mudo.addEventListener('click', function () {
       audio.muted = !audio.muted;
-      if (!audio.muted && audio.volume === 0) { audio.volume = .6; if (volume) volume.value = .6; }
+      if (!audio.muted && audio.volume === 0) { audio.volume = .6; if (volume) { volume.value = .6; volume.style.setProperty('--vfm-vol', '60%'); } }
       mostrarSom();
     });
     radioEstado();

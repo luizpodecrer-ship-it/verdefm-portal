@@ -46,10 +46,11 @@
   --vfm-fonte-texto: "Aeonik", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   /* Formas */
-  --vfm-raio-p: 10px;
-  --vfm-raio-m: 14px;
-  --vfm-raio-g: 18px;
-  --vfm-raio-gg: 20px;
+  /* Cantos (21/11/2026: menos arredondados, pedido do Luiz) */
+  --vfm-raio-p: 6px;
+  --vfm-raio-m: 8px;
+  --vfm-raio-g: 10px;
+  --vfm-raio-gg: 12px;
   --vfm-raio-pilula: 999px;
   --vfm-sombra-suave: 0 16px 40px rgba(27, 36, 32, .12);
   --vfm-sombra-botao: 0 8px 20px rgba(23, 128, 58, .22);
@@ -203,7 +204,7 @@ html.vfm-rolou .vfm-logo img { height: 32px; }
 .vfm-cidade { position: relative; }
 .vfm-cidade__botao {
   display: flex; align-items: center; gap: 10px; width: 100%; min-height: var(--vfm-alvo);
-  padding: 0 14px; border-radius: 12px; border: 1px solid var(--vfm-linha-forte);
+  padding: 0 14px; border-radius: var(--vfm-raio-m); border: 1px solid var(--vfm-linha-forte);
   background: var(--vfm-fundo); font-size: 15px; text-align: left;
   transition: border-color var(--vfm-transicao), background var(--vfm-transicao);
 }
@@ -223,7 +224,7 @@ html.vfm-rolou .vfm-logo img { height: 32px; }
 .vfm-cidade__lista {
   position: absolute; top: calc(100% + 8px); left: 0; right: 0; z-index: 40;
   margin: 0; padding: 8px; list-style: none;
-  background: var(--vfm-superficie); border: 1px solid var(--vfm-linha); border-radius: 16px;
+  background: var(--vfm-superficie); border: 1px solid var(--vfm-linha); border-radius: var(--vfm-raio-g);
   box-shadow: var(--vfm-sombra-suave);
   transform-origin: top left; animation: vfm-abrir 160ms ease-out;
 }
@@ -261,7 +262,7 @@ html.vfm-rolou .vfm-logo img { height: 32px; }
 .vfm-ultimas { padding-top: 16px; }
 .vfm-ultimas__caixa {
   display: flex; align-items: center; gap: 12px; min-height: 48px; padding-left: 16px;
-  border-radius: 12px; background: var(--vfm-superficie); border: 1px solid var(--vfm-linha);
+  border-radius: var(--vfm-raio-m); background: var(--vfm-superficie); border: 1px solid var(--vfm-linha);
   font-size: 14px; color: var(--vfm-texto-3);
 }
 .vfm-ultimas__rotulo { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; font-weight: 600; color: var(--vfm-verde); }
@@ -281,7 +282,7 @@ html.vfm-rolou .vfm-logo img { height: 32px; }
 .vfm-letreiro--pausado .vfm-ultimas__lista { animation-play-state: paused; }
 @keyframes vfm-letreiro { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .vfm-ultimas__pausa {
-  flex: 0 0 auto; width: var(--vfm-alvo); height: var(--vfm-alvo); margin-right: 2px; border: 0; border-radius: 10px;
+  flex: 0 0 auto; width: var(--vfm-alvo); height: var(--vfm-alvo); margin-right: 2px; border: 0; border-radius: var(--vfm-raio-p);
   display: inline-flex; align-items: center; justify-content: center; background: transparent; color: var(--vfm-texto-2);
   transition: background var(--vfm-transicao), color var(--vfm-transicao);
 }
@@ -331,7 +332,7 @@ html.vfm-rolou .vfm-logo img { height: 32px; }
 
 /* Cartão em linha: miniatura à esquerda, título à direita */
 .vfm-card-linha { display: flex; gap: 14px; align-items: flex-start; padding-block: 16px; border-top: 1px solid var(--vfm-linha); }
-.vfm-card-linha__foto { flex: 0 0 96px; border-radius: 12px; overflow: hidden; }
+.vfm-card-linha__foto { flex: 0 0 96px; border-radius: var(--vfm-raio-m); overflow: hidden; }
 .vfm-card-linha__foto img { aspect-ratio: 4 / 3; height: 76px; }
 .vfm-card-linha__texto { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
 .vfm-card-linha h2, .vfm-card-linha h3 { font-size: 16px; line-height: 1.3; }
@@ -347,7 +348,7 @@ html.vfm-rolou .vfm-logo img { height: 32px; }
 .vfm-grade-cidade { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
 .vfm-card-cidade {
   display: flex; gap: 12px; align-items: center; height: 100%;
-  padding: 10px; border-radius: 16px; background: var(--vfm-superficie);
+  padding: 10px; border-radius: var(--vfm-raio-g); background: var(--vfm-superficie);
   transition: transform var(--vfm-transicao), box-shadow var(--vfm-transicao);
 }
 .vfm-card-cidade:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(27, 36, 32, .08); }
@@ -358,7 +359,7 @@ html.vfm-rolou .vfm-logo img { height: 32px; }
 @media (min-width: 768px) {
   .vfm-grade-cidade { grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 20px; }
   .vfm-card-cidade { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px 12px 18px; border-radius: var(--vfm-raio-g); }
-  .vfm-card-cidade__foto { flex: none; border-radius: 12px; }
+  .vfm-card-cidade__foto { flex: none; border-radius: var(--vfm-raio-m); }
   .vfm-card-cidade__foto img { height: auto; }
   .vfm-card-cidade__texto { padding-inline: 6px; gap: 8px; }
   .vfm-card-cidade h3 { font-size: 17px; }
@@ -430,8 +431,14 @@ html.vfm-tocando .vfm-play--barra::after { animation: vfm-anel 2s ease-out infin
 
 /* Equalizador: barrinhas que dançam enquanto a rádio toca */
 .vfm-eq { display: inline-flex; align-items: flex-end; gap: 3px; height: 22px; flex: 0 0 auto; }
-.vfm-eq i { display: block; width: 3px; height: 100%; border-radius: 2px; background: var(--vfm-verde-marca); transform-origin: bottom; transform: scaleY(.18); opacity: .55; transition: transform 300ms ease, opacity 300ms ease; }
-html.vfm-tocando .vfm-eq i { opacity: 1; animation: vfm-eq 1s ease-in-out infinite; }
+.vfm-eq i {
+  display: block; width: 3px; height: 100%; border-radius: 2px; background: var(--vfm-verde-marca); transform-origin: bottom;
+  opacity: .7; animation: vfm-eq-calmo 1.6s ease-in-out infinite;
+}
+.vfm-eq i:nth-child(2) { animation-delay: -.4s; } .vfm-eq i:nth-child(3) { animation-delay: -.8s; }
+.vfm-eq i:nth-child(4) { animation-delay: -1.2s; } .vfm-eq i:nth-child(5) { animation-delay: -.2s; }
+@keyframes vfm-eq-calmo { 0%, 100% { transform: scaleY(.18); } 50% { transform: scaleY(.5); } }
+html.vfm-tocando .vfm-eq i { opacity: 1; animation-name: vfm-eq; animation-duration: 1s; }
 html.vfm-tocando .vfm-eq i:nth-child(2) { animation-duration: .8s; animation-delay: -.3s; }
 html.vfm-tocando .vfm-eq i:nth-child(3) { animation-duration: 1.15s; animation-delay: -.6s; }
 html.vfm-tocando .vfm-eq i:nth-child(4) { animation-duration: .9s; animation-delay: -.15s; }
@@ -446,7 +453,20 @@ html.vfm-tocando .vfm-eq i:nth-child(5) { animation-duration: 1.05s; animation-d
 .vfm-volume__mudo:hover { background: rgba(255, 255, 255, .08); }
 .vfm-volume__sem, .vfm-volume--mudo .vfm-volume__com { display: none; }
 .vfm-volume--mudo .vfm-volume__sem { display: block; }
-.vfm-volume input { width: 110px; accent-color: var(--vfm-verde-marca); }
+/* Volume: trilho fino branco (a parte cheia acompanha o volume), bolinha branca, sem contorno */
+.vfm-volume input[type="range"] {
+  -webkit-appearance: none; appearance: none; width: 110px; height: 4px; margin: 0; border: 0; border-radius: 2px; cursor: pointer;
+  background: linear-gradient(#fff, #fff) 0 0 / var(--vfm-vol, 100%) 100% no-repeat, rgba(255, 255, 255, .22);
+}
+.vfm-volume input[type="range"]:focus { outline: none; }
+.vfm-volume input[type="range"]:focus-visible { outline: 2px solid var(--vfm-verde-marca); outline-offset: 6px; }
+.vfm-volume input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 14px; height: 14px; border: 0; border-radius: 50%;
+  background: #fff; box-shadow: 0 1px 4px rgba(0, 0, 0, .35); transition: transform var(--vfm-transicao);
+}
+.vfm-volume input[type="range"]:hover::-webkit-slider-thumb { transform: scale(1.15); }
+.vfm-volume input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 1px 4px rgba(0, 0, 0, .35); }
+.vfm-volume input[type="range"]::-moz-range-track { background: transparent; border: 0; }
 
 @media (min-width: 768px) { .vfm-barra-player__logo { display: block; } }
 @media (min-width: 1024px) {
@@ -468,7 +488,7 @@ html.vfm-tocando .vfm-eq i:nth-child(5) { animation-duration: 1.05s; animation-d
   color: var(--vfm-texto-2); font-size: 13px;
 }
 .vfm-publicidade__espaco span:first-child { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
-@media (min-width: 1024px) { .vfm-publicidade__espaco { min-height: 150px; border-radius: 16px; font-size: 14px; } }
+@media (min-width: 1024px) { .vfm-publicidade__espaco { min-height: 150px; border-radius: var(--vfm-raio-g); font-size: 14px; } }
 
 /* Ao vivo e vídeos do YouTube ("TV") */
 .vfm-tv { display: grid; gap: 20px; }
@@ -567,7 +587,7 @@ html.vfm-tocando .vfm-eq i:nth-child(5) { animation-duration: 1.05s; animation-d
 .vfm-editoria__titulo { display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--vfm-linha-forte); }
 .vfm-editoria__titulo h2 { font-size: 20px; }
 .vfm-editoria__titulo .vfm-link-mais { font-size: 14px; }
-.vfm-editoria__foto { display: none; border-radius: 16px; overflow: hidden; }
+.vfm-editoria__foto { display: none; border-radius: var(--vfm-raio-g); overflow: hidden; }
 .vfm-editoria__principal { font-family: var(--vfm-fonte-titulo); font-weight: 700; font-size: 17px; line-height: 1.3; }
 .vfm-editoria__lista { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
 .vfm-editoria__lista a { display: block; padding-top: 12px; border-top: 1px solid var(--vfm-linha); font-size: 15px; line-height: 1.45; color: var(--vfm-texto-3); }
@@ -590,7 +610,7 @@ html.vfm-tocando .vfm-eq i:nth-child(5) { animation-duration: 1.05s; animation-d
 .vfm-programacao li { display: flex; gap: 14px; align-items: baseline; padding: 14px 16px; border-bottom: 1px solid var(--vfm-linha); font-size: 15px; }
 .vfm-programacao li:last-child { border-bottom: 0; }
 .vfm-programacao time { flex: 0 0 52px; font-size: 14px; font-weight: 600; color: var(--vfm-texto-2); }
-.vfm-programacao li.vfm-no-ar { background: var(--vfm-verde-claro); border-radius: 12px; border-bottom-color: transparent; }
+.vfm-programacao li.vfm-no-ar { background: var(--vfm-verde-claro); border-radius: var(--vfm-raio-m); border-bottom-color: transparent; }
 .vfm-programacao li.vfm-no-ar time { color: var(--vfm-verde); }
 .vfm-programacao strong { font-weight: 600; }
 
