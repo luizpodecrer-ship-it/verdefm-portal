@@ -19,8 +19,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="assets/css/verdefm.css?v=202611202325">
-<script src="assets/js/verdefm.js?v=202611202325" defer></script>
+<link rel="stylesheet" href="assets/css/verdefm.css?v=202611202340">
+<script src="assets/js/verdefm.js?v=202611202340" defer></script>
 </head>
 <body class="home">
 <!-- WP: body_class() -->
@@ -369,7 +369,10 @@
 <footer class="vfm-rodape">
   <div class="vfm-container vfm-rodape__colunas">
     <div class="vfm-rodape__marca">
-      <strong>Verde FM</strong>
+      <!-- WP: mesmo logo da cidade escolhida (o JS troca junto com o do cabeçalho) -->
+      <a class="vfm-rodape__logo" href="./" aria-label="Verde FM, página inicial">
+        <img data-vfm-logo src="assets/img/logos/cuiaba.png" alt="Verde FM Cuiabá 103.7" width="840" height="200" loading="lazy">
+      </a>
       <p>Notícias e rádio de Mato Grosso. [Texto institucional curto da rádio]</p>
     </div>
     <div>

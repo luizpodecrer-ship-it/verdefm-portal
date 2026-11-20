@@ -45,6 +45,7 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 - **20/11/2026** — **Cabeçalho sempre à vista** (pedido do Luiz): logo, seletor de cidade e menu ficam presos no topo ao rolar; depois de descer um pouco, o cabeçalho encolhe e ganha sombra leve (`.vfm-rolou`). Ao pular para uma seção, o título não fica escondido atrás dele.
 - **20/11/2026** — **Demonstração com matérias reais** (pedido do Luiz): a home usa títulos, resumos e fotos das matérias recentes dos três sites atuais (verdefm.com.br, verdefmjaciara.com.br, verdefmcampoverde.com.br); os links abrem a matéria no site atual, em outra aba. "Em {cidade}" traz as notícias de Cuiabá, Jaciara e Campo Verde e mostra só as da cidade escolhida (`data-vfm-so-cidade`).
 - **20/11/2026** — **Assinatura da Astravox no rodapé** (pedido do Luiz): **só o ícone** (`assets/img/astravox.svg`), pequeno e discreto, com link para www.astravox.com.br em nova aba. Sem "Desenvolvido por" e sem o nome escrito. **Padrão de todos os projetos web do Luiz/Astravox.**
+- **20/11/2026** — **Logo da cidade no rodapé** (pedido do Luiz): no lugar do texto "Verde FM", o logo da cidade escolhida, menor e discreto (34 px de altura); troca junto com o do cabeçalho (`data-vfm-logo`).
 
 ## Próximas etapas
 

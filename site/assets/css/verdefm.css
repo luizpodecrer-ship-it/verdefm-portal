@@ -494,7 +494,10 @@ html.vfm-tocando .vfm-ao-vivo .vfm-ponto { animation: vfm-pulsar 1.6s ease-in-ou
 .vfm-rodape a:hover { color: #fff; text-decoration: underline; }
 .vfm-rodape__colunas { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px 64px; padding-block: 40px; }
 .vfm-rodape__marca { max-width: 360px; display: flex; flex-direction: column; gap: 8px; }
-.vfm-rodape__marca strong { font-family: var(--vfm-fonte-titulo); font-weight: 600; font-size: 22px; color: #fff; }
+/* Logo da cidade escolhida, menor e discreto */
+.vfm-rodape__logo { display: inline-flex; align-self: flex-start; opacity: .9; transition: opacity var(--vfm-transicao); }
+.vfm-rodape__logo:hover { opacity: 1; }
+.vfm-rodape__logo img { height: 34px; width: auto; }
 .vfm-rodape__marca p { line-height: 1.6; color: var(--vfm-grafite-texto); }
 .vfm-rodape h2 { font-family: var(--vfm-fonte-texto); font-size: 14px; color: #fff; margin-bottom: 10px; }
 .vfm-rodape ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
