@@ -1,0 +1,367 @@
+<!doctype html>
+<!--
+  Verde FM · Home do portal
+  Marcações para o WordPress: os comentários que começam com "WP:" dizem qual
+  arquivo do tema ou qual função do WordPress gera aquele trecho.
+  Divisão sugerida do tema (ver docs/WORDPRESS.md):
+    header.php ...... do doctype até o fim da faixa "Últimas"
+    front-page.php .. o conteúdo de main#vfm-conteudo
+    footer.php ...... rodapé, barra do rádio, audio, janelas, JSON das cidades e scripts
+-->
+<html lang="pt-BR" data-vfm-cidade-padrao="cuiaba">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Verde FM · Notícias de Cuiabá, Jaciara, Campo Verde e região</title>
+<meta name="description" content="Notícias de Mato Grosso e a rádio Verde FM ao vivo na sua cidade.">
+<meta name="theme-color" content="#FFFFFF">
+<!-- WP: wp_head() — fontes e CSS entram por wp_enqueue_style em functions.php -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/css/verdefm.css?v=202611202155">
+<script src="assets/js/verdefm.js?v=202611202155" defer></script>
+</head>
+<body class="home">
+<!-- WP: body_class() -->
+<a class="vfm-pular" href="#vfm-conteudo">Pular para o conteúdo</a>
+<div class="vfm-progresso" aria-hidden="true"></div>
+<div id="vfm-aviso" class="vfm-so-leitor" aria-live="polite"></div>
+
+<!-- ===================== CABEÇALHO (header.php) ===================== -->
+<header class="vfm-topo">
+  <div class="vfm-container vfm-topo__linha">
+    <!-- WP: home_url('/'); o logo é o da cidade escolhida (term meta "logo" da taxonomia cidade) -->
+    <a class="vfm-logo" href="./" aria-label="Verde FM, página inicial">
+      <img data-vfm-logo src="assets/img/logos/cuiaba.png" alt="Verde FM Cuiabá 103.7" width="840" height="200">
+    </a>
+
+    <div class="vfm-topo__acoes">
+      <a class="vfm-topo__youtube" href="https://www.youtube.com/@VerdeFMoficial/live" target="_blank" rel="noopener">
+        <span class="vfm-ponto" aria-hidden="true"></span>Ao vivo no YouTube
+      </a>
+      <!-- WP: echo date_i18n('l, j \d\e F'); (pode ficar vazio: o JS preenche) -->
+      <span class="vfm-topo__data" data-vfm-data></span>
+      <button class="vfm-icone-botao" type="button" data-vfm-abrir="vfm-busca" aria-label="Buscar">
+        <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8"/></svg>
+      </button>
+      <button class="vfm-icone-botao vfm-topo__menu" type="button" data-vfm-abrir="vfm-menu" aria-label="Abrir o menu">
+        <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+
+    <!-- Seletor de cidade. WP: um <li> por termo da taxonomia "cidade"; cidade desligada = aria-disabled="true" -->
+    <div class="vfm-cidade vfm-topo__cidade">
+      <button class="vfm-cidade__botao" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="vfm-cidades-lista">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#17803A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+        <span class="vfm-cidade__prefixo">Você está em</span>
+        <span class="vfm-cidade__nome" data-vfm-texto="cidade">Cuiabá</span>
+        <span class="vfm-cidade__freq" data-vfm-texto="frequencia">103.7</span>
+        <svg class="vfm-cidade__seta" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        <span class="vfm-so-leitor">— trocar de cidade</span>
+      </button>
+      <ul class="vfm-cidade__lista" id="vfm-cidades-lista" aria-label="Escolha a cidade" hidden>
+        <li><button class="vfm-cidade__opcao" type="button" data-cidade="cuiaba" aria-current="true"><span><strong>Cuiabá</strong><small>Verde FM 103.7</small></span><span class="vfm-cidade__nota">Você está aqui</span></button></li>
+        <li><button class="vfm-cidade__opcao" type="button" data-cidade="campo-verde" aria-current="false"><span><strong>Campo Verde</strong><small>Verde FM 96.3</small></span><span class="vfm-cidade__nota"></span></button></li>
+        <li><button class="vfm-cidade__opcao" type="button" data-cidade="jaciara" aria-current="false"><span><strong>Jaciara</strong><small>Verde FM 102.3</small></span><span class="vfm-cidade__nota"></span></button></li>
+        <li><button class="vfm-cidade__opcao" type="button" data-cidade="arenapolis" aria-current="false" aria-disabled="true"><span><strong>Arenápolis</strong><small>Verde FM 102.1</small></span><span class="vfm-cidade__nota">Em breve</span></button></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- WP: wp_nav_menu(['theme_location' => 'editorias']) com estas classes -->
+  <nav class="vfm-nav vfm-container" aria-label="Editorias" data-vfm-menu>
+    <ul>
+      <li><a href="./">Início</a></li>
+      <li><a href="#editorias">Política</a></li>
+      <li><a href="#cidade">Cidades</a></li>
+      <li><a href="#editorias">Economia e negócios</a></li>
+      <li><a href="#editorias">Esporte e cultura</a></li>
+      <li><a href="#entrevistas">Entrevistas</a></li>
+      <li><a href="#programacao">Programação</a></li>
+      <li><a href="#promocoes">Promoções</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Faixa "Últimas". WP: WP_Query 5 posts mais recentes (sem filtro de cidade) -->
+<div class="vfm-ultimas vfm-container">
+  <div class="vfm-ultimas__caixa">
+    <span class="vfm-ultimas__rotulo"><span class="vfm-ponto vfm-ponto--verde" aria-hidden="true"></span>Últimas</span>
+    <ul class="vfm-ultimas__lista">
+      <li><a href="#">Título da última notícia publicada passa aqui</a></li>
+      <li><a href="#">Segunda notícia mais recente da redação</a></li>
+      <li><a href="#">Terceira notícia mais recente da redação</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== CONTEÚDO (front-page.php) =====================
+     Só o que está dentro de #vfm-conteudo troca ao navegar.
+     Tudo fora dele (cabeçalho, rádio, rodapé) fica parado e a rádio não para. -->
+<main id="vfm-conteudo" tabindex="-1">
+
+  <!-- Destaques. WP: post fixado/“Manchete” + 2 destaques seguintes -->
+  <div class="vfm-container vfm-destaques">
+    <article class="vfm-manchete">
+      <a class="vfm-manchete__foto" href="#">
+        <!-- WP: the_post_thumbnail('vfm-16x9', ['class' => 'vfm-foto vfm-foto--16x9']) -->
+        <img class="vfm-foto vfm-foto--16x9" src="assets/img/foto-exemplo.svg" alt="" width="1600" height="900">
+      </a>
+      <span class="vfm-chapeu">Editoria · Chapéu da matéria</span>
+      <h1><a href="#">Manchete principal do dia ocupa este espaço em até três linhas</a></h1>
+      <p class="vfm-manchete__fina">Linha fina da matéria: uma ou duas frases que completam a manchete e convidam para a leitura.</p>
+    </article>
+
+    <aside class="vfm-lateral" aria-label="Rádio e outros destaques">
+      <!-- Cartão da rádio (só no computador; no celular a barra fixa faz o papel) -->
+      <section class="vfm-player-card" aria-label="Rádio ao vivo">
+        <div class="vfm-player-card__topo">
+          <span class="vfm-ao-vivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar agora</span>
+          <span><span data-vfm-texto="cidade">Cuiabá</span> · <span data-vfm-texto="frequencia">103.7</span> FM</span>
+        </div>
+        <div class="vfm-player-card__corpo">
+          <button class="vfm-play" type="button" data-vfm-play aria-pressed="false" aria-label="Ouvir a rádio ao vivo de Cuiabá">
+            <svg class="vfm-play__tocar" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l12 7-12 7z"/></svg>
+            <svg class="vfm-play__pausar" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+            <svg class="vfm-play__girando" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9"/></svg>
+          </button>
+          <!-- WP: programa no ar pela grade da cidade (CPT "programa") -->
+          <div class="vfm-player-card__programa">
+            <strong data-vfm-programa>[Nome do programa]</strong>
+            <span>com [Apresentador] · [horário]</span>
+          </div>
+        </div>
+        <p class="vfm-player-status" data-vfm-player-status role="status"></p>
+        <a class="vfm-link-mais" href="#programacao">Ver a programação de hoje</a>
+      </section>
+
+      <article class="vfm-card-linha">
+        <a class="vfm-card-linha__foto" href="#" tabindex="-1" aria-hidden="true"><img class="vfm-foto" src="assets/img/foto-exemplo.svg" alt="" width="400" height="300" loading="lazy"></a>
+        <div class="vfm-card-linha__texto">
+          <span class="vfm-chapeu">Política</span>
+          <h2><a href="#">Segundo destaque do dia com título em até três linhas</a></h2>
+        </div>
+      </article>
+      <article class="vfm-card-linha">
+        <a class="vfm-card-linha__foto" href="#" tabindex="-1" aria-hidden="true"><img class="vfm-foto" src="assets/img/foto-exemplo.svg" alt="" width="400" height="300" loading="lazy"></a>
+        <div class="vfm-card-linha__texto">
+          <span class="vfm-chapeu">Economia</span>
+          <h2><a href="#">Terceiro destaque do dia com título em até três linhas</a></h2>
+        </div>
+      </article>
+    </aside>
+  </div>
+
+  <!-- Em {cidade}. WP: 4 posts da taxonomia "cidade" = cidade do cookie vfm_cidade -->
+  <section class="vfm-secao vfm-secao--suave" id="cidade" aria-labelledby="titulo-cidade">
+    <div class="vfm-container">
+      <div class="vfm-titulo-secao">
+        <div>
+          <span class="vfm-chapeu">Notícias da sua cidade</span>
+          <h2 id="titulo-cidade">Em <span data-vfm-texto="cidade">Cuiabá</span></h2>
+        </div>
+        <a class="vfm-link-mais" href="#">Todas de <span data-vfm-texto="cidade">Cuiabá</span>
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <ul class="vfm-grade-cidade">
+        <li><article class="vfm-card-cidade">
+          <a class="vfm-card-cidade__foto" href="#" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="assets/img/foto-exemplo.svg" alt="" width="400" height="300" loading="lazy"></a>
+          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Cidade</span><h3><a href="#">Notícia 1 da cidade com título em até três linhas</a></h3></div>
+        </article></li>
+        <li><article class="vfm-card-cidade">
+          <a class="vfm-card-cidade__foto" href="#" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="assets/img/foto-exemplo.svg" alt="" width="400" height="300" loading="lazy"></a>
+          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Trânsito</span><h3><a href="#">Notícia 2 da cidade com título em até três linhas</a></h3></div>
+        </article></li>
+        <li><article class="vfm-card-cidade">
+          <a class="vfm-card-cidade__foto" href="#" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="assets/img/foto-exemplo.svg" alt="" width="400" height="300" loading="lazy"></a>
+          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Saúde</span><h3><a href="#">Notícia 3 da cidade com título em até três linhas</a></h3></div>
+        </article></li>
+        <li><article class="vfm-card-cidade">
+          <a class="vfm-card-cidade__foto" href="#" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="assets/img/foto-exemplo.svg" alt="" width="400" height="300" loading="lazy"></a>
+          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Educação</span><h3><a href="#">Notícia 4 da cidade com título em até três linhas</a></h3></div>
+        </article></li>
+      </ul>
+      <a class="vfm-link-mais vfm-link-mais--bloco vfm-botao vfm-botao--contorno" href="#">Todas de <span data-vfm-texto="cidade">Cuiabá</span></a>
+    </div>
+  </section>
+
+  <!-- Publicidade. WP: área de widget "publicidade-home" por cidade (ou plugin de anúncios) -->
+  <div class="vfm-publicidade vfm-container">
+    <div class="vfm-publicidade__espaco">
+      <span>Publicidade</span>
+      <span>Banner 1200 × 150 no computador · 320 × 100 no celular</span>
+    </div>
+  </div>
+
+  <!-- Editorias. WP: uma coluna por categoria (1 principal com foto + 2 em lista) -->
+  <section class="vfm-secao vfm-container" id="editorias" aria-label="Editorias">
+    <div class="vfm-editorias">
+      <div class="vfm-editoria">
+        <div class="vfm-editoria__titulo"><h2>Política</h2><a class="vfm-link-mais" href="#">Ver mais</a></div>
+        <a class="vfm-editoria__foto" href="#" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--16x9" src="assets/img/foto-exemplo.svg" alt="" width="800" height="450" loading="lazy"></a>
+        <h3 class="vfm-editoria__principal"><a href="#">Principal notícia de política com título em duas linhas</a></h3>
+        <ul class="vfm-editoria__lista">
+          <li><a href="#">Outra notícia de política em uma ou duas linhas</a></li>
+          <li><a href="#">Mais uma notícia de política em uma ou duas linhas</a></li>
+        </ul>
+      </div>
+      <div class="vfm-editoria">
+        <div class="vfm-editoria__titulo"><h2>Economia e negócios</h2><a class="vfm-link-mais" href="#">Ver mais</a></div>
+        <a class="vfm-editoria__foto" href="#" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--16x9" src="assets/img/foto-exemplo.svg" alt="" width="800" height="450" loading="lazy"></a>
+        <h3 class="vfm-editoria__principal"><a href="#">Principal notícia de economia com título em duas linhas</a></h3>
+        <ul class="vfm-editoria__lista">
+          <li><a href="#">Outra notícia de economia em uma ou duas linhas</a></li>
+          <li><a href="#">Mais uma notícia de economia em uma ou duas linhas</a></li>
+        </ul>
+      </div>
+      <div class="vfm-editoria">
+        <div class="vfm-editoria__titulo"><h2>Esporte e cultura</h2><a class="vfm-link-mais" href="#">Ver mais</a></div>
+        <a class="vfm-editoria__foto" href="#" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--16x9" src="assets/img/foto-exemplo.svg" alt="" width="800" height="450" loading="lazy"></a>
+        <h3 class="vfm-editoria__principal"><a href="#">Principal notícia de esporte com título em duas linhas</a></h3>
+        <ul class="vfm-editoria__lista">
+          <li><a href="#">Outra notícia de esporte ou cultura em uma ou duas linhas</a></li>
+          <li><a href="#">Mais uma notícia de esporte ou cultura em uma ou duas linhas</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programação, entrevistas e promoções -->
+  <section class="vfm-secao vfm-secao--branca">
+    <div class="vfm-container vfm-extras">
+      <!-- WP: grade de programas da cidade escolhida (CPT "programa" com dias, início, fim e cidade). O programa no ar leva a classe vfm-no-ar -->
+      <div class="vfm-programacao" id="programacao">
+        <h2>Programação de hoje</h2>
+        <p>Verde FM <span data-vfm-texto="cidade">Cuiabá</span> · <span data-vfm-texto="frequencia">103.7</span></p>
+        <ol>
+          <li class="vfm-no-ar"><time>[00h00]</time><span><strong>[Programa no ar]</strong> · [Apresentador]</span></li>
+          <li><time>[00h00]</time><span><strong>[Próximo programa]</strong> · [Apresentador]</span></li>
+          <li><time>[00h00]</time><span><strong>[Programa]</strong> · [Apresentador]</span></li>
+          <li><time>[00h00]</time><span><strong>[Programa]</strong> · [Apresentador]</span></li>
+        </ol>
+      </div>
+
+      <!-- WP: último post da categoria "entrevistas" (vídeo do YouTube no conteúdo) -->
+      <div class="vfm-entrevista" id="entrevistas">
+        <h2>Entrevistas</h2>
+        <a class="vfm-entrevista__video" href="#" aria-label="Assistir à entrevista do dia">
+          <img class="vfm-foto vfm-foto--16x9" src="assets/img/foto-exemplo.svg" alt="" width="800" height="450" loading="lazy">
+          <span aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l12 7-12 7z"/></svg></span>
+        </a>
+        <h3><a href="#">Entrevista do dia: título com o nome do convidado e o assunto</a></h3>
+        <p>Vídeo do estúdio, do canal da rádio no YouTube</p>
+      </div>
+
+      <!-- WP: promoção ativa (CPT "promocao" ou página); botão leva ao formulário de inscrição -->
+      <div class="vfm-promocao" id="promocoes">
+        <span class="vfm-chapeu">Promoções</span>
+        <p class="vfm-promocao__nome">[Nome da promoção da semana]</p>
+        <p>O ouvinte se inscreve aqui mesmo, pelo celular.</p>
+        <a class="vfm-botao" href="#">Quero participar</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== RODAPÉ (footer.php) ===================== -->
+<footer class="vfm-rodape">
+  <div class="vfm-container vfm-rodape__colunas">
+    <div class="vfm-rodape__marca">
+      <strong>Verde FM</strong>
+      <p>Notícias e rádio de Mato Grosso. [Texto institucional curto da rádio]</p>
+    </div>
+    <div>
+      <h2>Nossas rádios</h2>
+      <!-- WP: termos ativos da taxonomia "cidade" -->
+      <ul>
+        <li>Cuiabá · 103.7</li>
+        <li>Campo Verde · 96.3</li>
+        <li>Jaciara · 102.3</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Siga a Verde</h2>
+      <ul>
+        <li><a href="https://www.instagram.com/verdefmoficial_/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.facebook.com/profile.php?id=61553431857043" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="https://www.youtube.com/@VerdeFMoficial" target="_blank" rel="noopener">YouTube</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="vfm-container vfm-rodape__fim">© Verde FM. Versão de demonstração: títulos e fotos são marcações de espaço.</div>
+</footer>
+
+<!-- Barra fixa do rádio (fica fora de #vfm-conteudo: não some ao navegar) -->
+<section class="vfm-barra-player" aria-label="Rádio ao vivo">
+  <div class="vfm-container vfm-barra-player__linha">
+    <button class="vfm-play vfm-play--p" type="button" data-vfm-play aria-pressed="false" aria-label="Ouvir a rádio ao vivo de Cuiabá">
+      <svg class="vfm-play__tocar" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l12 7-12 7z"/></svg>
+      <svg class="vfm-play__pausar" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+      <svg class="vfm-play__girando" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9"/></svg>
+    </button>
+    <div class="vfm-barra-player__texto">
+      <span class="vfm-ao-vivo"><span class="vfm-ponto" aria-hidden="true"></span><span>Ao vivo · <span data-vfm-texto="cidade">Cuiabá</span> <span data-vfm-texto="frequencia">103.7</span></span></span>
+      <strong data-vfm-programa>[Nome do programa]</strong>
+      <span class="vfm-player-status" data-vfm-player-status role="status"></span>
+    </div>
+    <label class="vfm-volume">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>
+      <span class="vfm-so-leitor">Volume</span>
+      <input type="range" min="0" max="1" step="0.05" value="1" data-vfm-volume>
+    </label>
+  </div>
+</section>
+<audio id="vfm-audio" preload="none"></audio>
+
+<!-- Menu do celular -->
+<dialog class="vfm-janela vfm-menu" id="vfm-menu" aria-label="Menu">
+  <div class="vfm-menu__cabeca">
+    <span>Menu</span>
+    <button class="vfm-icone-botao" type="button" data-vfm-fechar aria-label="Fechar o menu">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <!-- WP: o mesmo wp_nav_menu das editorias -->
+  <nav aria-label="Editorias" data-vfm-menu>
+    <ul>
+      <li><a href="./">Início</a></li>
+      <li><a href="#editorias">Política</a></li>
+      <li><a href="#cidade">Cidades</a></li>
+      <li><a href="#editorias">Economia e negócios</a></li>
+      <li><a href="#editorias">Esporte e cultura</a></li>
+      <li><a href="#entrevistas">Entrevistas</a></li>
+      <li><a href="#programacao">Programação</a></li>
+      <li><a href="#promocoes">Promoções</a></li>
+    </ul>
+  </nav>
+  <div class="vfm-menu__extra">
+    <a class="vfm-botao vfm-botao--contorno" href="https://www.youtube.com/@VerdeFMoficial/live" target="_blank" rel="noopener"><span class="vfm-ponto" aria-hidden="true"></span>Ao vivo no YouTube</a>
+  </div>
+</dialog>
+
+<!-- Busca. WP: action = home_url('/'), campo "s" (busca padrão do WordPress) -->
+<dialog class="vfm-janela vfm-busca" id="vfm-busca" aria-label="Buscar no site">
+  <form role="search" method="get" action="./" data-vfm-busca>
+    <label for="vfm-busca-campo">Buscar notícias</label>
+    <input id="vfm-busca-campo" type="search" name="s" placeholder="Buscar notícias" autocomplete="off">
+    <button class="vfm-botao" type="submit">Buscar</button>
+    <button class="vfm-icone-botao" type="button" data-vfm-fechar aria-label="Fechar a busca">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </form>
+</dialog>
+
+<!-- Cidades e rádios. WP: wp_add_inline_script ou wp_json_encode dos termos da taxonomia "cidade" -->
+<script type="application/json" id="vfm-cidades">
+[
+  { "slug": "cuiaba", "nome": "Cuiabá", "frequencia": "103.7", "logo": "assets/img/logos/cuiaba.png", "stream": "https://streaming.livespanel.com:20086/verdefm", "ativa": true },
+  { "slug": "campo-verde", "nome": "Campo Verde", "frequencia": "96.3", "logo": "assets/img/logos/campo-verde.png", "stream": "https://str1.streamhostpg.com.br:8062/stream", "ativa": true },
+  { "slug": "jaciara", "nome": "Jaciara", "frequencia": "102.3", "logo": "assets/img/logos/jaciara.png", "stream": "https://streaming.livespanel.com:20120/verdefmjaciara", "ativa": true },
+  { "slug": "arenapolis", "nome": "Arenápolis", "frequencia": "102.1", "logo": "assets/img/logos/arenapolis.png", "stream": "", "ativa": false }
+]
+</script>
+<!-- WP: wp_footer() -->
+</body>
+</html>
