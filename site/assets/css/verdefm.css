@@ -498,7 +498,18 @@ html.vfm-tocando .vfm-ao-vivo .vfm-ponto { animation: vfm-pulsar 1.6s ease-in-ou
 .vfm-rodape__marca p { line-height: 1.6; color: var(--vfm-grafite-texto); }
 .vfm-rodape h2 { font-family: var(--vfm-fonte-texto); font-size: 14px; color: #fff; margin-bottom: 10px; }
 .vfm-rodape ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.vfm-rodape__fim { padding-block: 18px 28px; border-top: 1px solid var(--vfm-grafite-linha); font-size: 13px; color: var(--vfm-grafite-texto); }
+.vfm-rodape__fim {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px;
+  padding-block: 18px 28px; border-top: 1px solid var(--vfm-grafite-linha); font-size: 13px; color: var(--vfm-grafite-texto);
+}
+/* Assinatura da Astravox: pequena e discreta; acende um pouco no mouse */
+.vfm-assinatura {
+  display: inline-flex; align-items: center; gap: 6px; min-height: var(--vfm-alvo);
+  font-size: 12px; color: var(--vfm-grafite-texto); opacity: .8; transition: opacity var(--vfm-transicao);
+}
+.vfm-rodape .vfm-assinatura:hover { opacity: 1; color: #fff; text-decoration: none; }
+.vfm-assinatura img { width: 12px; height: auto; }
+.vfm-assinatura strong { font-weight: 600; letter-spacing: .02em; }
 
 /* 9. Janelas: menu do celular e busca ------------------------------------- */
 .vfm-janela {

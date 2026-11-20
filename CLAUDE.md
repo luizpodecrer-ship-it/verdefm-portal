@@ -42,6 +42,8 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 - **20/11/2026** — Home em código, pronta para o WordPress, e publicada no Netlify para conferência.
 - **20/11/2026** — **Ao vivo e vídeos na home** (pedido do Luiz): bloco com a transmissão ao vivo do YouTube no quadro grande e os últimos vídeos do canal ao lado (no celular, embaixo, correndo para o lado). Tocar num vídeo abre no quadro grande. Rádio e vídeo não tocam juntos. O vídeo só carrega no toque. Substituiu o bloco "Entrevistas" da home; no menu, "Entrevistas" virou "Vídeos". Canal: @VerdeFMoficial (`UC6WHqxKeQgo9b7rRtF43ifA`).
 - **20/11/2026** — **Cabeçalho sempre à vista** (pedido do Luiz): logo, seletor de cidade e menu ficam presos no topo ao rolar; depois de descer um pouco, o cabeçalho encolhe e ganha sombra leve (`.vfm-rolou`). Ao pular para uma seção, o título não fica escondido atrás dele.
+- **20/11/2026** — **Demonstração com matérias reais** (pedido do Luiz): a home usa títulos, resumos e fotos das matérias recentes dos três sites atuais (verdefm.com.br, verdefmjaciara.com.br, verdefmcampoverde.com.br); os links abrem a matéria no site atual, em outra aba. "Em {cidade}" traz as notícias de Cuiabá, Jaciara e Campo Verde e mostra só as da cidade escolhida (`data-vfm-so-cidade`).
+- **20/11/2026** — **Assinatura da Astravox no rodapé** (pedido do Luiz): "Desenvolvido por" + ícone + Astravox, pequeno e discreto, com link para www.astravox.com.br em nova aba (`assets/img/astravox.svg`).
 
 ## Próximas etapas
 

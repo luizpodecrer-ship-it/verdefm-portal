@@ -70,6 +70,8 @@
     });
     $$('[data-vfm-texto="cidade"]').forEach(function (el) { el.textContent = c.nome; });
     $$('[data-vfm-texto="frequencia"]').forEach(function (el) { el.textContent = c.frequencia; });
+    // Blocos de uma cidade só (ex.: "Em {cidade}" quando o HTML traz todas): mostra só os da escolhida.
+    $$('[data-vfm-so-cidade]').forEach(function (el) { el.hidden = el.getAttribute('data-vfm-so-cidade') !== c.slug; });
     $$('.vfm-cidade__opcao').forEach(function (op) {
       var atual = op.getAttribute('data-cidade') === c.slug;
       op.setAttribute('aria-current', atual ? 'true' : 'false');

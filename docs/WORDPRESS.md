@@ -2,7 +2,7 @@
 
 Este repositório entrega **só o front-end** do portal da Verde FM: HTML, CSS e JavaScript puros, sem framework e sem etapa de build. O trabalho do WordPress é transformar o HTML em templates PHP e alimentar os dados. **CSS e JS não precisam ser alterados**: eles funcionam com qualquer HTML que siga as classes e os atributos descritos aqui.
 
-Pasta publicada: `site/`. Versão no ar para conferência: endereço do Netlify (ver `README.md`).
+Pasta publicada: `site/`. Versão no ar para conferência: https://verdefm-portal.netlify.app (as matérias da demonstração vêm dos sites atuais da Verde FM e abrem lá, em outra aba).
 
 ---
 
@@ -90,6 +90,8 @@ function vfm_cidade_atual() {
   return $t;
 }
 ```
+
+**Alternativa que também resolve o cache:** o template pode imprimir os blocos de **todas** as cidades, cada um com `data-vfm-so-cidade="slug"` (os que não são da cidade padrão com `hidden`). O JS mostra só o da cidade escolhida, sem pedir nada ao servidor. É o que a demonstração faz no bloco "Em {cidade}".
 
 Use `vfm_cidade_atual()` em: logo inicial do cabeçalho, bloco "Em {cidade}", programação, publicidade e no `aria-current="true"` da opção do seletor. Assim a página já chega certa, sem "piscar".
 
