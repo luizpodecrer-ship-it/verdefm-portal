@@ -147,6 +147,19 @@ foreach ($feed->get_items(0, 6) as $item) {
 - **Rádio e vídeo não tocam juntos:** começar um vídeo pausa a rádio; ligar a rádio fecha o vídeo.
 - Quando o canal não está ao vivo, o próprio YouTube mostra o aviso dentro do quadro. Se quiserem esconder o ao vivo fora do horário, o PHP pode tirar o item "ao vivo" e já abrir no vídeo mais recente (trocar `data-atual`, a classe `vfm-tv--ao-vivo` e a capa).
 
+## 6.1 Banner de publicidade do topo
+
+Logo no começo de `#vfm-conteudo` (troca com a cidade). Caixa com proporção fixa **1260 × 120 px**, imagem cobrindo a caixa (`object-fit: cover`), então peças em outra medida próxima (ex.: 730 × 72) também servem.
+
+```html
+<section class="vfm-pub-topo__caixa" aria-label="Publicidade" data-vfm-rodizio>
+  <a class="vfm-pub-topo__peca vfm-ativa" href="LINK" target="_blank" rel="noopener sponsored"><img src="..." alt="ANUNCIANTE" width="1260" height="120"></a>
+  <!-- mais anúncios: mesma marcação, sem vfm-ativa -->
+</section>
+```
+
+Com dois ou mais anúncios o JS faz o rodízio (8 s, para no mouse/foco, começa num aleatório). Plugin de anúncios: basta gerar essa marcação.
+
 ## 7. Faixa "Últimas" (letreiro)
 
 O `ul[data-vfm-letreiro-lista]` recebe os 5 posts mais recentes. O JS duplica os itens (cópias com `aria-hidden`) e faz correr; o botão `[data-vfm-letreiro-pausa]` pausa. Não é preciso duplicar no PHP.

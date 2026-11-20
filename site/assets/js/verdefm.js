@@ -16,6 +16,7 @@
                          carrega no toque (capa leve); vídeo e rádio não tocam juntos.
      7. Cabeçalho ...... fica preso no topo ao rolar e encolhe um pouco (.vfm-rolou).
      8. Letreiro ....... faixa "Últimas" correndo sem parar, com pausa (mouse, foco ou botão).
+     9. Publicidade .... banner do topo em rodízio (troca a cada 8 s; para no mouse e no foco).
 
    Eventos para o WordPress / plugins (ouvir com document.addEventListener):
      "vfm:pagina"  → depois de trocar de página (reiniciar anúncios, embeds, analytics)
@@ -505,6 +506,43 @@
     }
   }
 
+
+  /* ----------------------------------------------------------------------
+     9. Rodízio de anúncios ([data-vfm-rodizio])
+     ---------------------------------------------------------------------- */
+  var RODIZIO_MS = 8000;
+  function ligarRodizios() {
+    $$('[data-vfm-rodizio]').forEach(function (caixa) {
+      if (caixa.getAttribute('data-vfm-rodizio-ligado')) return; // já ligado (navegação contínua)
+      caixa.setAttribute('data-vfm-rodizio-ligado', '1');
+      var pecas = $$('.vfm-pub-topo__peca, [data-vfm-peca]', caixa);
+      if (pecas.length < 2) return;
+      var atual = 0;
+      var parado = false;
+      function mostrar(i) {
+        pecas.forEach(function (p, j) {
+          var ativa = j === i;
+          p.classList.toggle('vfm-ativa', ativa);
+          if (ativa) { p.removeAttribute('aria-hidden'); p.removeAttribute('tabindex'); }
+          else { p.setAttribute('aria-hidden', 'true'); p.setAttribute('tabindex', '-1'); }
+        });
+        atual = i;
+      }
+      // Cada visita começa num anúncio diferente, para todos aparecerem.
+      mostrar(Math.floor(Math.random() * pecas.length));
+      if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      caixa.addEventListener('mouseenter', function () { parado = true; });
+      caixa.addEventListener('mouseleave', function () { parado = false; });
+      caixa.addEventListener('focusin', function () { parado = true; });
+      caixa.addEventListener('focusout', function () { parado = false; });
+      var relogio = setInterval(function () {
+        if (!caixa.isConnected) { clearInterval(relogio); return; } // a página trocou
+        if (parado || doc.hidden) return;
+        mostrar((atual + 1) % pecas.length);
+      }, RODIZIO_MS);
+    });
+  }
+
   /* ----------------------------------------------------------------------
      Utilitários
      ---------------------------------------------------------------------- */
@@ -536,6 +574,8 @@
     ligarVideos();
     ligarTopo();
     ligarLetreiro();
+    ligarRodizios();
+    doc.addEventListener('vfm:pagina', ligarRodizios);
     marcarMenu();
     preencherData();
   }

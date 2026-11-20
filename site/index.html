@@ -19,8 +19,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="assets/css/verdefm.css?v=202611210035">
-<script src="assets/js/verdefm.js?v=202611210035" defer></script>
+<link rel="stylesheet" href="assets/css/verdefm.css?v=202611210100">
+<script src="assets/js/verdefm.js?v=202611210100" defer></script>
 </head>
 <body class="home">
 <!-- WP: body_class() -->
@@ -109,6 +109,21 @@
      Só o que está dentro de #vfm-conteudo troca ao navegar.
      Tudo fora dele (cabeçalho, rádio, rodapé) fica parado e a rádio não para. -->
 <main id="vfm-conteudo" tabindex="-1">
+
+  <!-- Banner do topo (mesma medida do site atual: largura toda do conteúdo, proporção 1260 × 120 px).
+       WP: anúncios ativos da posição "banner_topo" da cidade escolhida; mais de um = rodízio a cada 8 s.
+       Demonstração: anúncios que estão hoje no topo do verdefm.com.br. -->
+  <div class="vfm-container vfm-pub-topo">
+    <section class="vfm-pub-topo__caixa" aria-label="Publicidade" data-vfm-rodizio>
+      <a class="vfm-pub-topo__peca vfm-ativa" href="https://www.mrv.com.br/" target="_blank" rel="noopener sponsored">
+        <img src="https://www.verdefm.com.br/wp-content/uploads/2026/08/1414-7_fullbanner_730x72px_1.jpg.jpeg" alt="MRV: visite a nova loja MRV em Várzea Grande" width="730" height="72">
+      </a>
+      <a class="vfm-pub-topo__peca" href="https://www.helpvida.com.br/" target="_blank" rel="noopener sponsored" tabindex="-1" aria-hidden="true">
+        <img src="https://www.verdefm.com.br/wp-content/uploads/2026/07/banner-site-HelpVida-1260-x-120-px.gif" alt="Help Vida" width="1260" height="120" loading="lazy">
+      </a>
+    </section>
+    <span class="vfm-pub-topo__rotulo" aria-hidden="true">Publicidade</span>
+  </div>
 
   <!-- Destaques. WP: post fixado/“Manchete” + 2 destaques seguintes -->
   <div class="vfm-container vfm-destaques">
