@@ -58,7 +58,8 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 ## Publicar
 
 - GitHub: `luizpodecrer-ship-it/verdefm-portal`, branch `main`.
-- Netlify publica a pasta `site/` (configurado em `netlify.toml`).
+- Netlify: projeto **verdefm-portal** (id `5f327f1e-1d67-44ec-879f-db751dbdb975`, time "luizpodecrer"), endereço **verdefm-portal.netlify.app**, acesso de visitantes aberto. Publica a pasta `site/` (configurado em `netlify.toml`).
+- Primeira publicação (20/11/2026) foi enviada direto pelo Claude. Enquanto o Netlify não estiver ligado ao GitHub, cada entrega precisa ser publicada de novo pela ferramenta do Netlify (deploy-site com o id acima).
 - A cada publicação, trocar o número `?v=` do CSS e do JS em `site/index.html`, para o navegador baixar a versão nova.
 
 ## Testar
