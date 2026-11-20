@@ -19,8 +19,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="assets/css/verdefm.css?v=202611202155">
-<script src="assets/js/verdefm.js?v=202611202155" defer></script>
+<link rel="stylesheet" href="assets/css/verdefm.css?v=202611202215">
+<script src="assets/js/verdefm.js?v=202611202215" defer></script>
 </head>
 <body class="home">
 <!-- WP: body_class() -->
@@ -77,7 +77,7 @@
       <li><a href="#cidade">Cidades</a></li>
       <li><a href="#editorias">Economia e negócios</a></li>
       <li><a href="#editorias">Esporte e cultura</a></li>
-      <li><a href="#entrevistas">Entrevistas</a></li>
+      <li><a href="#videos">Vídeos</a></li>
       <li><a href="#programacao">Programação</a></li>
       <li><a href="#promocoes">Promoções</a></li>
     </ul>
@@ -186,6 +186,78 @@
     </div>
   </section>
 
+  <!-- Ao vivo e vídeos do YouTube.
+       WP: data-canal = ID do canal (UC...). Lista: últimos vídeos pelo feed do canal
+       (fetch_feed('https://www.youtube.com/feeds/videos.xml?channel_id=UC6WHqxKeQgo9b7rRtF43ifA'), guardado em cache).
+       Cada botão: data-vfm-video = ID do vídeo; data-titulo = título. O primeiro item volta para o ao vivo. -->
+  <section class="vfm-secao vfm-secao--branca" id="videos" aria-labelledby="titulo-videos">
+    <div class="vfm-container">
+      <div class="vfm-titulo-secao">
+        <div>
+          <span class="vfm-chapeu">Verde FM no YouTube</span>
+          <h2 id="titulo-videos">Ao vivo e vídeos</h2>
+        </div>
+        <a class="vfm-link-mais" href="https://www.youtube.com/@VerdeFMoficial" target="_blank" rel="noopener">Ver o canal
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+
+      <div class="vfm-tv vfm-tv--ao-vivo" data-vfm-tv data-canal="UC6WHqxKeQgo9b7rRtF43ifA">
+        <div class="vfm-tv__principal">
+          <div class="vfm-tv__tela" data-vfm-tv-tela>
+            <button class="vfm-tv__capa" type="button" data-vfm-tv-assistir>
+              <img class="vfm-tv__capa-img" data-vfm-tv-capa src="" alt="" width="1280" height="720" hidden>
+              <span class="vfm-tv__capa-aovivo" aria-hidden="true">
+                <img src="assets/img/logos/cuiaba.png" data-vfm-logo alt="" width="840" height="200">
+                <span>Transmissão do estúdio</span>
+              </span>
+              <span class="vfm-tv__selo"><span class="vfm-ponto" aria-hidden="true"></span><span data-vfm-tv-selo>Ao vivo</span></span>
+              <span class="vfm-tv__play" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l12 7-12 7z"/></svg></span>
+              <span class="vfm-so-leitor">Assistir: </span><span class="vfm-so-leitor" data-vfm-tv-rotulo>transmissão ao vivo</span>
+            </button>
+          </div>
+          <div class="vfm-tv__legenda">
+            <h3 data-vfm-tv-titulo>Transmissão ao vivo do estúdio</h3>
+            <a class="vfm-link-mais" data-vfm-tv-link href="https://www.youtube.com/@VerdeFMoficial/live" target="_blank" rel="noopener">Abrir no YouTube</a>
+          </div>
+        </div>
+
+        <div class="vfm-tv__lateral">
+          <h3 class="vfm-tv__lista-titulo">Últimos vídeos</h3>
+          <ul class="vfm-tv__lista">
+          <li><button class="vfm-tv__item vfm-tv__item--aovivo" type="button" data-vfm-video="ao-vivo" data-titulo="Transmissão ao vivo do estúdio" aria-current="true">
+            <span class="vfm-tv__miniatura vfm-tv__miniatura--aovivo" aria-hidden="true"><span class="vfm-ponto"></span></span>
+            <span class="vfm-tv__item-texto"><strong>Transmissão ao vivo</strong><small>Estúdio da Verde FM</small></span>
+          </button></li>
+          <li><button class="vfm-tv__item" type="button" data-vfm-video="slqLmWZ-tKg" data-titulo="Jornal da Verde FM: Drª Natasha Crepaldi - Dermatologista" aria-current="false">
+            <img class="vfm-tv__miniatura" src="https://i.ytimg.com/vi/slqLmWZ-tKg/mqdefault.jpg" alt="" width="320" height="180" loading="lazy">
+            <span class="vfm-tv__item-texto"><strong>Jornal da Verde FM: Drª Natasha Crepaldi - Dermatologista</strong><small>20/11/2026</small></span>
+          </button></li>
+          <li><button class="vfm-tv__item" type="button" data-vfm-video="IWb9nRAT0Tk" data-titulo="Jornal da Verde FM: Maysa Leão - Vereadora por Cuiabá" aria-current="false">
+            <img class="vfm-tv__miniatura" src="https://i.ytimg.com/vi/IWb9nRAT0Tk/mqdefault.jpg" alt="" width="320" height="180" loading="lazy">
+            <span class="vfm-tv__item-texto"><strong>Jornal da Verde FM: Maysa Leão - Vereadora por Cuiabá</strong><small>19/11/2026</small></span>
+          </button></li>
+          <li><button class="vfm-tv__item" type="button" data-vfm-video="Agn8YfI0ob0" data-titulo="“O pior ainda está por vir”, alerta vereadora sobre chuvas em Cuiabá" aria-current="false">
+            <img class="vfm-tv__miniatura" src="https://i.ytimg.com/vi/Agn8YfI0ob0/mqdefault.jpg" alt="" width="320" height="180" loading="lazy">
+            <span class="vfm-tv__item-texto"><strong>“O pior ainda está por vir”, alerta vereadora sobre chuvas em Cuiabá</strong><small>18/11/2026</small></span>
+          </button></li>
+          <li><button class="vfm-tv__item" type="button" data-vfm-video="M77NBV43Cpg" data-titulo="Cuiabá gastou R$ 126 mil em plano de arborização que ainda não foi colocado em prática" aria-current="false">
+            <img class="vfm-tv__miniatura" src="https://i.ytimg.com/vi/M77NBV43Cpg/mqdefault.jpg" alt="" width="320" height="180" loading="lazy">
+            <span class="vfm-tv__item-texto"><strong>Cuiabá gastou R$ 126 mil em plano de arborização que ainda não foi colocado em prática</strong><small>18/11/2026</small></span>
+          </button></li>
+          <li><button class="vfm-tv__item" type="button" data-vfm-video="pZiGZT2xXOo" data-titulo="Jornal da Verde FM: Christiany Fonseca - Análise política" aria-current="false">
+            <img class="vfm-tv__miniatura" src="https://i.ytimg.com/vi/pZiGZT2xXOo/mqdefault.jpg" alt="" width="320" height="180" loading="lazy">
+            <span class="vfm-tv__item-texto"><strong>Jornal da Verde FM: Christiany Fonseca - Análise política</strong><small>18/11/2026</small></span>
+          </button></li>
+          <li><button class="vfm-tv__item" type="button" data-vfm-video="42Dp5-PKDPM" data-titulo="VIVER SEGURO | Dr. Juliano Coelho Philippi - Alergista e imunologista" aria-current="false">
+            <img class="vfm-tv__miniatura" src="https://i.ytimg.com/vi/42Dp5-PKDPM/mqdefault.jpg" alt="" width="320" height="180" loading="lazy">
+            <span class="vfm-tv__item-texto"><strong>VIVER SEGURO | Dr. Juliano Coelho Philippi - Alergista e imunologista</strong><small>17/11/2026</small></span>
+          </button></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Publicidade. WP: área de widget "publicidade-home" por cidade (ou plugin de anúncios) -->
   <div class="vfm-publicidade vfm-container">
     <div class="vfm-publicidade__espaco">
@@ -227,7 +299,7 @@
     </div>
   </section>
 
-  <!-- Programação, entrevistas e promoções -->
+  <!-- Programação e promoções -->
   <section class="vfm-secao vfm-secao--branca">
     <div class="vfm-container vfm-extras">
       <!-- WP: grade de programas da cidade escolhida (CPT "programa" com dias, início, fim e cidade). O programa no ar leva a classe vfm-no-ar -->
@@ -240,17 +312,6 @@
           <li><time>[00h00]</time><span><strong>[Programa]</strong> · [Apresentador]</span></li>
           <li><time>[00h00]</time><span><strong>[Programa]</strong> · [Apresentador]</span></li>
         </ol>
-      </div>
-
-      <!-- WP: último post da categoria "entrevistas" (vídeo do YouTube no conteúdo) -->
-      <div class="vfm-entrevista" id="entrevistas">
-        <h2>Entrevistas</h2>
-        <a class="vfm-entrevista__video" href="#" aria-label="Assistir à entrevista do dia">
-          <img class="vfm-foto vfm-foto--16x9" src="assets/img/foto-exemplo.svg" alt="" width="800" height="450" loading="lazy">
-          <span aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l12 7-12 7z"/></svg></span>
-        </a>
-        <h3><a href="#">Entrevista do dia: título com o nome do convidado e o assunto</a></h3>
-        <p>Vídeo do estúdio, do canal da rádio no YouTube</p>
       </div>
 
       <!-- WP: promoção ativa (CPT "promocao" ou página); botão leva ao formulário de inscrição -->
@@ -331,7 +392,7 @@
       <li><a href="#cidade">Cidades</a></li>
       <li><a href="#editorias">Economia e negócios</a></li>
       <li><a href="#editorias">Esporte e cultura</a></li>
-      <li><a href="#entrevistas">Entrevistas</a></li>
+      <li><a href="#videos">Vídeos</a></li>
       <li><a href="#programacao">Programação</a></li>
       <li><a href="#promocoes">Promoções</a></li>
     </ul>

@@ -124,12 +124,32 @@ document.addEventListener('vfm:cidade', function (e) { /* e.detail.cidade.slug *
 - Menu ativo: links dentro de `[data-vfm-menu]` recebem `aria-current="page"` sozinhos.
 - Se algo falhar (erro de rede, página sem `#vfm-conteudo`), o JS faz a navegação normal. Nada quebra.
 
-## 6. Menu, busca e acessibilidade
+## 6. Ao vivo e vídeos do YouTube
+
+Bloco `#videos` da home: quadro grande com a transmissão ao vivo do canal e, ao lado (no celular, embaixo, correndo para o lado), os últimos vídeos.
+
+- Canal: **@VerdeFMoficial**, ID `UC6WHqxKeQgo9b7rRtF43ifA` (vai no `data-canal` do `[data-vfm-tv]`).
+- Últimos vídeos: ler o feed público do canal no PHP, sem chave de API, e guardar em cache (30 min):
+
+```php
+$feed = fetch_feed('https://www.youtube.com/feeds/videos.xml?channel_id=UC6WHqxKeQgo9b7rRtF43ifA');
+foreach ($feed->get_items(0, 6) as $item) {
+  $id = $item->get_item_tags('http://www.youtube.com/xml/schemas/2015', 'videoId')[0]['data'];
+  // <button class="vfm-tv__item" data-vfm-video="$id" data-titulo="título"> … miniatura https://i.ytimg.com/vi/$id/mqdefault.jpg
+}
+```
+
+- O primeiro item da lista é sempre o ao vivo (`data-vfm-video="ao-vivo"`).
+- O vídeo **só carrega quando a pessoa toca** (até lá é uma capa leve): a home não fica pesada com o player do YouTube.
+- **Rádio e vídeo não tocam juntos:** começar um vídeo pausa a rádio; ligar a rádio fecha o vídeo.
+- Quando o canal não está ao vivo, o próprio YouTube mostra o aviso dentro do quadro. Se quiserem esconder o ao vivo fora do horário, o PHP pode tirar o item "ao vivo" e já abrir no vídeo mais recente (trocar `data-atual`, a classe `vfm-tv--ao-vivo` e a capa).
+
+## 7. Menu, busca e acessibilidade
 
 - Menu do celular e busca são `<dialog>`: abrir com `data-vfm-abrir="id-do-dialog"`, fechar com `data-vfm-fechar`. Esc e toque fora fecham.
 - Menus: `wp_nav_menu` com `theme_location` "editorias", usado no cabeçalho e no menu do celular (as duas `<nav>` levam `data-vfm-menu`).
 - Já previsto: link "Pular para o conteúdo", foco visível, alvos de 44 px, aviso para leitor de tela a cada troca de página (`#vfm-aviso`), "reduzir movimento" do sistema respeitado. Manter os `aria-*` e os `alt` ao converter.
 
-## 7. Telas que ainda vão chegar
+## 8. Telas que ainda vão chegar
 
 Página da notícia, página da cidade, página da editoria, busca e 404 serão desenhadas, aprovadas e entregues no mesmo padrão (mesmas classes, mesmo `#vfm-conteudo`).

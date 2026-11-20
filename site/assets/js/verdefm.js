@@ -12,11 +12,13 @@
      4. Navegação ...... troca só o conteúdo (#vfm-conteudo) ao clicar em links
         contínua         do próprio site, então a rádio não para.
      5. Janelas ........ menu do celular e busca (<dialog>).
+     6. Vídeos ......... transmissão ao vivo do YouTube e últimos vídeos: o vídeo só
+                         carrega no toque (capa leve); vídeo e rádio não tocam juntos.
 
    Eventos para o WordPress / plugins (ouvir com document.addEventListener):
      "vfm:pagina"  → depois de trocar de página (reiniciar anúncios, embeds, analytics)
      "vfm:cidade"  → depois de trocar de cidade (detail: { cidade })
-   API pública: window.VerdeFM  (cidadeAtual, trocarCidade, navegar, tocar, pausar)
+   API pública: window.VerdeFM  (cidadeAtual, trocarCidade, navegar, tocar, pausar, pararVideos)
    ========================================================================== */
 (function () {
   'use strict';
@@ -164,6 +166,7 @@
     if (!audio || !cidade.stream) { radioAviso('A rádio desta cidade ainda não está no ar.'); return; }
     querTocar = true;
     radioAviso('');
+    pararVideos(); // rádio e vídeo não tocam ao mesmo tempo
     // Rádio ao vivo: sempre recarrega o endereço para voltar ao "agora".
     audio.src = cidade.stream;
     carregando(true);
@@ -359,6 +362,83 @@
     });
   }
 
+
+  /* ----------------------------------------------------------------------
+     6. Vídeos do YouTube (ao vivo + últimos vídeos)
+     ---------------------------------------------------------------------- */
+  function urlDoVideo(tv, id) {
+    if (id === 'ao-vivo') return 'https://www.youtube.com/embed/live_stream?channel=' + encodeURIComponent(tv.getAttribute('data-canal')) + '&autoplay=1';
+    return 'https://www.youtube.com/embed/' + encodeURIComponent(id) + '?autoplay=1&rel=0';
+  }
+  function tirarFrame(tela) {
+    var frame = tela && $('iframe', tela);
+    if (frame && frame.parentNode) frame.parentNode.removeChild(frame);
+    return !!frame;
+  }
+  function assistir(tv) {
+    var tela = $('[data-vfm-tv-tela]', tv);
+    if (!tela) return;
+    var id = tv.getAttribute('data-atual') || 'ao-vivo';
+    tirarFrame(tela);
+    var frame = doc.createElement('iframe');
+    frame.src = urlDoVideo(tv, id);
+    frame.title = ($('[data-vfm-tv-titulo]', tv) || {}).textContent || 'Vídeo da Verde FM';
+    frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    frame.allowFullscreen = true;
+    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+    var capa = $('.vfm-tv__capa', tela);
+    if (capa) capa.hidden = true;
+    tela.appendChild(frame);
+    if (querTocar) pausar(); // vídeo começou: a rádio para
+  }
+  function pararVideos() {
+    $$('[data-vfm-tv]').forEach(function (tv) {
+      if (!tirarFrame($('[data-vfm-tv-tela]', tv))) return;
+      var capa = $('.vfm-tv__capa', tv);
+      if (capa) capa.hidden = false;
+    });
+  }
+  function escolherVideo(tv, botao) {
+    var id = botao.getAttribute('data-vfm-video');
+    var titulo = botao.getAttribute('data-titulo') || '';
+    var aoVivo = id === 'ao-vivo';
+    tv.setAttribute('data-atual', id);
+    tv.classList.toggle('vfm-tv--ao-vivo', aoVivo);
+    $$('[data-vfm-video]', tv).forEach(function (b) { b.setAttribute('aria-current', b === botao ? 'true' : 'false'); });
+    var img = $('[data-vfm-tv-capa]', tv);
+    if (img) {
+      img.hidden = aoVivo;
+      if (!aoVivo) img.src = 'https://i.ytimg.com/vi/' + encodeURIComponent(id) + '/hqdefault.jpg';
+    }
+    var t = $('[data-vfm-tv-titulo]', tv); if (t) t.textContent = titulo;
+    var selo = $('[data-vfm-tv-selo]', tv); if (selo) selo.textContent = aoVivo ? 'Ao vivo' : 'Vídeo';
+    var rotulo = $('[data-vfm-tv-rotulo]', tv); if (rotulo) rotulo.textContent = titulo;
+    var link = $('[data-vfm-tv-link]', tv);
+    if (link) link.href = aoVivo ? 'https://www.youtube.com/channel/' + tv.getAttribute('data-canal') + '/live' : 'https://www.youtube.com/watch?v=' + id;
+    assistir(tv);
+    // No celular a lista fica embaixo do vídeo: se o vídeo saiu da tela, volta para ele.
+    var tela = $('[data-vfm-tv-tela]', tv);
+    if (tela && tela.getBoundingClientRect().top < 0) tela.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  function ajustarAlturaDaLista() {
+    // No computador a lista acompanha a altura do vídeo e rola por dentro.
+    $$('[data-vfm-tv]').forEach(function (tv) {
+      var principal = $('.vfm-tv__principal', tv);
+      if (principal) tv.style.setProperty('--vfm-tv-altura', principal.offsetHeight + 'px');
+    });
+  }
+  function ligarVideos() {
+    doc.addEventListener('click', function (e) {
+      var item = e.target.closest('[data-vfm-video]');
+      if (item) { escolherVideo(item.closest('[data-vfm-tv]'), item); return; }
+      var play = e.target.closest('[data-vfm-tv-assistir]');
+      if (play) assistir(play.closest('[data-vfm-tv]'));
+    });
+    window.addEventListener('resize', ajustarAlturaDaLista);
+    doc.addEventListener('vfm:pagina', ajustarAlturaDaLista);
+    ajustarAlturaDaLista();
+  }
+
   /* ----------------------------------------------------------------------
      Utilitários
      ---------------------------------------------------------------------- */
@@ -387,6 +467,7 @@
     ligarRadio();
     ligarNavegacao();
     ligarJanelas();
+    ligarVideos();
     marcarMenu();
     preencherData();
   }
@@ -398,6 +479,7 @@
     trocarCidade: trocarCidade,
     navegar: navegar,
     tocar: tocar,
-    pausar: pausar
+    pausar: pausar,
+    pararVideos: pararVideos
   };
 })();
