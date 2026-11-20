@@ -15,6 +15,7 @@
      6. Vídeos ......... transmissão ao vivo do YouTube e últimos vídeos: o vídeo só
                          carrega no toque (capa leve); vídeo e rádio não tocam juntos.
      7. Cabeçalho ...... fica preso no topo ao rolar e encolhe um pouco (.vfm-rolou).
+     8. Letreiro ....... faixa "Últimas" correndo sem parar, com pausa (mouse, foco ou botão).
 
    Eventos para o WordPress / plugins (ouvir com document.addEventListener):
      "vfm:pagina"  → depois de trocar de página (reiniciar anúncios, embeds, analytics)
@@ -411,7 +412,7 @@
     var img = $('[data-vfm-tv-capa]', tv);
     if (img) {
       img.hidden = aoVivo;
-      if (!aoVivo) img.src = 'https://i.ytimg.com/vi/' + encodeURIComponent(id) + '/hqdefault.jpg';
+      if (!aoVivo) capaDoVideo(img, id);
     }
     var t = $('[data-vfm-tv-titulo]', tv); if (t) t.textContent = titulo;
     var selo = $('[data-vfm-tv-selo]', tv); if (selo) selo.textContent = aoVivo ? 'Ao vivo' : 'Vídeo';
@@ -423,12 +424,13 @@
     var tela = $('[data-vfm-tv-tela]', tv);
     if (tela && tela.getBoundingClientRect().top < 0) tela.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
-  function ajustarAlturaDaLista() {
-    // No computador a lista acompanha a altura do vídeo e rola por dentro.
-    $$('[data-vfm-tv]').forEach(function (tv) {
-      var principal = $('.vfm-tv__principal', tv);
-      if (principal) tv.style.setProperty('--vfm-tv-altura', principal.offsetHeight + 'px');
-    });
+  function capaDoVideo(img, id) {
+    // Capa em alta (maxresdefault). Vídeo antigo sem ela: o YouTube devolve uma imagem cinza
+    // de 120 px; nesse caso usa a hqdefault.
+    var base = 'https://i.ytimg.com/vi/' + encodeURIComponent(id) + '/';
+    img.onload = function () { if (img.naturalWidth <= 120 && img.src.indexOf('hqdefault') === -1) img.src = base + 'hqdefault.jpg'; };
+    img.onerror = function () { if (img.src.indexOf('hqdefault') === -1) img.src = base + 'hqdefault.jpg'; };
+    img.src = base + 'maxresdefault.jpg';
   }
   function ligarVideos() {
     doc.addEventListener('click', function (e) {
@@ -437,9 +439,6 @@
       var play = e.target.closest('[data-vfm-tv-assistir]');
       if (play) assistir(play.closest('[data-vfm-tv]'));
     });
-    window.addEventListener('resize', ajustarAlturaDaLista);
-    doc.addEventListener('vfm:pagina', ajustarAlturaDaLista);
-    ajustarAlturaDaLista();
   }
 
   /* ----------------------------------------------------------------------
@@ -468,6 +467,42 @@
     doc.addEventListener('vfm:pagina', conferir);
     medir();
     conferir();
+  }
+
+
+  /* ----------------------------------------------------------------------
+     8. Letreiro das últimas notícias
+     ---------------------------------------------------------------------- */
+  function ligarLetreiro() {
+    var caixa = $('[data-vfm-letreiro]');
+    if (!caixa) return;
+    var lista = $('[data-vfm-letreiro-lista]', caixa);
+    var botao = $('[data-vfm-letreiro-pausa]', caixa);
+    // Quem pediu "reduzir movimento" no aparelho vê a lista parada (dá para arrastar).
+    if (!lista || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+    // Duplica os itens: a animação anda metade da lista e recomeça sem emenda.
+    $$('li', lista).forEach(function (li) {
+      var copia = li.cloneNode(true);
+      copia.setAttribute('aria-hidden', 'true');
+      $$('a', copia).forEach(function (a) { a.setAttribute('tabindex', '-1'); });
+      lista.appendChild(copia);
+    });
+    function medir() {
+      // Velocidade constante (~55 px por segundo), qualquer que seja o tamanho dos títulos.
+      var segundos = Math.max(18, Math.round(lista.scrollWidth / 2 / 55));
+      caixa.style.setProperty('--vfm-letreiro-tempo', segundos + 's');
+    }
+    medir();
+    window.addEventListener('resize', medir);
+    caixa.classList.add('vfm-letreiro--ligado');
+    if (botao) {
+      botao.hidden = false;
+      botao.addEventListener('click', function () {
+        var pausado = caixa.classList.toggle('vfm-letreiro--pausado');
+        botao.setAttribute('aria-pressed', pausado ? 'true' : 'false');
+        botao.setAttribute('aria-label', pausado ? 'Continuar as últimas notícias' : 'Pausar as últimas notícias');
+      });
+    }
   }
 
   /* ----------------------------------------------------------------------
@@ -500,6 +535,7 @@
     ligarJanelas();
     ligarVideos();
     ligarTopo();
+    ligarLetreiro();
     marcarMenu();
     preencherData();
   }

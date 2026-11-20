@@ -35,6 +35,10 @@
   --vfm-grafite-texto: #B9C4BD;
   --vfm-grafite-linha: #33403A;
   --vfm-foto-vazia: linear-gradient(135deg, #E4EAE6, #EEF2EF);
+  /* Cores oficiais das redes (só nos ícones delas) */
+  --vfm-youtube: #FF0000;
+  --vfm-facebook: #1877F2;
+  --vfm-instagram: linear-gradient(45deg, #F58529, #DD2A7B 50%, #8134AF);
 
   /* Letras */
   --vfm-fonte-titulo: "Archivo", "Helvetica Neue", Arial, sans-serif;
@@ -163,10 +167,28 @@ html.vfm-rolou .vfm-logo img { height: 32px; }
   .vfm-topo__menu { display: none; }
 }
 
-.vfm-topo__youtube {
-  align-items: center; gap: 8px; min-height: var(--vfm-alvo); padding: 0 16px;
-  border-radius: var(--vfm-raio-pilula); background: #F1F4F2; font-size: 14px; font-weight: 500;
+/* Botão "Ao vivo no YouTube" (cabeçalho e menu do celular): ícone oficial com onda pulsando */
+.vfm-yt {
+  display: inline-flex; align-items: center; gap: 10px; min-height: var(--vfm-alvo); padding: 0 16px 0 10px;
+  border-radius: var(--vfm-raio-pilula); border: 1px solid var(--vfm-linha); background: var(--vfm-superficie);
+  transition: transform var(--vfm-transicao), box-shadow var(--vfm-transicao), border-color var(--vfm-transicao);
 }
+.vfm-yt:hover { color: var(--vfm-texto); transform: translateY(-2px); border-color: #F3C2C2; box-shadow: 0 8px 22px rgba(255, 0, 0, .14); }
+.vfm-yt:active { transform: translateY(0) scale(.97); }
+.vfm-yt__icone { position: relative; display: inline-flex; width: 28px; height: 20px; }
+.vfm-yt__icone::before, .vfm-yt__icone::after {
+  content: ""; position: absolute; inset: 0; border-radius: 6px; background: var(--vfm-youtube);
+  opacity: 0; animation: vfm-onda 2.4s ease-out infinite;
+}
+.vfm-yt__icone::after { animation-delay: 1.2s; }
+.vfm-yt__logo { position: relative; z-index: 1; transition: transform var(--vfm-transicao); }
+.vfm-yt:hover .vfm-yt__logo { transform: scale(1.12); }
+@keyframes vfm-onda { 0% { transform: scale(1); opacity: .35; } 100% { transform: scale(1.9); opacity: 0; } }
+.vfm-yt__texto { display: flex; flex-direction: column; line-height: 1.1; }
+.vfm-yt__texto strong { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 600; color: var(--vfm-vermelho-texto); }
+.vfm-yt__texto strong .vfm-ponto { width: 6px; height: 6px; animation: vfm-pulsar 1.4s ease-in-out infinite; }
+.vfm-yt__texto small { font-size: 12px; color: var(--vfm-texto-2); }
+.vfm-yt--largo { justify-content: center; width: 100%; min-height: 52px; }
 .vfm-ponto { width: 8px; height: 8px; border-radius: 50%; background: var(--vfm-vermelho); flex: 0 0 auto; }
 .vfm-ponto--verde { width: 7px; height: 7px; background: var(--vfm-verde-marca); }
 
@@ -231,14 +253,38 @@ html.vfm-rolou .vfm-logo img { height: 32px; }
 /* Faixa "Últimas" */
 .vfm-ultimas { padding-top: 16px; }
 .vfm-ultimas__caixa {
-  display: flex; align-items: center; gap: 14px; overflow: hidden;
-  padding: 12px 16px; border-radius: 12px; background: var(--vfm-superficie); border: 1px solid var(--vfm-linha);
+  display: flex; align-items: center; gap: 12px; min-height: 48px; padding-left: 16px;
+  border-radius: 12px; background: var(--vfm-superficie); border: 1px solid var(--vfm-linha);
   font-size: 14px; color: var(--vfm-texto-3);
 }
 .vfm-ultimas__rotulo { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; font-weight: 600; color: var(--vfm-verde); }
-.vfm-ultimas__lista { display: flex; gap: 18px; margin: 0; padding: 0; list-style: none; overflow-x: auto; scrollbar-width: none; white-space: nowrap; }
-.vfm-ultimas__lista::-webkit-scrollbar { display: none; }
-.vfm-ultimas__lista li + li::before { content: "·"; margin-right: 18px; color: #B5C0B9; }
+/* Letreiro: a lista corre da direita para a esquerda sem parar; para no mouse, no foco e no botão de pausa */
+.vfm-ultimas__janela {
+  flex: 1 1 auto; min-width: 0; overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 28px, #000 calc(100% - 28px), transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 28px, #000 calc(100% - 28px), transparent);
+}
+.vfm-ultimas__lista { display: flex; width: max-content; margin: 0; padding: 0; list-style: none; white-space: nowrap; }
+.vfm-ultimas__lista li { position: relative; padding-inline: 18px; }
+.vfm-ultimas__lista li::after { content: ""; position: absolute; right: -2px; top: 50%; width: 4px; height: 4px; margin-top: -2px; border-radius: 50%; background: #B5C0B9; }
+.vfm-ultimas__lista a { display: inline-block; padding-block: 12px; }
+.vfm-letreiro--ligado .vfm-ultimas__lista { animation: vfm-letreiro var(--vfm-letreiro-tempo, 40s) linear infinite; }
+.vfm-letreiro--ligado:hover .vfm-ultimas__lista,
+.vfm-letreiro--ligado:focus-within .vfm-ultimas__lista,
+.vfm-letreiro--pausado .vfm-ultimas__lista { animation-play-state: paused; }
+@keyframes vfm-letreiro { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.vfm-ultimas__pausa {
+  flex: 0 0 auto; width: var(--vfm-alvo); height: var(--vfm-alvo); margin-right: 2px; border: 0; border-radius: 10px;
+  display: inline-flex; align-items: center; justify-content: center; background: transparent; color: var(--vfm-texto-2);
+  transition: background var(--vfm-transicao), color var(--vfm-transicao);
+}
+.vfm-ultimas__pausa:hover { background: var(--vfm-verde-claro); color: var(--vfm-verde); }
+.vfm-ultimas__icone-tocar, .vfm-letreiro--pausado .vfm-ultimas__icone-pausa { display: none; }
+.vfm-letreiro--pausado .vfm-ultimas__icone-tocar { display: block; }
+@media (prefers-reduced-motion: reduce) {
+  .vfm-ultimas__lista { animation: none !important; }
+  .vfm-ultimas__janela { overflow-x: auto; scrollbar-width: none; }
+}
 
 /* 5. Notícias ------------------------------------------------------------- */
 .vfm-foto { display: block; width: 100%; object-fit: cover; background: var(--vfm-foto-vazia); }
@@ -372,7 +418,15 @@ html.vfm-tocando .vfm-ao-vivo .vfm-ponto { animation: vfm-pulsar 1.6s ease-in-ou
 
 /* Ao vivo e vídeos do YouTube ("TV") */
 .vfm-tv { display: grid; gap: 20px; }
-@media (min-width: 1024px) { .vfm-tv { grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr); gap: 28px; align-items: start; } }
+@media (min-width: 1024px) {
+  /* Vídeo à esquerda, lista à direita com a MESMA altura do bloco do vídeo (rola por dentro) */
+  .vfm-tv { grid-template-columns: minmax(0, 1.85fr) minmax(340px, 1fr); gap: 24px; align-items: stretch; }
+  .vfm-tv__lateral { position: relative; min-height: 380px; }
+  .vfm-tv__painel {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    padding: 14px 8px 8px 14px; border-radius: var(--vfm-raio-gg); background: var(--vfm-fundo); border: 1px solid var(--vfm-linha);
+  }
+}
 .vfm-tv__principal { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
 .vfm-tv__tela {
   position: relative; aspect-ratio: 16 / 9; border-radius: var(--vfm-raio-g); overflow: hidden;
@@ -440,13 +494,16 @@ html.vfm-tocando .vfm-ao-vivo .vfm-ponto { animation: vfm-pulsar 1.6s ease-in-ou
 /* Computador: lista em coluna ao lado do vídeo, com rolagem própria */
 @media (min-width: 1024px) {
   .vfm-tv__lista {
-    grid-auto-flow: row; grid-auto-columns: auto; gap: 6px; margin: 0; padding: 0 6px 0 0;
-    max-height: var(--vfm-tv-altura, 460px); overflow-y: auto; overflow-x: hidden; scroll-snap-type: none; scrollbar-width: thin;
+    flex: 1 1 auto; min-height: 0; grid-auto-flow: row; grid-auto-columns: auto; align-content: start; gap: 4px;
+    margin: 0; padding: 0 6px 0 0; overflow-y: auto; overflow-x: hidden; scroll-snap-type: none; scrollbar-width: thin;
+    scrollbar-color: var(--vfm-linha-forte) transparent;
   }
-  .vfm-tv__item { flex-direction: row; align-items: center; gap: 12px; padding: 8px; border-color: transparent; }
-  .vfm-tv__item[aria-current="true"] { border-color: transparent; }
-  .vfm-tv__miniatura { flex: 0 0 128px; width: 128px; }
+  .vfm-tv__item { flex-direction: row; align-items: center; gap: 12px; padding: 8px; border-color: transparent; background: transparent; }
+  .vfm-tv__item:hover { background: var(--vfm-superficie); }
+  .vfm-tv__item[aria-current="true"] { border-color: transparent; background: var(--vfm-superficie); box-shadow: 0 4px 14px rgba(27, 36, 32, .06); }
+  .vfm-tv__miniatura { flex: 0 0 136px; width: 136px; }
   .vfm-tv__item-texto strong { font-size: 15px; }
+  .vfm-tv__lista-titulo { margin: 2px 0 10px; }
 }
 
 /* Editorias */
@@ -501,6 +558,19 @@ html.vfm-tocando .vfm-ao-vivo .vfm-ponto { animation: vfm-pulsar 1.6s ease-in-ou
 .vfm-rodape__marca p { line-height: 1.6; color: var(--vfm-grafite-texto); }
 .vfm-rodape h2 { font-family: var(--vfm-fonte-texto); font-size: 14px; color: #fff; margin-bottom: 10px; }
 .vfm-rodape ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+/* Redes sociais: ícones redondos que ganham a cor da rede no mouse */
+.vfm-rodape .vfm-redes { flex-direction: row; gap: 10px; }
+.vfm-rede {
+  width: var(--vfm-alvo); height: var(--vfm-alvo); display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%; border: 1px solid var(--vfm-grafite-linha); background: rgba(255, 255, 255, .05); color: #E6ECE8;
+  transition: transform var(--vfm-transicao), background var(--vfm-transicao), border-color var(--vfm-transicao), color var(--vfm-transicao);
+}
+.vfm-rodape .vfm-rede:hover, .vfm-rodape .vfm-rede:focus-visible { color: #fff; border-color: transparent; transform: translateY(-3px); text-decoration: none; }
+.vfm-rede svg { transition: transform var(--vfm-transicao); }
+.vfm-rede:hover svg { transform: scale(1.1); }
+.vfm-rede--instagram:hover, .vfm-rede--instagram:focus-visible { background: var(--vfm-instagram); }
+.vfm-rede--facebook:hover, .vfm-rede--facebook:focus-visible { background: var(--vfm-facebook); }
+.vfm-rede--youtube:hover, .vfm-rede--youtube:focus-visible { background: var(--vfm-youtube); }
 .vfm-rodape__fim {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px;
   padding-block: 18px 28px; border-top: 1px solid var(--vfm-grafite-linha); font-size: 13px; color: var(--vfm-grafite-texto);

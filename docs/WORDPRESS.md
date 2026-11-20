@@ -141,12 +141,17 @@ foreach ($feed->get_items(0, 6) as $item) {
 }
 ```
 
-- O primeiro item da lista é sempre o ao vivo (`data-vfm-video="ao-vivo"`).
+- O quadro grande abre no **vídeo mais recente**: o PHP escreve o ID dele em `data-atual`, a capa `https://i.ytimg.com/vi/ID/maxresdefault.jpg`, o título e o link, e marca o item com `aria-current="true"`.
+- O primeiro item da lista é o ao vivo (`data-vfm-video="ao-vivo"`).
 - O vídeo **só carrega quando a pessoa toca** (até lá é uma capa leve): a home não fica pesada com o player do YouTube.
 - **Rádio e vídeo não tocam juntos:** começar um vídeo pausa a rádio; ligar a rádio fecha o vídeo.
 - Quando o canal não está ao vivo, o próprio YouTube mostra o aviso dentro do quadro. Se quiserem esconder o ao vivo fora do horário, o PHP pode tirar o item "ao vivo" e já abrir no vídeo mais recente (trocar `data-atual`, a classe `vfm-tv--ao-vivo` e a capa).
 
-## 7. Menu, busca e acessibilidade
+## 7. Faixa "Últimas" (letreiro)
+
+O `ul[data-vfm-letreiro-lista]` recebe os 5 posts mais recentes. O JS duplica os itens (cópias com `aria-hidden`) e faz correr; o botão `[data-vfm-letreiro-pausa]` pausa. Não é preciso duplicar no PHP.
+
+## 7.1 Menu, busca e acessibilidade
 
 - Menu do celular e busca são `<dialog>`: abrir com `data-vfm-abrir="id-do-dialog"`, fechar com `data-vfm-fechar`. Esc e toque fora fecham.
 - Menus: `wp_nav_menu` com `theme_location` "editorias", usado no cabeçalho e no menu do celular (as duas `<nav>` levam `data-vfm-menu`).

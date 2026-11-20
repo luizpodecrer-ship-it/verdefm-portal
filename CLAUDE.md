@@ -46,6 +46,10 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 - **20/11/2026** — **Demonstração com matérias reais** (pedido do Luiz): a home usa títulos, resumos e fotos das matérias recentes dos três sites atuais (verdefm.com.br, verdefmjaciara.com.br, verdefmcampoverde.com.br); os links abrem a matéria no site atual, em outra aba. "Em {cidade}" traz as notícias de Cuiabá, Jaciara e Campo Verde e mostra só as da cidade escolhida (`data-vfm-so-cidade`).
 - **20/11/2026** — **Assinatura da Astravox no rodapé** (pedido do Luiz): **só o ícone** (`assets/img/astravox.svg`), pequeno e discreto, com link para www.astravox.com.br em nova aba. Sem "Desenvolvido por" e sem o nome escrito. **Padrão de todos os projetos web do Luiz/Astravox.**
 - **20/11/2026** — **Logo da cidade no rodapé** (pedido do Luiz): no lugar do texto "Verde FM", o logo da cidade escolhida, menor e discreto (34 px de altura); troca junto com o do cabeçalho (`data-vfm-logo`).
+- **21/11/2026** — **Faixa "Últimas" em movimento** (pedido do Luiz): letreiro que corre sem parar (velocidade constante), para com o mouse, com o foco do teclado e no botão de pausa; com "reduzir movimento" fica parada e dá para arrastar.
+- **21/11/2026** — **"Ao vivo no YouTube" com o ícone oficial** (vermelho), ondas pulsando em volta e "Ao vivo" com pontinho piscando; sobe no mouse. Mesmo botão no menu do celular (`.vfm-yt`).
+- **21/11/2026** — **Redes sociais com ícones no rodapé**: Instagram, Facebook e YouTube em botões redondos que ganham a cor da rede no mouse.
+- **21/11/2026** — **Vídeos já abrem no último vídeo do canal** (pedido do Luiz): capa em alta do vídeo mais recente no quadro grande; o ao vivo fica como primeiro item da lista. No computador, a lista "Últimos vídeos" fica num painel à direita com a mesma altura do vídeo e rola por dentro.
 
 ## Próximas etapas
 
