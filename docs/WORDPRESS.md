@@ -170,6 +170,23 @@ O `ul[data-vfm-letreiro-lista]` recebe os 5 posts mais recentes. O JS duplica os
 - Menus: `wp_nav_menu` com `theme_location` "editorias", usado no cabeçalho e no menu do celular (as duas `<nav>` levam `data-vfm-menu`).
 - Já previsto: link "Pular para o conteúdo", foco visível, alvos de 44 px, aviso para leitor de tela a cada troca de página (`#vfm-aviso`), "reduzir movimento" do sistema respeitado. Manter os `aria-*` e os `alt` ao converter.
 
-## 8. Telas que ainda vão chegar
+## 8. Páginas internas (templates)
 
-Página da notícia, página da cidade, página da editoria, busca e 404 serão desenhadas, aprovadas e entregues no mesmo padrão (mesmas classes, mesmo `#vfm-conteudo`).
+Cada página da demonstração mostra o HTML que o template deve gerar. Cabeçalho, faixa "Últimas", player, rodapé e janelas são sempre os mesmos (header.php / footer.php); só muda o `<main id="vfm-conteudo">`.
+
+| Página da demonstração | Template WordPress | Observações |
+|---|---|---|
+| `/noticia/*.html` | `single.php` | trilha, chapéu (link da editoria), título, linha fina (`the_excerpt`, uma frase), autor e data, compartilhar (WhatsApp, Facebook, X, copiar), foto com legenda, `the_content()` dentro de `.vfm-texto`, chamada "Ouça a Verde", lateral com publicidade 300 × 250 e últimas notícias, "Leia também" (mesma editoria) |
+| `/editoria/*.html` | `category.php` | primeira matéria em destaque (`.vfm-destaque`), demais em `.vfm-cards`, paginação `.vfm-paginacao` |
+| `/cidade/*.html` | `taxonomy-cidade.php` | logo e frequência da cidade; botão `data-vfm-ouvir-cidade="slug"` troca a cidade e toca a rádio dela |
+| `/videos.html` | `page-videos.php` | mesmo componente `[data-vfm-tv]` da home, com todos os vídeos do feed em `.vfm-videos` |
+| `/programacao.html` | `page-programacao.php` | um bloco por cidade (`data-vfm-so-cidade`), abas por dias (`data-vfm-abas`, cada aba com `data-vfm-dias`), itens com `data-inicio`/`data-fim` (horas). O JS abre a aba de hoje e marca o programa no ar |
+| `/promocoes.html` | `page-promocoes.php` | formulário com as classes `.vfm-formulario`, `.vfm-campo`, `.vfm-aceite` (plugin de formulário) |
+| `/busca.html?s=` | `search.php` | lista em `.vfm-cards`. Na demonstração a busca é feita por `assets/demo/busca-demo.js`, que **não** vai para o tema |
+| `/404.html` | `404.php` | |
+
+**Grade de programação no JSON das cidades:** cada cidade leva `grade: [{rotulo, dias: [1..5], programas: [{inicio, fim, programa, apresentador}]}]` (dias: 0 = domingo; horas inteiras; fim 0 = meia-noite). O player mostra o programa no ar (`[data-vfm-programa]`) pelo fuso de Cuiabá e troca sozinho na virada da hora.
+
+**Outros atributos:** `data-vfm-link-cidade="/cidade/{cidade}.html"` (o JS troca `{cidade}` pela escolhida), `data-vfm-copiar="URL"` (copia o link), `data-vfm-grade-hoje` + `data-vfm-grade-curta="4"` (programação resumida da home).
+
+A pasta `ferramentas/` só serve para montar a demonstração (coleta das matérias dos sites atuais e geração das páginas); não faz parte do tema.

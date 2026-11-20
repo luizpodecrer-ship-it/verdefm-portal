@@ -18,9 +18,9 @@
 <!-- WP: wp_head() — fontes e CSS entram por wp_enqueue_style em functions.php -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="assets/css/verdefm.css?v=202611210100">
-<script src="assets/js/verdefm.js?v=202611210100" defer></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/css/verdefm.css?v=202611210245">
+<script src="/assets/js/verdefm.js?v=202611210245" defer></script>
 </head>
 <body class="home">
 <!-- WP: body_class() -->
@@ -32,8 +32,8 @@
 <header class="vfm-topo">
   <div class="vfm-container vfm-topo__linha">
     <!-- WP: home_url('/'); o logo é o da cidade escolhida (term meta "logo" da taxonomia cidade) -->
-    <a class="vfm-logo" href="./" aria-label="Verde FM, página inicial">
-      <img data-vfm-logo src="assets/img/logos/cuiaba.png" alt="Verde FM Cuiabá 103.7" width="840" height="200">
+    <a class="vfm-logo" href="/" aria-label="Verde FM, página inicial">
+      <img data-vfm-logo src="/assets/img/logos/cuiaba.png" alt="Verde FM Cuiabá 103.7" width="840" height="200">
     </a>
 
     <div class="vfm-topo__acoes">
@@ -73,14 +73,14 @@
   <!-- WP: wp_nav_menu(['theme_location' => 'editorias']) com estas classes -->
   <nav class="vfm-nav vfm-container" aria-label="Editorias" data-vfm-menu>
     <ul>
-      <li><a href="./">Início</a></li>
-      <li><a href="#editorias">Política</a></li>
-      <li><a href="#cidade">Cidades</a></li>
-      <li><a href="#editorias">Economia e negócios</a></li>
-      <li><a href="#editorias">Esporte e cultura</a></li>
-      <li><a href="#videos">Vídeos</a></li>
-      <li><a href="#programacao">Programação</a></li>
-      <li><a href="#promocoes">Promoções</a></li>
+      <li><a href="/">Início</a></li>
+      <li><a href="/editoria/politica.html">Política</a></li>
+      <li><a href="/cidade/cuiaba.html" data-vfm-link-cidade="/cidade/{cidade}.html">Cidades</a></li>
+      <li><a href="/editoria/economia.html">Economia e negócios</a></li>
+      <li><a href="/editoria/esporte-e-cultura.html">Esporte e cultura</a></li>
+      <li><a href="/videos.html">Vídeos</a></li>
+      <li><a href="/programacao.html">Programação</a></li>
+      <li><a href="/promocoes.html">Promoções</a></li>
     </ul>
   </nav>
 </header>
@@ -92,10 +92,10 @@
     <!-- O JS duplica os itens para o letreiro rodar sem emenda (cópias com aria-hidden) -->
     <div class="vfm-ultimas__janela">
       <ul class="vfm-ultimas__lista" data-vfm-letreiro-lista>
-        <li><a href="https://www.verdefm.com.br/2026/11/19/marcia-pinheiro-recebe-alta-apos-66-dias-internada-por-avc-hemorragico/" target="_blank" rel="noopener">Márcia Pinheiro recebe alta após 66 dias internada por AVC hemorrágico</a></li>
-        <li><a href="https://www.verdefm.com.br/2026/11/19/lula-regulamenta-escala-5x2-e-reducao-da-jornada-de-trabalho-no-brasil/" target="_blank" rel="noopener">Lula regulamenta escala 5×2 e redução da jornada de trabalho no Brasil</a></li>
-        <li><a href="https://www.verdefm.com.br/2026/11/19/tj-manda-suspender-cobrancas-de-cartoes-consignados-de-servidores/" target="_blank" rel="noopener">TJ manda suspender cobranças de cartões consignados de servidores</a></li>
-        <li><a href="https://www.verdefm.com.br/2026/11/19/lula-visita-raoni-em-mt-apos-cacique-receber-alta-hospitalar/" target="_blank" rel="noopener">Lula visita Raoni em MT após cacique receber alta hospitalar</a></li>
+        <li><a href="/noticia/marcia-pinheiro-recebe-alta-apos-66-dias-internada-por-avc-hemorragico.html">Márcia Pinheiro recebe alta após 66 dias internada por AVC hemorrágico</a></li>
+        <li><a href="/noticia/lula-regulamenta-escala-5x2-e-reducao-da-jornada-de-trabalho-no-brasil.html">Lula regulamenta escala 5×2 e redução da jornada de trabalho no Brasil</a></li>
+        <li><a href="/noticia/tj-manda-suspender-cobrancas-de-cartoes-consignados-de-servidores.html">TJ manda suspender cobranças de cartões consignados de servidores</a></li>
+        <li><a href="/noticia/lula-visita-raoni-em-mt-apos-cacique-receber-alta-hospitalar.html">Lula visita Raoni em MT após cacique receber alta hospitalar</a></li>
       </ul>
     </div>
     <button class="vfm-ultimas__pausa" type="button" data-vfm-letreiro-pausa aria-pressed="false" aria-label="Pausar as últimas notícias" hidden>
@@ -128,50 +128,49 @@
   <!-- Destaques. WP: post fixado/“Manchete” + 2 destaques seguintes -->
   <div class="vfm-container vfm-destaques">
     <article class="vfm-manchete">
-      <a class="vfm-manchete__foto" href="https://www.verdefm.com.br/2026/11/19/marcia-pinheiro-recebe-alta-apos-66-dias-internada-por-avc-hemorragico/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+      <a class="vfm-manchete__foto" href="/noticia/marcia-pinheiro-recebe-alta-apos-66-dias-internada-por-avc-hemorragico.html" tabindex="-1" aria-hidden="true">
         <!-- WP: the_post_thumbnail('vfm-16x9', ['class' => 'vfm-foto vfm-foto--16x9']) -->
         <img class="vfm-foto vfm-foto--16x9" src="https://www.verdefm.com.br/wp-content/uploads/2026/09/marcia-pinheiro-1.jpg" alt="" width="1600" height="900">
       </a>
       <span class="vfm-chapeu">Cidades · Saúde</span>
-      <h1><a href="https://www.verdefm.com.br/2026/11/19/marcia-pinheiro-recebe-alta-apos-66-dias-internada-por-avc-hemorragico/" target="_blank" rel="noopener">Márcia Pinheiro recebe alta após 66 dias internada por AVC hemorrágico</a></h1>
+      <h1><a href="/noticia/marcia-pinheiro-recebe-alta-apos-66-dias-internada-por-avc-hemorragico.html">Márcia Pinheiro recebe alta após 66 dias internada por AVC hemorrágico</a></h1>
       <p class="vfm-manchete__fina">Márcia Pinheiro, ex-primeira-dama de Cuiabá, recebeu alta hospitalar nesta quinta-feira (19), após 66 dias internada em decorrência de um Acidente Vascular Cerebral (AVC) hemorrágico. Ela…</p>
     </article>
 
-    <aside class="vfm-lateral" aria-label="Rádio e outros destaques">
-      <!-- Cartão da rádio (só no computador; no celular a barra fixa faz o papel) -->
-      <section class="vfm-player-card" aria-label="Rádio ao vivo">
-        <div class="vfm-player-card__topo">
-          <span class="vfm-ao-vivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar agora</span>
-          <span><span data-vfm-texto="cidade">Cuiabá</span> · <span data-vfm-texto="frequencia">103.7</span> FM</span>
-        </div>
-        <div class="vfm-player-card__corpo">
-          <button class="vfm-play" type="button" data-vfm-play aria-pressed="false" aria-label="Ouvir a rádio ao vivo de Cuiabá">
-            <svg class="vfm-play__tocar" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l12 7-12 7z"/></svg>
-            <svg class="vfm-play__pausar" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
-            <svg class="vfm-play__girando" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9"/></svg>
-          </button>
-          <!-- WP: programa no ar pela grade da cidade (CPT "programa") -->
-          <div class="vfm-player-card__programa">
-            <strong data-vfm-programa>[Nome do programa]</strong>
-            <span>com [Apresentador] · [horário]</span>
-          </div>
-        </div>
-        <p class="vfm-player-status" data-vfm-player-status role="status"></p>
-        <a class="vfm-link-mais" href="#programacao">Ver a programação de hoje</a>
-      </section>
-
+    <aside class="vfm-lateral" aria-label="Outros destaques">
       <article class="vfm-card-linha">
-        <a class="vfm-card-linha__foto" href="https://www.verdefm.com.br/2026/11/19/lula-visita-raoni-em-mt-apos-cacique-receber-alta-hospitalar/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="vfm-foto" src="https://www.verdefm.com.br/wp-content/uploads/2026/11/Lula-e-cacique-Raoni0-768x463.avif" alt="" width="400" height="300" loading="lazy"></a>
+        <a class="vfm-card-linha__foto" href="/noticia/lula-visita-raoni-em-mt-apos-cacique-receber-alta-hospitalar.html" tabindex="-1" aria-hidden="true"><img class="vfm-foto" src="https://www.verdefm.com.br/wp-content/uploads/2026/11/Lula-e-cacique-Raoni0-768x463.avif" alt="" width="400" height="300" loading="lazy"></a>
         <div class="vfm-card-linha__texto">
           <span class="vfm-chapeu">Política</span>
-          <h2><a href="https://www.verdefm.com.br/2026/11/19/lula-visita-raoni-em-mt-apos-cacique-receber-alta-hospitalar/" target="_blank" rel="noopener">Lula visita Raoni em MT após cacique receber alta hospitalar</a></h2>
+          <h2><a href="/noticia/lula-visita-raoni-em-mt-apos-cacique-receber-alta-hospitalar.html">Lula visita Raoni em MT após cacique receber alta hospitalar</a></h2>
         </div>
       </article>
       <article class="vfm-card-linha">
-        <a class="vfm-card-linha__foto" href="https://www.verdefm.com.br/2026/11/19/governo-nao-retira-projeto-e-almt-aprova-orcamento-de-r-461-bilhoes/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="vfm-foto" src="https://www.verdefm.com.br/wp-content/uploads/2026/09/Plenario-ALMT.jpeg" alt="" width="400" height="300" loading="lazy"></a>
+        <a class="vfm-card-linha__foto" href="/noticia/governo-nao-retira-projeto-e-almt-aprova-orcamento-de-r-461-bilhoes.html" tabindex="-1" aria-hidden="true"><img class="vfm-foto" src="https://www.verdefm.com.br/wp-content/uploads/2026/09/Plenario-ALMT.jpeg" alt="" width="400" height="300" loading="lazy"></a>
         <div class="vfm-card-linha__texto">
           <span class="vfm-chapeu">Política</span>
-          <h2><a href="https://www.verdefm.com.br/2026/11/19/governo-nao-retira-projeto-e-almt-aprova-orcamento-de-r-461-bilhoes/" target="_blank" rel="noopener">Governo não retira projeto e ALMT aprova orçamento de R$ 46,1 bilhões</a></h2>
+          <h2><a href="/noticia/governo-nao-retira-projeto-e-almt-aprova-orcamento-de-r-461-bilhoes.html">Governo não retira projeto e ALMT aprova orçamento de R$ 46,1 bilhões</a></h2>
+        </div>
+      </article>
+      <article class="vfm-card-linha">
+        <a class="vfm-card-linha__foto" href="/noticia/flavia-sai-em-defesa-do-filho-apos-denuncia-de-ameaca-feita-por-ativista.html" tabindex="-1" aria-hidden="true"><img class="vfm-foto" src="https://www.verdefm.com.br/wp-content/uploads/2026/11/Flavia-e-filho.avif" alt="" width="400" height="300" loading="lazy"></a>
+        <div class="vfm-card-linha__texto">
+          <span class="vfm-chapeu">Política</span>
+          <h2><a href="/noticia/flavia-sai-em-defesa-do-filho-apos-denuncia-de-ameaca-feita-por-ativista.html">Flávia sai em defesa do filho após denúncia de ameaça feita por ativista</a></h2>
+        </div>
+      </article>
+      <article class="vfm-card-linha">
+        <a class="vfm-card-linha__foto" href="/noticia/policia-sequestra-apartamento-de-r-450-mil-ligado-a-lider-de-faccao-em-mt.html" tabindex="-1" aria-hidden="true"><img class="vfm-foto" src="https://www.verdefm.com.br/wp-content/uploads/2026/11/659f3b040b29a24fa369af0beb146fc5-768x432.avif" alt="" width="400" height="300" loading="lazy"></a>
+        <div class="vfm-card-linha__texto">
+          <span class="vfm-chapeu">Policial</span>
+          <h2><a href="/noticia/policia-sequestra-apartamento-de-r-450-mil-ligado-a-lider-de-faccao-em-mt.html">Polícia sequestra apartamento de R$ 450 mil ligado a líder de facção em MT</a></h2>
+        </div>
+      </article>
+      <article class="vfm-card-linha">
+        <a class="vfm-card-linha__foto" href="/noticia/bombeiros-descartam-barragem-como-causa-de-enxurrada-que-atingiu-distrito-de-cuiaba.html" tabindex="-1" aria-hidden="true"><img class="vfm-foto" src="https://www.verdefm.com.br/wp-content/uploads/2026/11/Distrito-Aguacu-768x432.avif" alt="" width="400" height="300" loading="lazy"></a>
+        <div class="vfm-card-linha__texto">
+          <span class="vfm-chapeu">Cidades</span>
+          <h2><a href="/noticia/bombeiros-descartam-barragem-como-causa-de-enxurrada-que-atingiu-distrito-de-cuiaba.html">Bombeiros descartam barragem como causa de enxurrada que atingiu distrito de Cuiabá</a></h2>
         </div>
       </article>
     </aside>
@@ -179,7 +178,7 @@
 
   <!-- Em {cidade}. WP: 4 posts da taxonomia "cidade" = cidade do cookie vfm_cidade.
        Demonstração: as três cidades vêm no HTML e o JS mostra só a escolhida (data-vfm-so-cidade).
-       Matérias tiradas dos sites atuais; os links abrem lá, em outra aba. -->
+       Matérias tiradas dos sites atuais da Verde FM (demonstração). -->
   <section class="vfm-secao vfm-secao--suave" id="cidade" aria-labelledby="titulo-cidade">
     <div class="vfm-container">
       <div class="vfm-titulo-secao">
@@ -187,64 +186,64 @@
           <span class="vfm-chapeu">Notícias da sua cidade</span>
           <h2 id="titulo-cidade">Em <span data-vfm-texto="cidade">Cuiabá</span></h2>
         </div>
-        <a class="vfm-link-mais" href="#">Todas de <span data-vfm-texto="cidade">Cuiabá</span>
+        <a class="vfm-link-mais" href="/cidade/cuiaba.html" data-vfm-link-cidade="/cidade/{cidade}.html">Todas de <span data-vfm-texto="cidade">Cuiabá</span>
           <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
       <ul class="vfm-grade-cidade" data-vfm-so-cidade="cuiaba">
         <li><article class="vfm-card-cidade">
-          <a class="vfm-card-cidade__foto" href="https://www.verdefm.com.br/2026/11/19/forca-tarefa-resgata-familias-e-distribui-mantimentos-apos-enchente-no-aguacu/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefm.com.br/wp-content/uploads/2026/11/2aguacu-768x576.avif" alt="" width="400" height="300" loading="lazy"></a>
-          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Chuvas</span><h3><a href="https://www.verdefm.com.br/2026/11/19/forca-tarefa-resgata-familias-e-distribui-mantimentos-apos-enchente-no-aguacu/" target="_blank" rel="noopener">Força-tarefa resgata famílias e distribui mantimentos após enchente no Aguaçu</a></h3></div>
+          <a class="vfm-card-cidade__foto" href="/noticia/forca-tarefa-resgata-familias-e-distribui-mantimentos-apos-enchente-no-aguacu.html" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefm.com.br/wp-content/uploads/2026/11/2aguacu-768x576.avif" alt="" width="400" height="300" loading="lazy"></a>
+          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Chuvas</span><h3><a href="/noticia/forca-tarefa-resgata-familias-e-distribui-mantimentos-apos-enchente-no-aguacu.html">Força-tarefa resgata famílias e distribui mantimentos após enchente no Aguaçu</a></h3></div>
         </article></li>
         <li><article class="vfm-card-cidade">
-          <a class="vfm-card-cidade__foto" href="https://www.verdefm.com.br/2026/11/19/dia-da-consciencia-negra-confira-o-que-abre-e-o-que-fecha-no-servico-publico-estadual/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefm.com.br/wp-content/uploads/2026/11/paiaguas-768x514.webp" alt="" width="400" height="300" loading="lazy"></a>
-          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Feriado</span><h3><a href="https://www.verdefm.com.br/2026/11/19/dia-da-consciencia-negra-confira-o-que-abre-e-o-que-fecha-no-servico-publico-estadual/" target="_blank" rel="noopener">Dia da Consciência Negra: confira o que abre e o que fecha no serviço público estadual</a></h3></div>
+          <a class="vfm-card-cidade__foto" href="/noticia/dia-da-consciencia-negra-confira-o-que-abre-e-o-que-fecha-no-servico-publico-estadual.html" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefm.com.br/wp-content/uploads/2026/11/paiaguas-768x514.webp" alt="" width="400" height="300" loading="lazy"></a>
+          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Feriado</span><h3><a href="/noticia/dia-da-consciencia-negra-confira-o-que-abre-e-o-que-fecha-no-servico-publico-estadual.html">Dia da Consciência Negra: confira o que abre e o que fecha no serviço público estadual</a></h3></div>
         </article></li>
         <li><article class="vfm-card-cidade">
-          <a class="vfm-card-cidade__foto" href="https://www.verdefm.com.br/2026/11/18/rodoviaria-de-cuiaba-deve-receber-20-mil-passageiros-durante-feriado-da-consciencia-negra/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefm.com.br/wp-content/uploads/2026/11/RODOVIARIA-768x614.avif" alt="" width="400" height="300" loading="lazy"></a>
-          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Transporte</span><h3><a href="https://www.verdefm.com.br/2026/11/18/rodoviaria-de-cuiaba-deve-receber-20-mil-passageiros-durante-feriado-da-consciencia-negra/" target="_blank" rel="noopener">Rodoviária de Cuiabá deve receber 20 mil passageiros durante feriado da Consciência Negra</a></h3></div>
+          <a class="vfm-card-cidade__foto" href="/noticia/rodoviaria-de-cuiaba-deve-receber-20-mil-passageiros-durante-feriado-da-consciencia-negra.html" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefm.com.br/wp-content/uploads/2026/11/RODOVIARIA-768x614.avif" alt="" width="400" height="300" loading="lazy"></a>
+          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Transporte</span><h3><a href="/noticia/rodoviaria-de-cuiaba-deve-receber-20-mil-passageiros-durante-feriado-da-consciencia-negra.html">Rodoviária de Cuiabá deve receber 20 mil passageiros durante feriado da Consciência Negra</a></h3></div>
         </article></li>
         <li><article class="vfm-card-cidade">
-          <a class="vfm-card-cidade__foto" href="https://www.verdefm.com.br/2026/11/18/arena-pantanal-vira-centro-de-operacoes-para-atender-ocorrencias-da-chuva-em-cuiaba/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefm.com.br/wp-content/uploads/2026/11/Arena-Pantanal-768x432.avif" alt="" width="400" height="300" loading="lazy"></a>
-          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Defesa Civil</span><h3><a href="https://www.verdefm.com.br/2026/11/18/arena-pantanal-vira-centro-de-operacoes-para-atender-ocorrencias-da-chuva-em-cuiaba/" target="_blank" rel="noopener">Arena Pantanal vira centro de operações para atender ocorrências da chuva em Cuiabá</a></h3></div>
+          <a class="vfm-card-cidade__foto" href="/noticia/arena-pantanal-vira-centro-de-operacoes-para-atender-ocorrencias-da-chuva-em-cuiaba.html" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefm.com.br/wp-content/uploads/2026/11/Arena-Pantanal-768x432.avif" alt="" width="400" height="300" loading="lazy"></a>
+          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Defesa Civil</span><h3><a href="/noticia/arena-pantanal-vira-centro-de-operacoes-para-atender-ocorrencias-da-chuva-em-cuiaba.html">Arena Pantanal vira centro de operações para atender ocorrências da chuva em Cuiabá</a></h3></div>
         </article></li>
       </ul>
       <ul class="vfm-grade-cidade" data-vfm-so-cidade="jaciara" hidden>
         <li><article class="vfm-card-cidade">
-          <a class="vfm-card-cidade__foto" href="https://www.verdefmjaciara.com.br/2026/11/18/dia-do-conselheiro-tutelar-saiba-quando-pedir-ajuda-e-como-denunciar-em-jaciara/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefmjaciara.com.br/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-18-at-10.30.40-768x432.avif" alt="" width="400" height="300" loading="lazy"></a>
-          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Cidadania</span><h3><a href="https://www.verdefmjaciara.com.br/2026/11/18/dia-do-conselheiro-tutelar-saiba-quando-pedir-ajuda-e-como-denunciar-em-jaciara/" target="_blank" rel="noopener">Dia do Conselheiro Tutelar: saiba quando pedir ajuda e como denunciar em Jaciara</a></h3></div>
+          <a class="vfm-card-cidade__foto" href="/noticia/dia-do-conselheiro-tutelar-saiba-quando-pedir-ajuda-e-como-denunciar-em-jaciara.html" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefmjaciara.com.br/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-18-at-10.30.40-768x432.avif" alt="" width="400" height="300" loading="lazy"></a>
+          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Cidadania</span><h3><a href="/noticia/dia-do-conselheiro-tutelar-saiba-quando-pedir-ajuda-e-como-denunciar-em-jaciara.html">Dia do Conselheiro Tutelar: saiba quando pedir ajuda e como denunciar em Jaciara</a></h3></div>
         </article></li>
         <li><article class="vfm-card-cidade">
-          <a class="vfm-card-cidade__foto" href="https://www.verdefmjaciara.com.br/2026/11/17/jaciara-abre-pre-matriculas-para-umeis-integrais-ate-27-de-novembro/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefmjaciara.com.br/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-17-at-09.38.43-768x445.webp" alt="" width="400" height="300" loading="lazy"></a>
-          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Educação</span><h3><a href="https://www.verdefmjaciara.com.br/2026/11/17/jaciara-abre-pre-matriculas-para-umeis-integrais-ate-27-de-novembro/" target="_blank" rel="noopener">Jaciara abre pré-matrículas para UMEIs integrais até 27 de novembro</a></h3></div>
+          <a class="vfm-card-cidade__foto" href="/noticia/jaciara-abre-pre-matriculas-para-umeis-integrais-ate-27-de-novembro.html" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefmjaciara.com.br/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-17-at-09.38.43-768x445.webp" alt="" width="400" height="300" loading="lazy"></a>
+          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Educação</span><h3><a href="/noticia/jaciara-abre-pre-matriculas-para-umeis-integrais-ate-27-de-novembro.html">Jaciara abre pré-matrículas para UMEIs integrais até 27 de novembro</a></h3></div>
         </article></li>
         <li><article class="vfm-card-cidade">
-          <a class="vfm-card-cidade__foto" href="https://www.verdefmjaciara.com.br/2026/11/16/gap-resgata-homem-que-seria-levado-a-tribunal-do-crime-e-prende-dois-suspeitos-em-jaciara/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefmjaciara.com.br/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-16-at-21.08.09-768x384.webp" alt="" width="400" height="300" loading="lazy"></a>
-          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Policial</span><h3><a href="https://www.verdefmjaciara.com.br/2026/11/16/gap-resgata-homem-que-seria-levado-a-tribunal-do-crime-e-prende-dois-suspeitos-em-jaciara/" target="_blank" rel="noopener">GAP resgata homem que seria levado a “tribunal do crime” e prende dois suspeitos em Jaciara</a></h3></div>
+          <a class="vfm-card-cidade__foto" href="/noticia/gap-resgata-homem-que-seria-levado-a-tribunal-do-crime-e-prende-dois-suspeitos-em-jaciara.html" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefmjaciara.com.br/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-16-at-21.08.09-768x384.webp" alt="" width="400" height="300" loading="lazy"></a>
+          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Policial</span><h3><a href="/noticia/gap-resgata-homem-que-seria-levado-a-tribunal-do-crime-e-prende-dois-suspeitos-em-jaciara.html">GAP resgata homem que seria levado a “tribunal do crime” e prende dois suspeitos em Jaciara</a></h3></div>
         </article></li>
         <li><article class="vfm-card-cidade">
-          <a class="vfm-card-cidade__foto" href="https://www.verdefmjaciara.com.br/2026/11/18/gap-apreende-32-pedras-de-entorpecente-em-casa-de-tetraplegico-apontada-como-ponto-de-trafico-em-jaciara/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefmjaciara.com.br/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-18-at-09.07.02-768x527.avif" alt="" width="400" height="300" loading="lazy"></a>
-          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Policial</span><h3><a href="https://www.verdefmjaciara.com.br/2026/11/18/gap-apreende-32-pedras-de-entorpecente-em-casa-de-tetraplegico-apontada-como-ponto-de-trafico-em-jaciara/" target="_blank" rel="noopener">GAP apreende 32 pedras de entorpecente em casa de tetraplégico apontada como ponto de tráfico em Jaciara</a></h3></div>
+          <a class="vfm-card-cidade__foto" href="/noticia/gap-apreende-32-pedras-de-entorpecente-em-casa-de-tetraplegico-apontada-como-ponto-de-trafico-em-jaciara.html" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefmjaciara.com.br/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-18-at-09.07.02-768x527.avif" alt="" width="400" height="300" loading="lazy"></a>
+          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Policial</span><h3><a href="/noticia/gap-apreende-32-pedras-de-entorpecente-em-casa-de-tetraplegico-apontada-como-ponto-de-trafico-em-jaciara.html">GAP apreende 32 pedras de entorpecente em casa de tetraplégico apontada como ponto de tráfico em Jaciara</a></h3></div>
         </article></li>
       </ul>
       <ul class="vfm-grade-cidade" data-vfm-so-cidade="campo-verde" hidden>
         <li><article class="vfm-card-cidade">
-          <a class="vfm-card-cidade__foto" href="https://www.verdefmcampoverde.com.br/2026/11/19/defesa-civil-de-campo-verde-alerta-para-riscos-e-cuidados-durante-a-temporada-de-chuvas/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefmcampoverde.com.br/wp-content/uploads/2026/11/4419-768x512.avif" alt="" width="400" height="300" loading="lazy"></a>
-          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Chuvas</span><h3><a href="https://www.verdefmcampoverde.com.br/2026/11/19/defesa-civil-de-campo-verde-alerta-para-riscos-e-cuidados-durante-a-temporada-de-chuvas/" target="_blank" rel="noopener">Defesa Civil de Campo Verde alerta para riscos e cuidados durante a temporada de chuvas</a></h3></div>
+          <a class="vfm-card-cidade__foto" href="/noticia/defesa-civil-de-campo-verde-alerta-para-riscos-e-cuidados-durante-a-temporada-de-chuvas.html" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefmcampoverde.com.br/wp-content/uploads/2026/11/4419-768x512.avif" alt="" width="400" height="300" loading="lazy"></a>
+          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Chuvas</span><h3><a href="/noticia/defesa-civil-de-campo-verde-alerta-para-riscos-e-cuidados-durante-a-temporada-de-chuvas.html">Defesa Civil de Campo Verde alerta para riscos e cuidados durante a temporada de chuvas</a></h3></div>
         </article></li>
         <li><article class="vfm-card-cidade">
-          <a class="vfm-card-cidade__foto" href="https://www.verdefmcampoverde.com.br/2026/11/19/inauguracao-de-supermercado-em-campo-verde-reforca-o-potencial-economico-do-municipio/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefmcampoverde.com.br/wp-content/uploads/2026/11/phpThumb_generated_thumbnailjpg.avif" alt="" width="400" height="300" loading="lazy"></a>
-          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Economia</span><h3><a href="https://www.verdefmcampoverde.com.br/2026/11/19/inauguracao-de-supermercado-em-campo-verde-reforca-o-potencial-economico-do-municipio/" target="_blank" rel="noopener">Inauguração de supermercado em Campo Verde reforça o potencial econômico do município</a></h3></div>
+          <a class="vfm-card-cidade__foto" href="/noticia/inauguracao-de-supermercado-em-campo-verde-reforca-o-potencial-economico-do-municipio.html" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefmcampoverde.com.br/wp-content/uploads/2026/11/phpThumb_generated_thumbnailjpg.avif" alt="" width="400" height="300" loading="lazy"></a>
+          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Economia</span><h3><a href="/noticia/inauguracao-de-supermercado-em-campo-verde-reforca-o-potencial-economico-do-municipio.html">Inauguração de supermercado em Campo Verde reforça o potencial econômico do município</a></h3></div>
         </article></li>
         <li><article class="vfm-card-cidade">
-          <a class="vfm-card-cidade__foto" href="https://www.verdefmcampoverde.com.br/2026/11/16/prefeitura-de-campo-verde-lanca-programa-extraordinario-de-recuperacao-de-debitos-tributarios-foco-e-o-issqn/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefmcampoverde.com.br/wp-content/uploads/2026/11/4413-768x512.webp" alt="" width="400" height="300" loading="lazy"></a>
-          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Prefeitura</span><h3><a href="https://www.verdefmcampoverde.com.br/2026/11/16/prefeitura-de-campo-verde-lanca-programa-extraordinario-de-recuperacao-de-debitos-tributarios-foco-e-o-issqn/" target="_blank" rel="noopener">Prefeitura de Campo Verde lança Programa Extraordinário de Recuperação de Débitos Tributários: Foco é o ISSQN</a></h3></div>
+          <a class="vfm-card-cidade__foto" href="/noticia/prefeitura-de-campo-verde-lanca-programa-extraordinario-de-recuperacao-de-debitos-tributarios-foco-e-o-issqn.html" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefmcampoverde.com.br/wp-content/uploads/2026/11/4413-768x512.webp" alt="" width="400" height="300" loading="lazy"></a>
+          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Prefeitura</span><h3><a href="/noticia/prefeitura-de-campo-verde-lanca-programa-extraordinario-de-recuperacao-de-debitos-tributarios-foco-e-o-issqn.html">Prefeitura de Campo Verde lança Programa Extraordinário de Recuperação de Débitos Tributários: Foco é o ISSQN</a></h3></div>
         </article></li>
         <li><article class="vfm-card-cidade">
-          <a class="vfm-card-cidade__foto" href="https://www.verdefmcampoverde.com.br/2026/11/16/campo-verde-recebe-a-11a-edicao-do-country-mix-rodeo-evento-tera-entrada-gratuita-na-pista/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefmcampoverde.com.br/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-16-at-12.04.39-1024x576-1-768x432.webp" alt="" width="400" height="300" loading="lazy"></a>
-          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Eventos</span><h3><a href="https://www.verdefmcampoverde.com.br/2026/11/16/campo-verde-recebe-a-11a-edicao-do-country-mix-rodeo-evento-tera-entrada-gratuita-na-pista/" target="_blank" rel="noopener">Campo Verde recebe a 11ª edição do Country Mix Rodeo: Evento terá entrada gratuita na pista</a></h3></div>
+          <a class="vfm-card-cidade__foto" href="/noticia/campo-verde-recebe-a-11a-edicao-do-country-mix-rodeo-evento-tera-entrada-gratuita-na-pista.html" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--4x3" src="https://www.verdefmcampoverde.com.br/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-16-at-12.04.39-1024x576-1-768x432.webp" alt="" width="400" height="300" loading="lazy"></a>
+          <div class="vfm-card-cidade__texto"><span class="vfm-chapeu">Eventos</span><h3><a href="/noticia/campo-verde-recebe-a-11a-edicao-do-country-mix-rodeo-evento-tera-entrada-gratuita-na-pista.html">Campo Verde recebe a 11ª edição do Country Mix Rodeo: Evento terá entrada gratuita na pista</a></h3></div>
         </article></li>
       </ul>
-      <a class="vfm-link-mais vfm-link-mais--bloco vfm-botao vfm-botao--contorno" href="#">Todas de <span data-vfm-texto="cidade">Cuiabá</span></a>
+      <a class="vfm-link-mais vfm-link-mais--bloco vfm-botao vfm-botao--contorno" href="/cidade/cuiaba.html" data-vfm-link-cidade="/cidade/{cidade}.html">Todas de <span data-vfm-texto="cidade">Cuiabá</span></a>
     </div>
   </section>
 
@@ -270,7 +269,7 @@
             <button class="vfm-tv__capa" type="button" data-vfm-tv-assistir>
               <img class="vfm-tv__capa-img" data-vfm-tv-capa src="https://i.ytimg.com/vi/slqLmWZ-tKg/maxresdefault.jpg" alt="" width="1280" height="720">
               <span class="vfm-tv__capa-aovivo" aria-hidden="true">
-                <img src="assets/img/logos/cuiaba.png" data-vfm-logo alt="" width="840" height="200">
+                <img src="/assets/img/logos/cuiaba.png" data-vfm-logo alt="" width="840" height="200">
                 <span>Transmissão do estúdio</span>
               </span>
               <span class="vfm-tv__selo"><span class="vfm-ponto" aria-hidden="true"></span><span data-vfm-tv-selo>Último vídeo</span></span>
@@ -335,30 +334,30 @@
   <section class="vfm-secao vfm-container" id="editorias" aria-label="Editorias">
     <div class="vfm-editorias">
       <div class="vfm-editoria">
-        <div class="vfm-editoria__titulo"><h2>Política</h2><a class="vfm-link-mais" href="#">Ver mais</a></div>
-        <a class="vfm-editoria__foto" href="https://www.verdefm.com.br/2026/11/18/max-promete-punicao-rigorosa-a-servidores-envolvidos-em-morte-de-empresario/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--16x9" src="https://www.verdefm.com.br/wp-content/uploads/2026/11/Max-Russii-768x511.avif" alt="" width="800" height="450" loading="lazy"></a>
-        <h3 class="vfm-editoria__principal"><a href="https://www.verdefm.com.br/2026/11/18/max-promete-punicao-rigorosa-a-servidores-envolvidos-em-morte-de-empresario/" target="_blank" rel="noopener">Max promete punição rigorosa a servidores envolvidos em morte de empresário</a></h3>
+        <div class="vfm-editoria__titulo"><h2>Política</h2><a class="vfm-link-mais" href="/editoria/politica.html">Ver mais</a></div>
+        <a class="vfm-editoria__foto" href="/noticia/max-promete-punicao-rigorosa-a-servidores-envolvidos-em-morte-de-empresario.html" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--16x9" src="https://www.verdefm.com.br/wp-content/uploads/2026/11/Max-Russii-768x511.avif" alt="" width="800" height="450" loading="lazy"></a>
+        <h3 class="vfm-editoria__principal"><a href="/noticia/max-promete-punicao-rigorosa-a-servidores-envolvidos-em-morte-de-empresario.html">Max promete punição rigorosa a servidores envolvidos em morte de empresário</a></h3>
         <ul class="vfm-editoria__lista">
-          <li><a href="https://www.verdefm.com.br/2026/11/18/vereadores-de-vg-aprovam-aumento-de-verba-e-ampliacao-de-assessores/" target="_blank" rel="noopener">Vereadores de VG aprovam aumento de verba e ampliação de assessores</a></li>
-          <li><a href="https://www.verdefm.com.br/2026/11/17/vice-eleita-afasta-candidatura-a-prefeitura-de-cuiaba-em-2028/" target="_blank" rel="noopener">Vice eleita afasta candidatura à Prefeitura de Cuiabá em 2028</a></li>
+          <li><a href="/noticia/vereadores-de-vg-aprovam-aumento-de-verba-e-ampliacao-de-assessores.html">Vereadores de VG aprovam aumento de verba e ampliação de assessores</a></li>
+          <li><a href="/noticia/vice-eleita-afasta-candidatura-a-prefeitura-de-cuiaba-em-2028.html">Vice eleita afasta candidatura à Prefeitura de Cuiabá em 2028</a></li>
         </ul>
       </div>
       <div class="vfm-editoria">
-        <div class="vfm-editoria__titulo"><h2>Economia e negócios</h2><a class="vfm-link-mais" href="#">Ver mais</a></div>
-        <a class="vfm-editoria__foto" href="https://www.verdefm.com.br/2026/11/19/lula-regulamenta-escala-5x2-e-reducao-da-jornada-de-trabalho-no-brasil/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--16x9" src="https://www.verdefm.com.br/wp-content/uploads/2026/11/Lula-sanciona.avif" alt="" width="800" height="450" loading="lazy"></a>
-        <h3 class="vfm-editoria__principal"><a href="https://www.verdefm.com.br/2026/11/19/lula-regulamenta-escala-5x2-e-reducao-da-jornada-de-trabalho-no-brasil/" target="_blank" rel="noopener">Lula regulamenta escala 5×2 e redução da jornada de trabalho no Brasil</a></h3>
+        <div class="vfm-editoria__titulo"><h2>Economia e negócios</h2><a class="vfm-link-mais" href="/editoria/economia.html">Ver mais</a></div>
+        <a class="vfm-editoria__foto" href="/noticia/lula-regulamenta-escala-5x2-e-reducao-da-jornada-de-trabalho-no-brasil.html" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--16x9" src="https://www.verdefm.com.br/wp-content/uploads/2026/11/Lula-sanciona.avif" alt="" width="800" height="450" loading="lazy"></a>
+        <h3 class="vfm-editoria__principal"><a href="/noticia/lula-regulamenta-escala-5x2-e-reducao-da-jornada-de-trabalho-no-brasil.html">Lula regulamenta escala 5×2 e redução da jornada de trabalho no Brasil</a></h3>
         <ul class="vfm-editoria__lista">
-          <li><a href="https://www.verdefmjaciara.com.br/2026/11/17/agua-ficara-mais-barata-mas-conta-pode-nao-diminuir-em-cuiaba/" target="_blank" rel="noopener">Água ficará mais barata, mas conta pode não diminuir em Cuiabá</a></li>
-          <li><a href="https://www.verdefm.com.br/2026/11/19/tj-manda-suspender-cobrancas-de-cartoes-consignados-de-servidores/" target="_blank" rel="noopener">TJ manda suspender cobranças de cartões consignados de servidores</a></li>
+          <li><a href="/noticia/agua-ficara-mais-barata-mas-conta-pode-nao-diminuir-em-cuiaba.html">Água ficará mais barata, mas conta pode não diminuir em Cuiabá</a></li>
+          <li><a href="/noticia/tj-manda-suspender-cobrancas-de-cartoes-consignados-de-servidores.html">TJ manda suspender cobranças de cartões consignados de servidores</a></li>
         </ul>
       </div>
       <div class="vfm-editoria">
-        <div class="vfm-editoria__titulo"><h2>Esporte e cultura</h2><a class="vfm-link-mais" href="#">Ver mais</a></div>
-        <a class="vfm-editoria__foto" href="https://www.verdefm.com.br/2026/11/13/alan-empereur-encerra-ciclo-no-cuiaba-apos-temporada-marcada-por-lesoes/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--16x9" src="https://www.verdefm.com.br/wp-content/uploads/2026/11/Alan-Empereur-768x453.webp" alt="" width="800" height="450" loading="lazy"></a>
-        <h3 class="vfm-editoria__principal"><a href="https://www.verdefm.com.br/2026/11/13/alan-empereur-encerra-ciclo-no-cuiaba-apos-temporada-marcada-por-lesoes/" target="_blank" rel="noopener">Alan Empereur encerra ciclo no Cuiabá após temporada marcada por lesões</a></h3>
+        <div class="vfm-editoria__titulo"><h2>Esporte e cultura</h2><a class="vfm-link-mais" href="/editoria/esporte-e-cultura.html">Ver mais</a></div>
+        <a class="vfm-editoria__foto" href="/noticia/alan-empereur-encerra-ciclo-no-cuiaba-apos-temporada-marcada-por-lesoes.html" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--16x9" src="https://www.verdefm.com.br/wp-content/uploads/2026/11/Alan-Empereur-768x453.webp" alt="" width="800" height="450" loading="lazy"></a>
+        <h3 class="vfm-editoria__principal"><a href="/noticia/alan-empereur-encerra-ciclo-no-cuiaba-apos-temporada-marcada-por-lesoes.html">Alan Empereur encerra ciclo no Cuiabá após temporada marcada por lesões</a></h3>
         <ul class="vfm-editoria__lista">
-          <li><a href="https://www.verdefm.com.br/2026/09/23/santos-e-condenado-a-pagar-r-186-milhoes-ao-cuiaba-por-divida-envolvendo-joaquim/" target="_blank" rel="noopener">Santos é condenado a pagar R$ 18,6 milhões ao Cuiabá por dívida envolvendo Joaquim</a></li>
-          <li><a href="https://www.verdefm.com.br/2026/09/23/cuiabana-que-marcou-carnaval-e-moda-nos-anos-70-e-80-ganha-documentario-conheca-jane/" target="_blank" rel="noopener">Cuiabana que marcou Carnaval e moda nos anos 70 e 80 ganha documentário; conheça JANE</a></li>
+          <li><a href="/noticia/santos-e-condenado-a-pagar-r-186-milhoes-ao-cuiaba-por-divida-envolvendo-joaquim.html">Santos é condenado a pagar R$ 18,6 milhões ao Cuiabá por dívida envolvendo Joaquim</a></li>
+          <li><a href="/noticia/cuiabana-que-marcou-carnaval-e-moda-nos-anos-70-e-80-ganha-documentario-conheca-jane.html">Cuiabana que marcou Carnaval e moda nos anos 70 e 80 ganha documentário; conheça JANE</a></li>
         </ul>
       </div>
     </div>
@@ -368,14 +367,110 @@
   <section class="vfm-secao vfm-secao--branca">
     <div class="vfm-container vfm-extras">
       <!-- WP: grade de programas da cidade escolhida (CPT "programa" com dias, início, fim e cidade). O programa no ar leva a classe vfm-no-ar -->
-      <div class="vfm-programacao" id="programacao">
+      <!-- WP: grade de programas da cidade escolhida (CPT "programa" com dias, início, fim, apresentador e cidade).
+           O JS mostra o dia de hoje, marca o programa no ar (vfm-no-ar) e deixa só ele e os 3 seguintes. -->
+      <!-- WP: grade de programas da cidade escolhida (CPT "programa" com dias, início, fim, apresentador e cidade).
+           O JS mostra o dia de hoje, marca o programa no ar (vfm-no-ar) e deixa só ele e os 3 seguintes. -->
+      <!-- WP: grade de programas da cidade escolhida (CPT "programa" com dias, início, fim, apresentador e cidade).
+           O JS mostra o dia de hoje, marca o programa no ar (vfm-no-ar) e deixa só ele e os 3 seguintes. -->
+      <!-- WP: grade de programas da cidade escolhida (CPT "programa" com dias, início, fim, apresentador e cidade).
+           O JS mostra o dia de hoje, marca o programa no ar (vfm-no-ar) e deixa só ele e os 3 seguintes. -->
+      <!-- WP: grade de programas da cidade escolhida (CPT "programa" com dias, início, fim, apresentador e cidade).
+           O JS mostra o dia de hoje, marca o programa no ar (vfm-no-ar) e deixa só ele e os 3 seguintes. -->
+      <div class="vfm-programacao" id="programacao" data-vfm-grade-hoje>
         <h2>Programação de hoje</h2>
-        <p>Verde FM <span data-vfm-texto="cidade">Cuiabá</span> · <span data-vfm-texto="frequencia">103.7</span></p>
-        <ol>
-          <li class="vfm-no-ar"><time>[00h00]</time><span><strong>[Programa no ar]</strong> · [Apresentador]</span></li>
-          <li><time>[00h00]</time><span><strong>[Próximo programa]</strong> · [Apresentador]</span></li>
-          <li><time>[00h00]</time><span><strong>[Programa]</strong> · [Apresentador]</span></li>
-          <li><time>[00h00]</time><span><strong>[Programa]</strong> · [Apresentador]</span></li>
+        <p>Verde FM <span data-vfm-texto="cidade">Cuiabá</span> · <span data-vfm-texto="frequencia">103.7</span> · <a class="vfm-link-mais" href="/programacao.html">Grade completa</a></p>
+        <ol data-vfm-grade data-vfm-grade-curta="4" data-vfm-so-cidade="cuiaba" data-vfm-dias="1,2,3,4,5">
+          <li data-inicio="5" data-fim="6"><time>05h</time><span><strong>Coração Caipira</strong></span></li>
+          <li data-inicio="6" data-fim="8"><time>06h</time><span><strong>Alô, Bom Dia</strong></span></li>
+          <li data-inicio="8" data-fim="11"><time>08h</time><span><strong>Jornal da Verde FM</strong> · Jornalista: Marina Martins</span></li>
+          <li data-inicio="11" data-fim="15"><time>11h</time><span><strong>Aqui é Verde</strong></span></li>
+          <li data-inicio="15" data-fim="18"><time>15h</time><span><strong>Tarde na Verde</strong> · Locutora: Cleidy Coelho</span></li>
+          <li data-inicio="18" data-fim="19"><time>18h</time><span><strong>Radar Sertanejo</strong></span></li>
+          <li data-inicio="19" data-fim="20"><time>19h</time><span><strong>1 Hora de Saudade</strong></span></li>
+          <li data-inicio="20" data-fim="21"><time>20h</time><span><strong>Voz do Brasil</strong></span></li>
+          <li data-inicio="21" data-fim="0"><time>21h</time><span><strong>Sofrência Máxima</strong></span></li>
+          <li data-inicio="0" data-fim="5"><time>00h</time><span><strong>Sereno da Madrugada</strong></span></li>
+        </ol>
+        <ol data-vfm-grade data-vfm-grade-curta="4" data-vfm-so-cidade="cuiaba" data-vfm-dias="6,0">
+          <li data-inicio="5" data-fim="6"><time>05h</time><span><strong>Clássicos da Verde</strong></span></li>
+          <li data-inicio="6" data-fim="8"><time>06h</time><span><strong>Alô, Bom Dia</strong></span></li>
+          <li data-inicio="8" data-fim="12"><time>08h</time><span><strong>Manhã na Verde</strong></span></li>
+          <li data-inicio="12" data-fim="15"><time>12h</time><span><strong>Violada da Verde</strong></span></li>
+          <li data-inicio="15" data-fim="18"><time>15h</time><span><strong>Tarde na Verde</strong></span></li>
+          <li data-inicio="18" data-fim="19"><time>18h</time><span><strong>Radar Sertanejo</strong></span></li>
+          <li data-inicio="19" data-fim="20"><time>19h</time><span><strong>1 Hora de Saudade</strong></span></li>
+          <li data-inicio="20" data-fim="0"><time>20h</time><span><strong>Sofrência Máxima</strong></span></li>
+          <li data-inicio="0" data-fim="5"><time>00h</time><span><strong>Sereno da Madrugada</strong></span></li>
+        </ol>
+        <ol data-vfm-grade data-vfm-grade-curta="4" data-vfm-so-cidade="campo-verde" data-vfm-dias="1,2,3,4,5" hidden>
+          <li data-inicio="5" data-fim="8"><time>05h</time><span><strong>Coração Caipira</strong> · Locutor: Claudiney Nascimento</span></li>
+          <li data-inicio="8" data-fim="11"><time>08h</time><span><strong>Manhã na Verde FM</strong> · Jornalista: Evando Mendes</span></li>
+          <li data-inicio="11" data-fim="13"><time>11h</time><span><strong>Momento Gospel</strong> · Locutor: Kleberson Almeida</span></li>
+          <li data-inicio="13" data-fim="15"><time>13h</time><span><strong>Aqui é Verde – Rede</strong></span></li>
+          <li data-inicio="15" data-fim="18"><time>15h</time><span><strong>Tarde na Verde</strong> · Locutora: Antonella Almeida</span></li>
+          <li data-inicio="18" data-fim="20"><time>18h</time><span><strong>Radar Sertanejo</strong> · Claudiney Nascimento</span></li>
+          <li data-inicio="20" data-fim="21"><time>20h</time><span><strong>Voz do Brasil</strong></span></li>
+          <li data-inicio="21" data-fim="0"><time>21h</time><span><strong>Sofrência Máxima</strong></span></li>
+          <li data-inicio="0" data-fim="3"><time>00h</time><span><strong>Sereno da Madrugada</strong></span></li>
+          <li data-inicio="3" data-fim="5"><time>03h</time><span><strong>Alô, Bom Dia</strong></span></li>
+        </ol>
+        <ol data-vfm-grade data-vfm-grade-curta="4" data-vfm-so-cidade="campo-verde" data-vfm-dias="6" hidden>
+          <li data-inicio="5" data-fim="6"><time>05h</time><span><strong>Clássicos da Verde</strong></span></li>
+          <li data-inicio="6" data-fim="8"><time>06h</time><span><strong>Alô, Bom Dia</strong></span></li>
+          <li data-inicio="8" data-fim="12"><time>08h</time><span><strong>Manhã na Verde</strong> · Claudiney Nascimento</span></li>
+          <li data-inicio="12" data-fim="15"><time>12h</time><span><strong>Violada da Verde</strong></span></li>
+          <li data-inicio="15" data-fim="18"><time>15h</time><span><strong>Tarde na Verde</strong></span></li>
+          <li data-inicio="18" data-fim="19"><time>18h</time><span><strong>Radar Sertanejo</strong></span></li>
+          <li data-inicio="19" data-fim="20"><time>19h</time><span><strong>1 Hora de Saudade</strong></span></li>
+          <li data-inicio="20" data-fim="0"><time>20h</time><span><strong>Sofrência Máxima</strong></span></li>
+          <li data-inicio="0" data-fim="5"><time>00h</time><span><strong>Sereno da Madrugada</strong></span></li>
+        </ol>
+        <ol data-vfm-grade data-vfm-grade-curta="4" data-vfm-so-cidade="campo-verde" data-vfm-dias="0" hidden>
+          <li data-inicio="5" data-fim="6"><time>05h</time><span><strong>Clássicos da Verde</strong></span></li>
+          <li data-inicio="6" data-fim="8"><time>06h</time><span><strong>Alô, Bom Dia</strong></span></li>
+          <li data-inicio="8" data-fim="9"><time>08h</time><span><strong>Missa</strong></span></li>
+          <li data-inicio="9" data-fim="12"><time>09h</time><span><strong>Encontro c/ a Querência</strong> · Locutor: Seu Lino</span></li>
+          <li data-inicio="12" data-fim="15"><time>12h</time><span><strong>Violada da Verde</strong></span></li>
+          <li data-inicio="15" data-fim="18"><time>15h</time><span><strong>Tarde na Verde</strong></span></li>
+          <li data-inicio="18" data-fim="19"><time>18h</time><span><strong>Radar Sertanejo</strong></span></li>
+          <li data-inicio="19" data-fim="20"><time>19h</time><span><strong>1 Hora de Saudade</strong></span></li>
+          <li data-inicio="20" data-fim="0"><time>20h</time><span><strong>Sofrência Máxima</strong></span></li>
+          <li data-inicio="0" data-fim="5"><time>00h</time><span><strong>Sereno da Madrugada</strong></span></li>
+        </ol>
+        <ol data-vfm-grade data-vfm-grade-curta="4" data-vfm-so-cidade="jaciara" data-vfm-dias="1,2,3,4,5" hidden>
+          <li data-inicio="5" data-fim="8"><time>05h</time><span><strong>Coração Caipira</strong> · Juliano Souza</span></li>
+          <li data-inicio="8" data-fim="11"><time>08h</time><span><strong>Manhã na Verde</strong> · Elisângela Souza</span></li>
+          <li data-inicio="11" data-fim="15"><time>11h</time><span><strong>Aqui é Verde</strong></span></li>
+          <li data-inicio="15" data-fim="18"><time>15h</time><span><strong>Tarde na Verde</strong> · Mari Souza</span></li>
+          <li data-inicio="18" data-fim="19"><time>18h</time><span><strong>Radar Sertanejo</strong></span></li>
+          <li data-inicio="19" data-fim="20"><time>19h</time><span><strong>1 Hora de Saudade</strong></span></li>
+          <li data-inicio="20" data-fim="21"><time>20h</time><span><strong>Voz do Brasil</strong></span></li>
+          <li data-inicio="21" data-fim="0"><time>21h</time><span><strong>Sofrência Máxima</strong></span></li>
+          <li data-inicio="0" data-fim="3"><time>00h</time><span><strong>Sereno da Madrugada</strong></span></li>
+          <li data-inicio="3" data-fim="5"><time>03h</time><span><strong>Alô, Bom Dia</strong></span></li>
+        </ol>
+        <ol data-vfm-grade data-vfm-grade-curta="4" data-vfm-so-cidade="jaciara" data-vfm-dias="6" hidden>
+          <li data-inicio="5" data-fim="6"><time>05h</time><span><strong>Clássicos da Verde</strong></span></li>
+          <li data-inicio="6" data-fim="8"><time>06h</time><span><strong>Alô, Bom Dia</strong></span></li>
+          <li data-inicio="8" data-fim="12"><time>08h</time><span><strong>Manhã na Verde</strong> · Bianne Flores e Elisângela Souza</span></li>
+          <li data-inicio="12" data-fim="15"><time>12h</time><span><strong>Violada da Verde</strong></span></li>
+          <li data-inicio="15" data-fim="18"><time>15h</time><span><strong>Tarde na Verde</strong></span></li>
+          <li data-inicio="18" data-fim="19"><time>18h</time><span><strong>Radar Sertanejo</strong></span></li>
+          <li data-inicio="19" data-fim="20"><time>19h</time><span><strong>1 Hora de Saudade</strong></span></li>
+          <li data-inicio="20" data-fim="0"><time>20h</time><span><strong>Sofrência Máxima</strong></span></li>
+          <li data-inicio="0" data-fim="5"><time>00h</time><span><strong>Sereno da Madrugada</strong></span></li>
+        </ol>
+        <ol data-vfm-grade data-vfm-grade-curta="4" data-vfm-so-cidade="jaciara" data-vfm-dias="0" hidden>
+          <li data-inicio="5" data-fim="6"><time>05h</time><span><strong>Clássicos da Verde</strong></span></li>
+          <li data-inicio="6" data-fim="8"><time>06h</time><span><strong>Alô, Bom Dia</strong></span></li>
+          <li data-inicio="8" data-fim="12"><time>08h</time><span><strong>Manhã na Verde</strong></span></li>
+          <li data-inicio="12" data-fim="15"><time>12h</time><span><strong>Violada da Verde</strong></span></li>
+          <li data-inicio="15" data-fim="18"><time>15h</time><span><strong>Tarde na Verde</strong></span></li>
+          <li data-inicio="18" data-fim="19"><time>18h</time><span><strong>Radar Sertanejo</strong></span></li>
+          <li data-inicio="19" data-fim="20"><time>19h</time><span><strong>1 Hora de Saudade</strong></span></li>
+          <li data-inicio="20" data-fim="0"><time>20h</time><span><strong>Sofrência Máxima</strong></span></li>
+          <li data-inicio="0" data-fim="5"><time>00h</time><span><strong>Sereno da Madrugada</strong></span></li>
         </ol>
       </div>
 
@@ -384,7 +479,7 @@
         <span class="vfm-chapeu">Promoções</span>
         <p class="vfm-promocao__nome">[Nome da promoção da semana]</p>
         <p>O ouvinte se inscreve aqui mesmo, pelo celular.</p>
-        <a class="vfm-botao" href="#">Quero participar</a>
+        <a class="vfm-botao" href="/promocoes.html">Quero participar</a>
       </div>
     </div>
   </section>
@@ -396,8 +491,8 @@
   <div class="vfm-container vfm-rodape__colunas">
     <div class="vfm-rodape__marca">
       <!-- WP: mesmo logo da cidade escolhida (o JS troca junto com o do cabeçalho) -->
-      <a class="vfm-rodape__logo" href="./" aria-label="Verde FM, página inicial">
-        <img data-vfm-logo src="assets/img/logos/cuiaba.png" alt="Verde FM Cuiabá 103.7" width="840" height="200" loading="lazy">
+      <a class="vfm-rodape__logo" href="/" aria-label="Verde FM, página inicial">
+        <img data-vfm-logo src="/assets/img/logos/cuiaba.png" alt="Verde FM Cuiabá 103.7" width="840" height="200" loading="lazy">
       </a>
       <p>Notícias e rádio de Mato Grosso. [Texto institucional curto da rádio]</p>
     </div>
@@ -405,9 +500,9 @@
       <h2>Nossas rádios</h2>
       <!-- WP: termos ativos da taxonomia "cidade" -->
       <ul>
-        <li>Cuiabá · 103.7</li>
-        <li>Campo Verde · 96.3</li>
-        <li>Jaciara · 102.3</li>
+        <li><a href="/cidade/cuiaba.html">Cuiabá · 103.7</a></li>
+        <li><a href="/cidade/campo-verde.html">Campo Verde · 96.3</a></li>
+        <li><a href="/cidade/jaciara.html">Jaciara · 102.3</a></li>
       </ul>
     </div>
     <div>
@@ -423,29 +518,40 @@
     <span>© Verde FM. Versão de demonstração com matérias dos sites atuais da Verde FM.</span>
     <!-- Assinatura da Astravox: só o ícone, com link (padrão dos projetos web da Astravox) -->
     <a class="vfm-assinatura" href="https://www.astravox.com.br" target="_blank" rel="noopener" aria-label="Astravox (abre em nova aba)" title="Astravox">
-      <img src="assets/img/astravox.svg" alt="" width="14" height="18">
+      <img src="/assets/img/astravox.svg" alt="" width="14" height="18">
     </a>
   </div>
 </footer>
 
-<!-- Barra fixa do rádio (fica fora de #vfm-conteudo: não some ao navegar) -->
+<!-- Player da rádio, fixo no pé da tela em todas as páginas (fica fora de #vfm-conteudo: não some ao navegar).
+     WP: footer.php. Programa no ar pela grade da cidade escolhida (data-vfm-programa). -->
 <section class="vfm-barra-player" aria-label="Rádio ao vivo">
   <div class="vfm-container vfm-barra-player__linha">
-    <button class="vfm-play vfm-play--p" type="button" data-vfm-play aria-pressed="false" aria-label="Ouvir a rádio ao vivo de Cuiabá">
-      <svg class="vfm-play__tocar" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l12 7-12 7z"/></svg>
-      <svg class="vfm-play__pausar" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
-      <svg class="vfm-play__girando" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9"/></svg>
+    <button class="vfm-play vfm-play--barra" type="button" data-vfm-play aria-pressed="false" aria-label="Ouvir a rádio ao vivo de Cuiabá">
+      <svg class="vfm-play__tocar" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l12 7-12 7z"/></svg>
+      <svg class="vfm-play__pausar" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+      <svg class="vfm-play__girando" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9"/></svg>
     </button>
+    <img class="vfm-barra-player__logo" data-vfm-logo src="/assets/img/logos/cuiaba.png" alt="Verde FM Cuiabá 103.7" width="840" height="200">
     <div class="vfm-barra-player__texto">
-      <span class="vfm-ao-vivo"><span class="vfm-ponto" aria-hidden="true"></span><span>Ao vivo · <span data-vfm-texto="cidade">Cuiabá</span> <span data-vfm-texto="frequencia">103.7</span></span></span>
+      <span class="vfm-barra-player__sobre">
+        <span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>Ao vivo</span>
+        <span>Verde FM <span data-vfm-texto="cidade">Cuiabá</span> · <span data-vfm-texto="frequencia">103.7</span></span>
+      </span>
       <strong data-vfm-programa>[Nome do programa]</strong>
       <span class="vfm-player-status" data-vfm-player-status role="status"></span>
     </div>
-    <label class="vfm-volume">
-      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>
-      <span class="vfm-so-leitor">Volume</span>
-      <input type="range" min="0" max="1" step="0.05" value="1" data-vfm-volume>
-    </label>
+    <span class="vfm-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+    <div class="vfm-barra-player__extra">
+      <a class="vfm-barra-player__link" href="/programacao.html">Programação</a>
+      <div class="vfm-volume">
+        <button class="vfm-volume__mudo" type="button" data-vfm-mudo aria-pressed="false" aria-label="Tirar o som">
+          <svg class="vfm-volume__com" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+          <svg class="vfm-volume__sem" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor"/><path d="M22 9l-6 6M16 9l6 6"/></svg>
+        </button>
+        <input type="range" min="0" max="1" step="0.05" value="1" data-vfm-volume aria-label="Volume">
+      </div>
+    </div>
   </div>
 </section>
 <audio id="vfm-audio" preload="none"></audio>
@@ -461,14 +567,14 @@
   <!-- WP: o mesmo wp_nav_menu das editorias -->
   <nav aria-label="Editorias" data-vfm-menu>
     <ul>
-      <li><a href="./">Início</a></li>
-      <li><a href="#editorias">Política</a></li>
-      <li><a href="#cidade">Cidades</a></li>
-      <li><a href="#editorias">Economia e negócios</a></li>
-      <li><a href="#editorias">Esporte e cultura</a></li>
-      <li><a href="#videos">Vídeos</a></li>
-      <li><a href="#programacao">Programação</a></li>
-      <li><a href="#promocoes">Promoções</a></li>
+      <li><a href="/">Início</a></li>
+      <li><a href="/editoria/politica.html">Política</a></li>
+      <li><a href="/cidade/cuiaba.html" data-vfm-link-cidade="/cidade/{cidade}.html">Cidades</a></li>
+      <li><a href="/editoria/economia.html">Economia e negócios</a></li>
+      <li><a href="/editoria/esporte-e-cultura.html">Esporte e cultura</a></li>
+      <li><a href="/videos.html">Vídeos</a></li>
+      <li><a href="/programacao.html">Programação</a></li>
+      <li><a href="/promocoes.html">Promoções</a></li>
     </ul>
   </nav>
   <div class="vfm-menu__extra">
@@ -481,7 +587,7 @@
 
 <!-- Busca. WP: action = home_url('/'), campo "s" (busca padrão do WordPress) -->
 <dialog class="vfm-janela vfm-busca" id="vfm-busca" aria-label="Buscar no site">
-  <form role="search" method="get" action="./" data-vfm-busca>
+  <form role="search" method="get" action="/busca.html" data-vfm-busca>
     <label for="vfm-busca-campo">Buscar notícias</label>
     <input id="vfm-busca-campo" type="search" name="s" placeholder="Buscar notícias" autocomplete="off">
     <button class="vfm-botao" type="submit">Buscar</button>
@@ -491,14 +597,9 @@
   </form>
 </dialog>
 
-<!-- Cidades e rádios. WP: wp_add_inline_script ou wp_json_encode dos termos da taxonomia "cidade" -->
+<!-- Cidades, rádios e grade de programação. WP: wp_json_encode dos termos da taxonomia "cidade" (+ grade do CPT "programa") -->
 <script type="application/json" id="vfm-cidades">
-[
-  { "slug": "cuiaba", "nome": "Cuiabá", "frequencia": "103.7", "logo": "assets/img/logos/cuiaba.png", "stream": "https://streaming.livespanel.com:20086/verdefm", "ativa": true },
-  { "slug": "campo-verde", "nome": "Campo Verde", "frequencia": "96.3", "logo": "assets/img/logos/campo-verde.png", "stream": "https://str1.streamhostpg.com.br:8062/stream", "ativa": true },
-  { "slug": "jaciara", "nome": "Jaciara", "frequencia": "102.3", "logo": "assets/img/logos/jaciara.png", "stream": "https://streaming.livespanel.com:20120/verdefmjaciara", "ativa": true },
-  { "slug": "arenapolis", "nome": "Arenápolis", "frequencia": "102.1", "logo": "assets/img/logos/arenapolis.png", "stream": "", "ativa": false }
-]
+[{"slug": "cuiaba", "nome": "Cuiabá", "frequencia": "103.7", "stream": "https://streaming.livespanel.com:20086/verdefm", "ativa": true, "logo": "/assets/img/logos/cuiaba.png", "grade": [{"rotulo": "Segunda a Sexta", "dias": [1, 2, 3, 4, 5], "programas": [{"inicio": 5, "fim": 6, "programa": "Coração Caipira", "apresentador": ""}, {"inicio": 6, "fim": 8, "programa": "Alô, Bom Dia", "apresentador": ""}, {"inicio": 8, "fim": 11, "programa": "Jornal da Verde FM", "apresentador": "Jornalista: Marina Martins"}, {"inicio": 11, "fim": 15, "programa": "Aqui é Verde", "apresentador": ""}, {"inicio": 15, "fim": 18, "programa": "Tarde na Verde", "apresentador": "Locutora: Cleidy Coelho"}, {"inicio": 18, "fim": 19, "programa": "Radar Sertanejo", "apresentador": ""}, {"inicio": 19, "fim": 20, "programa": "1 Hora de Saudade", "apresentador": ""}, {"inicio": 20, "fim": 21, "programa": "Voz do Brasil", "apresentador": ""}, {"inicio": 21, "fim": 0, "programa": "Sofrência Máxima", "apresentador": ""}, {"inicio": 0, "fim": 5, "programa": "Sereno da Madrugada", "apresentador": ""}]}, {"rotulo": "Sábado e Domingo", "dias": [6, 0], "programas": [{"inicio": 5, "fim": 6, "programa": "Clássicos da Verde", "apresentador": ""}, {"inicio": 6, "fim": 8, "programa": "Alô, Bom Dia", "apresentador": ""}, {"inicio": 8, "fim": 12, "programa": "Manhã na Verde", "apresentador": ""}, {"inicio": 12, "fim": 15, "programa": "Violada da Verde", "apresentador": ""}, {"inicio": 15, "fim": 18, "programa": "Tarde na Verde", "apresentador": ""}, {"inicio": 18, "fim": 19, "programa": "Radar Sertanejo", "apresentador": ""}, {"inicio": 19, "fim": 20, "programa": "1 Hora de Saudade", "apresentador": ""}, {"inicio": 20, "fim": 0, "programa": "Sofrência Máxima", "apresentador": ""}, {"inicio": 0, "fim": 5, "programa": "Sereno da Madrugada", "apresentador": ""}]}]}, {"slug": "campo-verde", "nome": "Campo Verde", "frequencia": "96.3", "stream": "https://str1.streamhostpg.com.br:8062/stream", "ativa": true, "logo": "/assets/img/logos/campo-verde.png", "grade": [{"rotulo": "Segunda a Sexta", "dias": [1, 2, 3, 4, 5], "programas": [{"inicio": 5, "fim": 8, "programa": "Coração Caipira", "apresentador": "Locutor: Claudiney Nascimento"}, {"inicio": 8, "fim": 11, "programa": "Manhã na Verde FM", "apresentador": "Jornalista: Evando Mendes"}, {"inicio": 11, "fim": 13, "programa": "Momento Gospel", "apresentador": "Locutor: Kleberson Almeida"}, {"inicio": 13, "fim": 15, "programa": "Aqui é Verde – Rede", "apresentador": ""}, {"inicio": 15, "fim": 18, "programa": "Tarde na Verde", "apresentador": "Locutora: Antonella Almeida"}, {"inicio": 18, "fim": 20, "programa": "Radar Sertanejo", "apresentador": "Claudiney Nascimento"}, {"inicio": 20, "fim": 21, "programa": "Voz do Brasil", "apresentador": ""}, {"inicio": 21, "fim": 0, "programa": "Sofrência Máxima", "apresentador": ""}, {"inicio": 0, "fim": 3, "programa": "Sereno da Madrugada", "apresentador": ""}, {"inicio": 3, "fim": 5, "programa": "Alô, Bom Dia", "apresentador": ""}]}, {"rotulo": "Sábado", "dias": [6], "programas": [{"inicio": 5, "fim": 6, "programa": "Clássicos da Verde", "apresentador": ""}, {"inicio": 6, "fim": 8, "programa": "Alô, Bom Dia", "apresentador": ""}, {"inicio": 8, "fim": 12, "programa": "Manhã na Verde", "apresentador": "Claudiney Nascimento"}, {"inicio": 12, "fim": 15, "programa": "Violada da Verde", "apresentador": ""}, {"inicio": 15, "fim": 18, "programa": "Tarde na Verde", "apresentador": ""}, {"inicio": 18, "fim": 19, "programa": "Radar Sertanejo", "apresentador": ""}, {"inicio": 19, "fim": 20, "programa": "1 Hora de Saudade", "apresentador": ""}, {"inicio": 20, "fim": 0, "programa": "Sofrência Máxima", "apresentador": ""}, {"inicio": 0, "fim": 5, "programa": "Sereno da Madrugada", "apresentador": ""}]}, {"rotulo": "Domingo", "dias": [0], "programas": [{"inicio": 5, "fim": 6, "programa": "Clássicos da Verde", "apresentador": ""}, {"inicio": 6, "fim": 8, "programa": "Alô, Bom Dia", "apresentador": ""}, {"inicio": 8, "fim": 9, "programa": "Missa", "apresentador": ""}, {"inicio": 9, "fim": 12, "programa": "Encontro c/ a Querência", "apresentador": "Locutor: Seu Lino"}, {"inicio": 12, "fim": 15, "programa": "Violada da Verde", "apresentador": ""}, {"inicio": 15, "fim": 18, "programa": "Tarde na Verde", "apresentador": ""}, {"inicio": 18, "fim": 19, "programa": "Radar Sertanejo", "apresentador": ""}, {"inicio": 19, "fim": 20, "programa": "1 Hora de Saudade", "apresentador": ""}, {"inicio": 20, "fim": 0, "programa": "Sofrência Máxima", "apresentador": ""}, {"inicio": 0, "fim": 5, "programa": "Sereno da Madrugada", "apresentador": ""}]}]}, {"slug": "jaciara", "nome": "Jaciara", "frequencia": "102.3", "stream": "https://streaming.livespanel.com:20120/verdefmjaciara", "ativa": true, "logo": "/assets/img/logos/jaciara.png", "grade": [{"rotulo": "Segunda a Sexta", "dias": [1, 2, 3, 4, 5], "programas": [{"inicio": 5, "fim": 8, "programa": "Coração Caipira", "apresentador": "Juliano Souza"}, {"inicio": 8, "fim": 11, "programa": "Manhã na Verde", "apresentador": "Elisângela Souza"}, {"inicio": 11, "fim": 15, "programa": "Aqui é Verde", "apresentador": ""}, {"inicio": 15, "fim": 18, "programa": "Tarde na Verde", "apresentador": "Mari Souza"}, {"inicio": 18, "fim": 19, "programa": "Radar Sertanejo", "apresentador": ""}, {"inicio": 19, "fim": 20, "programa": "1 Hora de Saudade", "apresentador": ""}, {"inicio": 20, "fim": 21, "programa": "Voz do Brasil", "apresentador": ""}, {"inicio": 21, "fim": 0, "programa": "Sofrência Máxima", "apresentador": ""}, {"inicio": 0, "fim": 3, "programa": "Sereno da Madrugada", "apresentador": ""}, {"inicio": 3, "fim": 5, "programa": "Alô, Bom Dia", "apresentador": ""}]}, {"rotulo": "Sábado", "dias": [6], "programas": [{"inicio": 5, "fim": 6, "programa": "Clássicos da Verde", "apresentador": ""}, {"inicio": 6, "fim": 8, "programa": "Alô, Bom Dia", "apresentador": ""}, {"inicio": 8, "fim": 12, "programa": "Manhã na Verde", "apresentador": "Bianne Flores e Elisângela Souza"}, {"inicio": 12, "fim": 15, "programa": "Violada da Verde", "apresentador": ""}, {"inicio": 15, "fim": 18, "programa": "Tarde na Verde", "apresentador": ""}, {"inicio": 18, "fim": 19, "programa": "Radar Sertanejo", "apresentador": ""}, {"inicio": 19, "fim": 20, "programa": "1 Hora de Saudade", "apresentador": ""}, {"inicio": 20, "fim": 0, "programa": "Sofrência Máxima", "apresentador": ""}, {"inicio": 0, "fim": 5, "programa": "Sereno da Madrugada", "apresentador": ""}]}, {"rotulo": "Domingo", "dias": [0], "programas": [{"inicio": 5, "fim": 6, "programa": "Clássicos da Verde", "apresentador": ""}, {"inicio": 6, "fim": 8, "programa": "Alô, Bom Dia", "apresentador": ""}, {"inicio": 8, "fim": 12, "programa": "Manhã na Verde", "apresentador": ""}, {"inicio": 12, "fim": 15, "programa": "Violada da Verde", "apresentador": ""}, {"inicio": 15, "fim": 18, "programa": "Tarde na Verde", "apresentador": ""}, {"inicio": 18, "fim": 19, "programa": "Radar Sertanejo", "apresentador": ""}, {"inicio": 19, "fim": 20, "programa": "1 Hora de Saudade", "apresentador": ""}, {"inicio": 20, "fim": 0, "programa": "Sofrência Máxima", "apresentador": ""}, {"inicio": 0, "fim": 5, "programa": "Sereno da Madrugada", "apresentador": ""}]}]}, {"slug": "arenapolis", "nome": "Arenápolis", "frequencia": "102.1", "stream": "", "ativa": false, "logo": "/assets/img/logos/arenapolis.png", "grade": []}]
 </script>
 <!-- WP: wp_footer() -->
 </body>

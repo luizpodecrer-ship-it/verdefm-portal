@@ -17,6 +17,9 @@
      7. Cabeçalho ...... fica preso no topo ao rolar e encolhe um pouco (.vfm-rolou).
      8. Letreiro ....... faixa "Últimas" correndo sem parar, com pausa (mouse, foco ou botão).
      9. Publicidade .... banner do topo em rodízio (troca a cada 8 s; para no mouse e no foco).
+    10. Programação ... programa no ar pela grade da cidade (fuso de Cuiabá); marca o programa no ar
+                         nas grades ([data-vfm-grade]) e abre a aba do dia.
+    11. Ações ......... [data-vfm-ouvir-cidade] troca a cidade e toca; [data-vfm-copiar] copia o link.
 
    Eventos para o WordPress / plugins (ouvir com document.addEventListener):
      "vfm:pagina"  → depois de trocar de página (reiniciar anúncios, embeds, analytics)
@@ -74,6 +77,9 @@
     $$('[data-vfm-texto="frequencia"]').forEach(function (el) { el.textContent = c.frequencia; });
     // Blocos de uma cidade só (ex.: "Em {cidade}" quando o HTML traz todas): mostra só os da escolhida.
     $$('[data-vfm-so-cidade]').forEach(function (el) { el.hidden = el.getAttribute('data-vfm-so-cidade') !== c.slug; });
+    // Links que dependem da cidade: data-vfm-link-cidade="/cidade/{cidade}.html"
+    $$('[data-vfm-link-cidade]').forEach(function (a) { a.setAttribute('href', a.getAttribute('data-vfm-link-cidade').replace('{cidade}', c.slug)); });
+    if (typeof atualizarProgramacao === 'function' && cidades.length) atualizarProgramacao();
     $$('.vfm-cidade__opcao').forEach(function (op) {
       var atual = op.getAttribute('data-cidade') === c.slug;
       op.setAttribute('aria-current', atual ? 'true' : 'false');
@@ -224,7 +230,25 @@
       querTocar ? pausar() : tocar();
     });
     var volume = $('[data-vfm-volume]');
-    if (volume) volume.addEventListener('input', function () { audio.volume = Number(volume.value); });
+    var mudo = $('[data-vfm-mudo]');
+    function mostrarSom() {
+      var semSom = audio.muted || audio.volume === 0;
+      if (mudo) {
+        mudo.setAttribute('aria-pressed', semSom ? 'true' : 'false');
+        mudo.setAttribute('aria-label', semSom ? 'Ligar o som' : 'Tirar o som');
+        if (mudo.parentNode) mudo.parentNode.classList.toggle('vfm-volume--mudo', semSom);
+      }
+    }
+    if (volume) volume.addEventListener('input', function () {
+      audio.volume = Number(volume.value);
+      audio.muted = audio.volume === 0;
+      mostrarSom();
+    });
+    if (mudo) mudo.addEventListener('click', function () {
+      audio.muted = !audio.muted;
+      if (!audio.muted && audio.volume === 0) { audio.volume = .6; if (volume) volume.value = .6; }
+      mostrarSom();
+    });
     radioEstado();
   }
 
@@ -544,6 +568,130 @@
   }
 
   /* ----------------------------------------------------------------------
+     10. Programação: programa no ar (pela grade da cidade) e grades na página
+     ---------------------------------------------------------------------- */
+  function agoraEmCuiaba() {
+    // Dia da semana (0 = domingo) e hora no fuso de Cuiabá, qualquer que seja o fuso do aparelho.
+    try {
+      var partes = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Cuiaba', weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false }).formatToParts(new Date());
+      var v = {};
+      partes.forEach(function (p) { v[p.type] = p.value; });
+      var dias = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+      return { dia: dias[v.weekday], hora: (Number(v.hour) % 24) + Number(v.minute) / 60 };
+    } catch (e) {
+      var d = new Date();
+      return { dia: d.getDay(), hora: d.getHours() + d.getMinutes() / 60 };
+    }
+  }
+  function noIntervalo(hora, inicio, fim) {
+    // "21h às 0h" e "0h às 5h": o fim 0 vale 24; faixa que vira a noite também é tratada.
+    if (fim === 0) fim = 24;
+    return inicio < fim ? (hora >= inicio && hora < fim) : (hora >= inicio || hora < fim);
+  }
+  function programaNoAr(c) {
+    var t = agoraEmCuiaba();
+    var blocos = (c && c.grade) || [];
+    for (var i = 0; i < blocos.length; i++) {
+      if (blocos[i].dias.indexOf(t.dia) === -1) continue;
+      var lista = blocos[i].programas;
+      for (var j = 0; j < lista.length; j++) if (noIntervalo(t.hora, lista[j].inicio, lista[j].fim)) return lista[j];
+    }
+    return null;
+  }
+  function atualizarProgramacao() {
+    var p = programaNoAr(cidade);
+    $$('[data-vfm-programa]').forEach(function (el) { el.textContent = p ? p.programa : 'Verde FM ' + cidade.nome; });
+    $$('[data-vfm-programa-apres]').forEach(function (el) { el.textContent = p && p.apresentador ? p.apresentador : ''; });
+    var t = agoraEmCuiaba();
+    // Blocos de grade de um dia só ([data-vfm-dias="1,2,3,4,5"]) aparecem só no dia certo, quando pedido.
+    $$('[data-vfm-grade-hoje] [data-vfm-dias]').forEach(function (bloco) {
+      var dias = bloco.getAttribute('data-vfm-dias').split(',').map(Number);
+      bloco.classList.toggle('vfm-fora-do-dia', dias.indexOf(t.dia) === -1);
+    });
+    $$('[data-vfm-grade]').forEach(function (lista) {
+      var dias = (lista.closest('[data-vfm-dias]') || lista).getAttribute('data-vfm-dias');
+      var hoje = !dias || dias.split(',').map(Number).indexOf(t.dia) !== -1;
+      var itens = $$('li[data-inicio]', lista);
+      var atual = -1;
+      itens.forEach(function (li, i) {
+        var noAr = hoje && noIntervalo(t.hora, Number(li.getAttribute('data-inicio')), Number(li.getAttribute('data-fim')));
+        li.classList.toggle('vfm-no-ar', noAr);
+        if (noAr) atual = i;
+      });
+      // Versão curta (home): o programa no ar e os próximos.
+      var curta = Number(lista.getAttribute('data-vfm-grade-curta') || 0);
+      if (curta) itens.forEach(function (li, i) {
+        var inicio = atual === -1 ? 0 : atual;
+        li.hidden = i < inicio || i >= inicio + curta;
+      });
+    });
+    // Abas da programação: abre na aba de hoje (só na primeira vez).
+    $$('[data-vfm-abas]').forEach(function (grupo) {
+      if (grupo.getAttribute('data-vfm-abas-hoje') === 'feito') return;
+      grupo.setAttribute('data-vfm-abas-hoje', 'feito');
+      $$('[role="tab"][data-vfm-dias]', grupo).forEach(function (aba) {
+        if (aba.getAttribute('data-vfm-dias').split(',').map(Number).indexOf(t.dia) !== -1) abrirAba(aba);
+      });
+    });
+  }
+  function abrirAba(aba) {
+    var grupo = aba.closest('[data-vfm-abas]');
+    $$('[role="tab"]', grupo).forEach(function (a) {
+      var sel = a === aba;
+      a.setAttribute('aria-selected', sel ? 'true' : 'false');
+      a.setAttribute('tabindex', sel ? '0' : '-1');
+      var painel = doc.getElementById(a.getAttribute('aria-controls'));
+      if (painel) painel.hidden = !sel;
+    });
+  }
+  function ligarProgramacao() {
+    doc.addEventListener('click', function (e) {
+      var aba = e.target.closest('[data-vfm-abas] [role="tab"]');
+      if (aba) abrirAba(aba);
+    });
+    doc.addEventListener('keydown', function (e) {
+      var aba = e.target.closest && e.target.closest('[data-vfm-abas] [role="tab"]');
+      if (!aba || (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft')) return;
+      var abas = $$('[role="tab"]', aba.closest('[data-vfm-abas]'));
+      var i = abas.indexOf(aba) + (e.key === 'ArrowRight' ? 1 : -1);
+      var alvo = abas[(i + abas.length) % abas.length];
+      abrirAba(alvo);
+      alvo.focus();
+      e.preventDefault();
+    });
+    setInterval(atualizarProgramacao, 60000); // troca o programa na virada da hora
+  }
+
+  /* ----------------------------------------------------------------------
+     11. Pequenas ações: ouvir a rádio de uma cidade, copiar o link
+     ---------------------------------------------------------------------- */
+  function ligarAcoes() {
+    doc.addEventListener('click', function (e) {
+      var ouvir = e.target.closest('[data-vfm-ouvir-cidade]');
+      if (ouvir) {
+        e.preventDefault();
+        var slug = ouvir.getAttribute('data-vfm-ouvir-cidade');
+        if (slug !== cidade.slug) trocarCidade(slug);
+        tocar();
+        return;
+      }
+      var copiar = e.target.closest('[data-vfm-copiar]');
+      if (copiar) {
+        e.preventDefault();
+        var url = copiar.getAttribute('data-vfm-copiar') || location.href;
+        var rotulo = $('[data-vfm-copiar-rotulo]', copiar) || copiar;
+        var antes = rotulo.textContent;
+        var pronto = function () {
+          rotulo.textContent = 'Link copiado';
+          anunciar('Link copiado');
+          setTimeout(function () { rotulo.textContent = antes; }, 2200);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(pronto, function () {});
+      }
+    });
+  }
+
+  /* ----------------------------------------------------------------------
      Utilitários
      ---------------------------------------------------------------------- */
   function anunciar(texto) {
@@ -575,6 +723,8 @@
     ligarTopo();
     ligarLetreiro();
     ligarRodizios();
+    ligarProgramacao();
+    ligarAcoes();
     doc.addEventListener('vfm:pagina', ligarRodizios);
     marcarMenu();
     preencherData();

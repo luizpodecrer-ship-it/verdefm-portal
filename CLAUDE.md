@@ -29,7 +29,7 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 
 - Claro e suave: fundo `#F7F8F6`, branco nos cartões, texto `#1B2420`, apoio `#55625A`.
 - Verde só como acento: `#17803A` (botões, links, etiquetas), `#EEF4F0` (fundos suaves), `#2DBE4E` só em detalhes decorativos. Rodapé grafite `#1B2420`.
-- Fontes: Archivo (títulos, peso 600) e Inter (texto, 400/500/600), do Google Fonts.
+- Fontes (teste pedido pelo Luiz em 21/11/2026): **Inter** nos títulos (700) e **Aeonik** no texto (400/700). Aeonik é comercial: até os arquivos `.woff2` licenciados irem para `site/assets/fonts/` (o `@font-face` já está comentado no CSS), o texto cai para a Inter. Menu de navegação em 600. Antes: Archivo 600 nos títulos.
 - Cantos arredondados por igual (10–20 px), linhas finas, sombras discretas.
 - Protótipo aprovado (canvas): https://claude.ai/artifact/4QqTTzzLXqrU77uNBGwR7M
 
@@ -51,11 +51,14 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 - **21/11/2026** — **Redes sociais com ícones no rodapé**: Instagram, Facebook e YouTube em botões redondos brancos que ficam **verdes** no mouse (pedido do Luiz: nada das cores de cada rede).
 - **21/11/2026** — **Vídeos já abrem no último vídeo do canal** (pedido do Luiz): capa em alta do vídeo mais recente no quadro grande; o ao vivo fica como primeiro item da lista. No computador, a lista "Últimos vídeos" fica num painel à direita com a mesma altura do vídeo e rola por dentro.
 - **21/11/2026** — **Banner de publicidade no topo** (pedido do Luiz, como no site atual): logo abaixo da faixa "Últimas", largura toda do conteúdo, proporção **1260 × 120 px** (a mesma do banner_topo do site atual; MRV 730 × 72 também cabe). Mais de um anúncio = rodízio a cada 8 s, com troca suave; para no mouse e no foco; cada visita começa num anúncio diferente. Etiqueta "Publicidade" discreta embaixo. Medida para pedir aos anunciantes: 1260 × 120 px (ou 2520 × 240 para telas nítidas).
+- **21/11/2026** — **Player da rádio fixo no rodapé em todas as telas** (pedido do Luiz; saiu o cartão "No ar agora" do lado da manchete): barra grafite com play (anel pulsando ao tocar), logo da cidade, selo "Ao vivo", nome do programa no ar, equalizador animado, link da programação e volume com botão de mudo. No lugar do cartão, a coluna ao lado da manchete tem **5 notícias** (fecha na altura da manchete).
+- **21/11/2026** — **Programa no ar de verdade**: a grade real das três rádios (copiada das páginas /programacao/ dos sites atuais) vai no JSON das cidades; o player mostra o programa do momento pelo fuso de Cuiabá e as grades marcam "No ar".
+- **21/11/2026** — **Páginas internas** (pedido do Luiz: "desenvolva todas as internas agora"; feitas direto, sem protótipo): matéria (`/noticia/…`), editoria (`/editoria/…`: Política, Economia e negócios, Esporte e cultura, Policial, Brasil), cidade (`/cidade/…`, com "Ouvir a Verde {cidade}"), Vídeos, Programação (abas por dia, abre no dia de hoje, por cidade), Promoções (formulário de inscrição), Busca e 404. Tudo com a navegação contínua: a rádio não para. As páginas da demonstração são geradas por `ferramentas/gerar-demo.py` a partir da home e de `ferramentas/dados/demo.json` (matérias reais dos três sites, grade e vídeos, coletados por `ferramentas/coletar-demo.py`).
 
 ## Próximas etapas
 
-1. Protótipos para aprovar: página da notícia, página da cidade, página da editoria, busca e 404.
-2. Converter as telas aprovadas para o mesmo padrão de código.
+1. Luiz revisar as páginas internas no Netlify e pedir ajustes.
+2. Arquivos da Aeonik (ou voltar para outra fonte de texto, se o teste não agradar).
 
 ## Pendências
 
@@ -71,7 +74,7 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 - GitHub: `luizpodecrer-ship-it/verdefm-portal`, branch `main`.
 - Netlify: projeto **verdefm-portal** (id `5f327f1e-1d67-44ec-879f-db751dbdb975`, time "luizpodecrer"), endereço **verdefm-portal.netlify.app**, acesso de visitantes aberto. Publica a pasta `site/` (configurado em `netlify.toml`).
 - Primeira publicação (20/11/2026) foi enviada direto pelo Claude. Enquanto o Netlify não estiver ligado ao GitHub, cada entrega precisa ser publicada de novo pela ferramenta do Netlify (deploy-site com o id acima).
-- A cada publicação, trocar o número `?v=` do CSS e do JS em `site/index.html`, para o navegador baixar a versão nova.
+- A cada publicação, trocar o número `?v=` do CSS e do JS em `site/index.html` e rodar `python3 ferramentas/gerar-demo.py` (as páginas internas copiam o cabeçalho e o rodapé da home). **Mudou cabeçalho, rodapé ou player na home? Rode o gerador de novo.**
 
 ## Testar
 

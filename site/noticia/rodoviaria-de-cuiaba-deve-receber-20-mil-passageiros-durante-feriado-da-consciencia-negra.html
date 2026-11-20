@@ -1,0 +1,338 @@
+<!doctype html>
+<!--
+  Verde FM · Rodoviária de Cuiabá deve receber 20 mil passageiros durante feriado da Consciência Negra · Verde FM
+  Marcações para o WordPress: os comentários que começam com "WP:" dizem qual
+  arquivo do tema ou qual função do WordPress gera aquele trecho.
+  Divisão sugerida do tema (ver docs/WORDPRESS.md):
+    header.php ...... do doctype até o fim da faixa "Últimas"
+    front-page.php .. o conteúdo de main#vfm-conteudo
+    footer.php ...... rodapé, barra do rádio, audio, janelas, JSON das cidades e scripts
+-->
+<html lang="pt-BR" data-vfm-cidade-padrao="cuiaba">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rodoviária de Cuiabá deve receber 20 mil passageiros durante feriado da Consciência Negra · Verde FM</title>
+<meta name="description" content="O Terminal Rodoviário Engenheiro Cássio Veiga de Sá, em Cuiabá, deve receber aproximadamente 20 mil passageiros, entre embarques e desembarques, durante o feriado da Consciência Ne">
+<meta name="theme-color" content="#FFFFFF">
+<!-- WP: wp_head() — fontes e CSS entram por wp_enqueue_style em functions.php -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/css/verdefm.css?v=202611210245">
+<script src="/assets/js/verdefm.js?v=202611210245" defer></script>
+</head>
+<body class="vfm-pagina-materia">
+<!-- WP: body_class() -->
+<a class="vfm-pular" href="#vfm-conteudo">Pular para o conteúdo</a>
+<div class="vfm-progresso" aria-hidden="true"></div>
+<div id="vfm-aviso" class="vfm-so-leitor" aria-live="polite"></div>
+
+<!-- ===================== CABEÇALHO (header.php) ===================== -->
+<header class="vfm-topo">
+  <div class="vfm-container vfm-topo__linha">
+    <!-- WP: home_url('/'); o logo é o da cidade escolhida (term meta "logo" da taxonomia cidade) -->
+    <a class="vfm-logo" href="/" aria-label="Verde FM, página inicial">
+      <img data-vfm-logo src="/assets/img/logos/cuiaba.png" alt="Verde FM Cuiabá 103.7" width="840" height="200">
+    </a>
+
+    <div class="vfm-topo__acoes">
+      <a class="vfm-yt vfm-topo__youtube" href="https://www.youtube.com/@VerdeFMoficial/live" target="_blank" rel="noopener">
+        <span class="vfm-yt__icone"><svg class="vfm-yt__logo" aria-hidden="true" width="28" height="20" viewBox="0 0 28 20"><path fill="#FF0000" d="M27.4 3.1A3.5 3.5 0 0 0 24.9.6C22.7 0 14 0 14 0S5.3 0 3.1.6A3.5 3.5 0 0 0 .6 3.1C0 5.3 0 10 0 10s0 4.7.6 6.9a3.5 3.5 0 0 0 2.5 2.5C5.3 20 14 20 14 20s8.7 0 10.9-.6a3.5 3.5 0 0 0 2.5-2.5C28 14.7 28 10 28 10s0-4.7-.6-6.9z"/><path fill="#FFFFFF" d="M11.2 14.3 18.5 10l-7.3-4.3z"/></svg></span>
+        <span class="vfm-yt__texto"><strong><span class="vfm-ponto" aria-hidden="true"></span>Ao vivo</strong><small>no YouTube</small></span>
+      </a>
+      <!-- WP: echo date_i18n('l, j \d\e F'); (pode ficar vazio: o JS preenche) -->
+      <span class="vfm-topo__data" data-vfm-data></span>
+      <button class="vfm-icone-botao" type="button" data-vfm-abrir="vfm-busca" aria-label="Buscar">
+        <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8"/></svg>
+      </button>
+      <button class="vfm-icone-botao vfm-topo__menu" type="button" data-vfm-abrir="vfm-menu" aria-label="Abrir o menu">
+        <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+
+    <!-- Seletor de cidade. WP: um <li> por termo da taxonomia "cidade"; cidade desligada = aria-disabled="true" -->
+    <div class="vfm-cidade vfm-topo__cidade">
+      <button class="vfm-cidade__botao" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="vfm-cidades-lista">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#17803A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+        <span class="vfm-cidade__prefixo">Você está em</span>
+        <span class="vfm-cidade__nome" data-vfm-texto="cidade">Cuiabá</span>
+        <span class="vfm-cidade__freq" data-vfm-texto="frequencia">103.7</span>
+        <svg class="vfm-cidade__seta" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        <span class="vfm-so-leitor">— trocar de cidade</span>
+      </button>
+      <ul class="vfm-cidade__lista" id="vfm-cidades-lista" aria-label="Escolha a cidade" hidden>
+        <li><button class="vfm-cidade__opcao" type="button" data-cidade="cuiaba" aria-current="true"><span><strong>Cuiabá</strong><small>Verde FM 103.7</small></span><span class="vfm-cidade__nota">Você está aqui</span></button></li>
+        <li><button class="vfm-cidade__opcao" type="button" data-cidade="campo-verde" aria-current="false"><span><strong>Campo Verde</strong><small>Verde FM 96.3</small></span><span class="vfm-cidade__nota"></span></button></li>
+        <li><button class="vfm-cidade__opcao" type="button" data-cidade="jaciara" aria-current="false"><span><strong>Jaciara</strong><small>Verde FM 102.3</small></span><span class="vfm-cidade__nota"></span></button></li>
+        <li><button class="vfm-cidade__opcao" type="button" data-cidade="arenapolis" aria-current="false" aria-disabled="true"><span><strong>Arenápolis</strong><small>Verde FM 102.1</small></span><span class="vfm-cidade__nota">Em breve</span></button></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- WP: wp_nav_menu(['theme_location' => 'editorias']) com estas classes -->
+  <nav class="vfm-nav vfm-container" aria-label="Editorias" data-vfm-menu>
+    <ul>
+      <li><a href="/">Início</a></li>
+      <li><a href="/editoria/politica.html">Política</a></li>
+      <li><a href="/cidade/cuiaba.html" data-vfm-link-cidade="/cidade/{cidade}.html">Cidades</a></li>
+      <li><a href="/editoria/economia.html">Economia e negócios</a></li>
+      <li><a href="/editoria/esporte-e-cultura.html">Esporte e cultura</a></li>
+      <li><a href="/videos.html">Vídeos</a></li>
+      <li><a href="/programacao.html">Programação</a></li>
+      <li><a href="/promocoes.html">Promoções</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Faixa "Últimas". WP: WP_Query 5 posts mais recentes (sem filtro de cidade) -->
+<div class="vfm-ultimas vfm-container">
+  <div class="vfm-ultimas__caixa" data-vfm-letreiro>
+    <span class="vfm-ultimas__rotulo"><span class="vfm-ponto vfm-ponto--verde" aria-hidden="true"></span>Últimas</span>
+    <!-- O JS duplica os itens para o letreiro rodar sem emenda (cópias com aria-hidden) -->
+    <div class="vfm-ultimas__janela">
+      <ul class="vfm-ultimas__lista" data-vfm-letreiro-lista>
+        <li><a href="/noticia/marcia-pinheiro-recebe-alta-apos-66-dias-internada-por-avc-hemorragico.html">Márcia Pinheiro recebe alta após 66 dias internada por AVC hemorrágico</a></li>
+        <li><a href="/noticia/lula-regulamenta-escala-5x2-e-reducao-da-jornada-de-trabalho-no-brasil.html">Lula regulamenta escala 5×2 e redução da jornada de trabalho no Brasil</a></li>
+        <li><a href="/noticia/tj-manda-suspender-cobrancas-de-cartoes-consignados-de-servidores.html">TJ manda suspender cobranças de cartões consignados de servidores</a></li>
+        <li><a href="/noticia/lula-visita-raoni-em-mt-apos-cacique-receber-alta-hospitalar.html">Lula visita Raoni em MT após cacique receber alta hospitalar</a></li>
+      </ul>
+    </div>
+    <button class="vfm-ultimas__pausa" type="button" data-vfm-letreiro-pausa aria-pressed="false" aria-label="Pausar as últimas notícias" hidden>
+      <svg class="vfm-ultimas__icone-pausa" aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+      <svg class="vfm-ultimas__icone-tocar" aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l12 7-12 7z"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ===================== CONTEÚDO (front-page.php) =====================
+     Só o que está dentro de #vfm-conteudo troca ao navegar.
+     Tudo fora dele (cabeçalho, rádio, rodapé) fica parado e a rádio não para. -->
+<main id="vfm-conteudo" tabindex="-1">
+  <!-- Banner do topo (mesma medida do site atual: largura toda do conteúdo, proporção 1260 × 120 px).
+       WP: anúncios ativos da posição "banner_topo" da cidade escolhida; mais de um = rodízio a cada 8 s.
+       Demonstração: anúncios que estão hoje no topo do verdefm.com.br. -->
+  <div class="vfm-container vfm-pub-topo">
+    <section class="vfm-pub-topo__caixa" aria-label="Publicidade" data-vfm-rodizio>
+      <a class="vfm-pub-topo__peca vfm-ativa" href="https://www.mrv.com.br/" target="_blank" rel="noopener sponsored">
+        <img src="https://www.verdefm.com.br/wp-content/uploads/2026/08/1414-7_fullbanner_730x72px_1.jpg.jpeg" alt="MRV: visite a nova loja MRV em Várzea Grande" width="730" height="72">
+      </a>
+      <a class="vfm-pub-topo__peca" href="https://www.helpvida.com.br/" target="_blank" rel="noopener sponsored" tabindex="-1" aria-hidden="true">
+        <img src="https://www.verdefm.com.br/wp-content/uploads/2026/07/banner-site-HelpVida-1260-x-120-px.gif" alt="Help Vida" width="1260" height="120" loading="lazy">
+      </a>
+    </section>
+    <span class="vfm-pub-topo__rotulo" aria-hidden="true">Publicidade</span>
+  </div>
+
+  <nav class="vfm-trilha vfm-container" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li><a href="/cidade/cuiaba.html">Cidades</a></li><li><span aria-current="page">Notícia</span></li></ol></nav>
+  <article class="vfm-container vfm-materia">
+    <!-- WP: single.php -->
+    <header class="vfm-materia__cabeca">
+      <a class="vfm-chapeu" href="/cidade/cuiaba.html">Cidades</a>
+      <h1>Rodoviária de Cuiabá deve receber 20 mil passageiros durante feriado da Consciência Negra</h1>
+      <p class="vfm-materia__fina">O Terminal Rodoviário Engenheiro Cássio Veiga de Sá, em Cuiabá, deve receber aproximadamente 20 mil passageiros, entre embarques e desembarques, durante o feriado da Consciência Negra, nesta…</p>
+      <div class="vfm-materia__linha">
+        <div class="vfm-assinatura-materia">
+          <span class="vfm-assinatura-materia__selo"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5M8 22h8"/></svg></span>
+          <span><strong>Redação Verde FM</strong><time datetime="2026-11-18T10:56:10">18/11/2026 às 10h56</time></span>
+        </div>
+        <div class="vfm-compartilhar">
+          <span>Compartilhar</span>
+          <a href="https://wa.me/?text=Rodovi%C3%A1ria%20de%20Cuiab%C3%A1%20deve%20receber%2020%20mil%20passageiros%20durante%20feriado%20da%20Consci%C3%AAncia%20Negra%20https%3A//verdefm-portal.netlify.app/noticia/rodoviaria-de-cuiaba-deve-receber-20-mil-passageiros-durante-feriado-da-consciencia-negra.html" target="_blank" rel="noopener" aria-label="Compartilhar no WhatsApp" title="WhatsApp"><svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.2-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg></a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fverdefm-portal.netlify.app%2Fnoticia%2Frodoviaria-de-cuiaba-deve-receber-20-mil-passageiros-durante-feriado-da-consciencia-negra.html" target="_blank" rel="noopener" aria-label="Compartilhar no Facebook" title="Facebook"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.9v3h2.6V21h3z"/></svg></a>
+          <a href="https://twitter.com/intent/tweet?text=Rodovi%C3%A1ria%20de%20Cuiab%C3%A1%20deve%20receber%2020%20mil%20passageiros%20durante%20feriado%20da%20Consci%C3%AAncia%20Negra&amp;url=https%3A%2F%2Fverdefm-portal.netlify.app%2Fnoticia%2Frodoviaria-de-cuiaba-deve-receber-20-mil-passageiros-durante-feriado-da-consciencia-negra.html" target="_blank" rel="noopener" aria-label="Compartilhar no X" title="X"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.8L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.3-8.3L2 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/></svg></a>
+          <button type="button" data-vfm-copiar="https://verdefm-portal.netlify.app/noticia/rodoviaria-de-cuiaba-deve-receber-20-mil-passageiros-durante-feriado-da-consciencia-negra.html" title="Copiar o link"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg><span class="vfm-so-leitor" data-vfm-copiar-rotulo>Copiar o link</span></button>
+        </div>
+      </div>
+    </header>
+    <figure class="vfm-materia__foto"><img src="https://www.verdefm.com.br/wp-content/uploads/2026/11/RODOVIARIA.avif" alt="" width="1280" height="720" fetchpriority="high"></figure>
+    <div class="vfm-materia__grade">
+      <div>
+        <!-- WP: the_content() -->
+        <div class="vfm-texto">
+<p>O Terminal Rodoviário Engenheiro Cássio Veiga de Sá, em Cuiabá, deve receber aproximadamente 20 mil passageiros, entre embarques e desembarques, durante o feriado da Consciência Negra, nesta sexta-feira (20.11). A estimativa é da concessionária responsável pela administração do terminal. Os dias de maior movimentação previstos são esta quinta-feira (19) e domingo (22), períodos de saída e retorno dos viajantes.</p>
+<p>Para atender à demanda, estão programadas 1.258 viagens, sendo 645 partidas e 613 chegadas, em linhas intermunicipais e interestaduais. Segundo as empresas operadoras, a oferta de horários extras poderá ser ampliada conforme o aumento da procura.</p>
+<p>A projeção considera a movimentação registrada no mesmo período de 2025, quando aproximadamente 21 mil pessoas passaram pelo terminal, uma média de 5.250 passageiros por dia.</p>
+<p>A tendência é de predominância de viagens de curta e média distância dentro de Mato Grosso, seguindo o comportamento observado em outros feriados prolongados de 2026, como Semana Santa, Corpus Christi e Independência. Entre os principais motivos dos deslocamentos estão visitas a familiares e atividades turísticas.</p>
+<p>Diante da expectativa de aumento no fluxo, a Agência de Regulação dos Serviços Públicos Delegados do Estado de Mato Grosso (Ager-MT) orienta os passageiros a adquirirem seus bilhetes com antecedência, evitando imprevistos no momento do embarque.</p>
+<p>A Agência também recomenda atenção à documentação exigida para a viagem, especialmente nos casos que envolvam crianças e adolescentes. As regras para o embarque de menores de idade devem seguir as exigências legais.</p>
+<p><strong>Canais de atendimento</strong></p>
+<p>A Ager é responsável pela regulação e fiscalização do transporte intermunicipal de passageiros em todo Mato Grosso. Em caso de dúvidas, reclamações ou solicitações relacionadas ao assunto, os passageiros podem entrar em contato com a Agência pelo telefone 0800 647 6464, pelo WhatsApp (65) 99675-8719 ou pelo site <a href="http://www.ager.mt.gov.br/ouvidoria" target="_blank" rel="noopener">www.ager.mt.gov.br/ouvidoria</a></p>
+<p>Informações sobre os serviços de transporte interestadual podem ser obtidas com a Agência Nacional de Transportes Terrestres (ANTT) pelo telefone 166.</p>
+<p>Para consultar horários, preços de passagens e outros serviços do Terminal Rodoviário de Cuiabá, os usuários podem acessar o site do terminal <a href="http://www.rodoviariadecuiaba.com.br/" target="_blank" rel="noopener">www.rodoviariadecuiaba.com.br</a></p>
+        </div>
+      <section class="vfm-ouca" aria-label="Rádio ao vivo">
+        <button class="vfm-play" type="button" data-vfm-play aria-pressed="false" aria-label="Ouvir a rádio ao vivo"><svg class="vfm-play__tocar" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l12 7-12 7z"/></svg><svg class="vfm-play__pausar" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="vfm-play__girando" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9"/></svg></button>
+        <div class="vfm-ouca__texto">
+          <strong>Ouça a Verde FM <span data-vfm-texto="cidade">Cuiabá</span> ao vivo</strong>
+          <span>No ar agora: <span data-vfm-programa>Verde FM</span></span>
+        </div>
+        <a class="vfm-botao vfm-botao--contorno" href="/programacao.html">Programação</a>
+      </section>
+        <div class="vfm-materia__fim">
+          <span class="vfm-meta">Publicada em <time datetime="2026-11-18T10:56:10">18/11/2026 às 10h56</time></span>
+          <div class="vfm-compartilhar">
+          <span>Compartilhar</span>
+          <a href="https://wa.me/?text=Rodovi%C3%A1ria%20de%20Cuiab%C3%A1%20deve%20receber%2020%20mil%20passageiros%20durante%20feriado%20da%20Consci%C3%AAncia%20Negra%20https%3A//verdefm-portal.netlify.app/noticia/rodoviaria-de-cuiaba-deve-receber-20-mil-passageiros-durante-feriado-da-consciencia-negra.html" target="_blank" rel="noopener" aria-label="Compartilhar no WhatsApp" title="WhatsApp"><svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.2-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg></a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fverdefm-portal.netlify.app%2Fnoticia%2Frodoviaria-de-cuiaba-deve-receber-20-mil-passageiros-durante-feriado-da-consciencia-negra.html" target="_blank" rel="noopener" aria-label="Compartilhar no Facebook" title="Facebook"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.9v3h2.6V21h3z"/></svg></a>
+          <a href="https://twitter.com/intent/tweet?text=Rodovi%C3%A1ria%20de%20Cuiab%C3%A1%20deve%20receber%2020%20mil%20passageiros%20durante%20feriado%20da%20Consci%C3%AAncia%20Negra&amp;url=https%3A%2F%2Fverdefm-portal.netlify.app%2Fnoticia%2Frodoviaria-de-cuiaba-deve-receber-20-mil-passageiros-durante-feriado-da-consciencia-negra.html" target="_blank" rel="noopener" aria-label="Compartilhar no X" title="X"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.8L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.3-8.3L2 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/></svg></a>
+          <button type="button" data-vfm-copiar="https://verdefm-portal.netlify.app/noticia/rodoviaria-de-cuiaba-deve-receber-20-mil-passageiros-durante-feriado-da-consciencia-negra.html" title="Copiar o link"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg><span class="vfm-so-leitor" data-vfm-copiar-rotulo>Copiar o link</span></button>
+        </div>
+        </div>
+      </div>
+      <aside class="vfm-materia__lateral" aria-label="Mais notícias">
+        <div class="vfm-fixo">
+          <div class="vfm-pub-quadrado" aria-label="Publicidade"><span>Publicidade</span><span>300 × 250</span></div>
+          <section class="vfm-lista-numerada" style="margin-top: 28px">
+            <h2>Últimas notícias</h2>
+            <ol><li><a href="/noticia/marcia-pinheiro-recebe-alta-apos-66-dias-internada-por-avc-hemorragico.html">Márcia Pinheiro recebe alta após 66 dias internada por AVC hemorrágico</a></li><li><a href="/noticia/lula-regulamenta-escala-5x2-e-reducao-da-jornada-de-trabalho-no-brasil.html">Lula regulamenta escala 5×2 e redução da jornada de trabalho no Brasil</a></li><li><a href="/noticia/tj-manda-suspender-cobrancas-de-cartoes-consignados-de-servidores.html">TJ manda suspender cobranças de cartões consignados de servidores</a></li><li><a href="/noticia/lula-visita-raoni-em-mt-apos-cacique-receber-alta-hospitalar.html">Lula visita Raoni em MT após cacique receber alta hospitalar</a></li><li><a href="/noticia/flavia-sai-em-defesa-do-filho-apos-denuncia-de-ameaca-feita-por-ativista.html">Flávia sai em defesa do filho após denúncia de ameaça feita por ativista</a></li><li><a href="/noticia/filho-de-flavia-moretti-e-acusado-de-ameacar-presidente-de-bairro-em-vg.html">Filho de Flávia Moretti é acusado de ameaçar presidente de bairro em VG</a></li><li><a href="/noticia/defesa-civil-de-campo-verde-alerta-para-riscos-e-cuidados-durante-a-temporada-de-chuvas.html">Defesa Civil de Campo Verde alerta para riscos e cuidados durante a temporada de chuvas</a></li><li><a href="/noticia/corregedoria-afasta-policiais-apos-empresario-ser-morto-durante-abordagem-em-mt.html">Corregedoria afasta policiais após empresário ser morto durante abordagem em MT</a></li></ol>
+          </section>
+        </div>
+      </aside>
+    </div>
+  </article>
+  <section class="vfm-secao vfm-secao--branca" aria-labelledby="leia-tambem">
+    <div class="vfm-container">
+      <h2 class="vfm-secao-titulo" id="leia-tambem">Leia também</h2>
+      <ul class="vfm-cards">
+      <li><article class="vfm-card">
+        <a class="vfm-card__foto" href="/noticia/marcia-pinheiro-recebe-alta-apos-66-dias-internada-por-avc-hemorragico.html" tabindex="-1" aria-hidden="true"><img src="https://www.verdefm.com.br/wp-content/uploads/2026/09/marcia-pinheiro-1-768x522.jpg" alt="" width="768" height="480" loading="lazy"></a>
+        <div class="vfm-meta"><span class="vfm-chapeu">Cidades</span><time datetime="2026-11-19T14:54:09">19/11/2026</time></div>
+        <h3><a href="/noticia/marcia-pinheiro-recebe-alta-apos-66-dias-internada-por-avc-hemorragico.html">Márcia Pinheiro recebe alta após 66 dias internada por AVC hemorrágico</a></h3>
+        <p>Márcia Pinheiro, ex-primeira-dama de Cuiabá, recebeu alta hospitalar nesta quinta-feira (19), após 66 dias internada em decorrência de um Acidente Vascular Cerebral (AVC) hemorrágico. Ela foi transferida para uma clínica de transição em São Paulo (SP), onde dará continuidade ao processo de reabilitação neurológica e motora. A informação foi divulgada em vídeo nas redes sociais …</p>
+      </article></li>
+      <li><article class="vfm-card">
+        <a class="vfm-card__foto" href="/noticia/defesa-civil-de-campo-verde-alerta-para-riscos-e-cuidados-durante-a-temporada-de-chuvas.html" tabindex="-1" aria-hidden="true"><img src="https://www.verdefmcampoverde.com.br/wp-content/uploads/2026/11/4419-768x512.avif" alt="" width="768" height="480" loading="lazy"></a>
+        <div class="vfm-meta"><span class="vfm-chapeu">Cidades</span><time datetime="2026-11-19T13:44:38">19/11/2026</time></div>
+        <h3><a href="/noticia/defesa-civil-de-campo-verde-alerta-para-riscos-e-cuidados-durante-a-temporada-de-chuvas.html">Defesa Civil de Campo Verde alerta para riscos e cuidados durante a temporada de chuvas</a></h3>
+        <p>Com a intensificação das chuvas em Campo Verde, a Defesa Civil, órgão vinculado à Secretaria Municipal Integrada de Apoio à Segurança Pública, emitiu um alerta para que os moradores redobrem os cuidados. De acordo com institutos de meteorologia, a previsão indica volumes que podem atingir 30 milímetros por hora ou 50 milímetros por dia, o …</p>
+      </article></li>
+      <li><article class="vfm-card">
+        <a class="vfm-card__foto" href="/noticia/empresario-baleado-durante-assalto-em-vg-morre-apos-tres-meses-internado.html" tabindex="-1" aria-hidden="true"><img src="https://www.verdefm.com.br/wp-content/uploads/2026/11/Alinor-768x511.avif" alt="" width="768" height="480" loading="lazy"></a>
+        <div class="vfm-meta"><span class="vfm-chapeu">Cidades</span><time datetime="2026-11-19T12:04:06">19/11/2026</time></div>
+        <h3><a href="/noticia/empresario-baleado-durante-assalto-em-vg-morre-apos-tres-meses-internado.html">Empresário baleado durante assalto em VG morre após três meses internado</a></h3>
+        <p>O empresário Alinor Ambrósio de Sene, proprietário da loja Original Tintas, morreu nesta quarta-feira (18), após passar três meses internado em decorrência de uma tentativa de assalto ao próprio estabelecimento, em Várzea Grande. Ele foi agredido com coronhadas e baleado no abdômen durante o crime, ocorrido em 18 de agosto, na Avenida da FEB. A …</p>
+      </article></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== RODAPÉ (footer.php) ===================== -->
+<footer class="vfm-rodape">
+  <div class="vfm-container vfm-rodape__colunas">
+    <div class="vfm-rodape__marca">
+      <!-- WP: mesmo logo da cidade escolhida (o JS troca junto com o do cabeçalho) -->
+      <a class="vfm-rodape__logo" href="/" aria-label="Verde FM, página inicial">
+        <img data-vfm-logo src="/assets/img/logos/cuiaba.png" alt="Verde FM Cuiabá 103.7" width="840" height="200" loading="lazy">
+      </a>
+      <p>Notícias e rádio de Mato Grosso. [Texto institucional curto da rádio]</p>
+    </div>
+    <div>
+      <h2>Nossas rádios</h2>
+      <!-- WP: termos ativos da taxonomia "cidade" -->
+      <ul>
+        <li><a href="/cidade/cuiaba.html">Cuiabá · 103.7</a></li>
+        <li><a href="/cidade/campo-verde.html">Campo Verde · 96.3</a></li>
+        <li><a href="/cidade/jaciara.html">Jaciara · 102.3</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Siga a Verde</h2>
+      <ul class="vfm-redes">
+        <li><a class="vfm-rede vfm-rede--instagram" href="https://www.instagram.com/verdefmoficial_/" target="_blank" rel="noopener" aria-label="Instagram da Verde FM" title="Instagram"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg></a></li>
+        <li><a class="vfm-rede vfm-rede--facebook" href="https://www.facebook.com/profile.php?id=61553431857043" target="_blank" rel="noopener" aria-label="Facebook da Verde FM" title="Facebook"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.9v3h2.6V21h3z"/></svg></a></li>
+        <li><a class="vfm-rede vfm-rede--youtube" href="https://www.youtube.com/@VerdeFMoficial" target="_blank" rel="noopener" aria-label="YouTube da Verde FM" title="YouTube"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2C.5 9.1.5 12 .5 12s0 2.9.5 4.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-4.8.5-4.8s0-2.9-.5-4.8zM9.8 8.7v6.6l5.8-3.3z"/></svg></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="vfm-container vfm-rodape__fim">
+    <span>© Verde FM. Versão de demonstração com matérias dos sites atuais da Verde FM.</span>
+    <!-- Assinatura da Astravox: só o ícone, com link (padrão dos projetos web da Astravox) -->
+    <a class="vfm-assinatura" href="https://www.astravox.com.br" target="_blank" rel="noopener" aria-label="Astravox (abre em nova aba)" title="Astravox">
+      <img src="/assets/img/astravox.svg" alt="" width="14" height="18">
+    </a>
+  </div>
+</footer>
+
+<!-- Player da rádio, fixo no pé da tela em todas as páginas (fica fora de #vfm-conteudo: não some ao navegar).
+     WP: footer.php. Programa no ar pela grade da cidade escolhida (data-vfm-programa). -->
+<section class="vfm-barra-player" aria-label="Rádio ao vivo">
+  <div class="vfm-container vfm-barra-player__linha">
+    <button class="vfm-play vfm-play--barra" type="button" data-vfm-play aria-pressed="false" aria-label="Ouvir a rádio ao vivo de Cuiabá">
+      <svg class="vfm-play__tocar" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l12 7-12 7z"/></svg>
+      <svg class="vfm-play__pausar" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+      <svg class="vfm-play__girando" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9"/></svg>
+    </button>
+    <img class="vfm-barra-player__logo" data-vfm-logo src="/assets/img/logos/cuiaba.png" alt="Verde FM Cuiabá 103.7" width="840" height="200">
+    <div class="vfm-barra-player__texto">
+      <span class="vfm-barra-player__sobre">
+        <span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>Ao vivo</span>
+        <span>Verde FM <span data-vfm-texto="cidade">Cuiabá</span> · <span data-vfm-texto="frequencia">103.7</span></span>
+      </span>
+      <strong data-vfm-programa>[Nome do programa]</strong>
+      <span class="vfm-player-status" data-vfm-player-status role="status"></span>
+    </div>
+    <span class="vfm-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+    <div class="vfm-barra-player__extra">
+      <a class="vfm-barra-player__link" href="/programacao.html">Programação</a>
+      <div class="vfm-volume">
+        <button class="vfm-volume__mudo" type="button" data-vfm-mudo aria-pressed="false" aria-label="Tirar o som">
+          <svg class="vfm-volume__com" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+          <svg class="vfm-volume__sem" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor"/><path d="M22 9l-6 6M16 9l6 6"/></svg>
+        </button>
+        <input type="range" min="0" max="1" step="0.05" value="1" data-vfm-volume aria-label="Volume">
+      </div>
+    </div>
+  </div>
+</section>
+<audio id="vfm-audio" preload="none"></audio>
+
+<!-- Menu do celular -->
+<dialog class="vfm-janela vfm-menu" id="vfm-menu" aria-label="Menu">
+  <div class="vfm-menu__cabeca">
+    <span>Menu</span>
+    <button class="vfm-icone-botao" type="button" data-vfm-fechar aria-label="Fechar o menu">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <!-- WP: o mesmo wp_nav_menu das editorias -->
+  <nav aria-label="Editorias" data-vfm-menu>
+    <ul>
+      <li><a href="/">Início</a></li>
+      <li><a href="/editoria/politica.html">Política</a></li>
+      <li><a href="/cidade/cuiaba.html" data-vfm-link-cidade="/cidade/{cidade}.html">Cidades</a></li>
+      <li><a href="/editoria/economia.html">Economia e negócios</a></li>
+      <li><a href="/editoria/esporte-e-cultura.html">Esporte e cultura</a></li>
+      <li><a href="/videos.html">Vídeos</a></li>
+      <li><a href="/programacao.html">Programação</a></li>
+      <li><a href="/promocoes.html">Promoções</a></li>
+    </ul>
+  </nav>
+  <div class="vfm-menu__extra">
+    <a class="vfm-yt vfm-yt--largo" href="https://www.youtube.com/@VerdeFMoficial/live" target="_blank" rel="noopener">
+        <span class="vfm-yt__icone"><svg class="vfm-yt__logo" aria-hidden="true" width="28" height="20" viewBox="0 0 28 20"><path fill="#FF0000" d="M27.4 3.1A3.5 3.5 0 0 0 24.9.6C22.7 0 14 0 14 0S5.3 0 3.1.6A3.5 3.5 0 0 0 .6 3.1C0 5.3 0 10 0 10s0 4.7.6 6.9a3.5 3.5 0 0 0 2.5 2.5C5.3 20 14 20 14 20s8.7 0 10.9-.6a3.5 3.5 0 0 0 2.5-2.5C28 14.7 28 10 28 10s0-4.7-.6-6.9z"/><path fill="#FFFFFF" d="M11.2 14.3 18.5 10l-7.3-4.3z"/></svg></span>
+        <span class="vfm-yt__texto"><strong><span class="vfm-ponto" aria-hidden="true"></span>Ao vivo</strong><small>no YouTube</small></span>
+      </a>
+  </div>
+</dialog>
+
+<!-- Busca. WP: action = home_url('/'), campo "s" (busca padrão do WordPress) -->
+<dialog class="vfm-janela vfm-busca" id="vfm-busca" aria-label="Buscar no site">
+  <form role="search" method="get" action="/busca.html" data-vfm-busca>
+    <label for="vfm-busca-campo">Buscar notícias</label>
+    <input id="vfm-busca-campo" type="search" name="s" placeholder="Buscar notícias" autocomplete="off">
+    <button class="vfm-botao" type="submit">Buscar</button>
+    <button class="vfm-icone-botao" type="button" data-vfm-fechar aria-label="Fechar a busca">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </form>
+</dialog>
+
+<!-- Cidades, rádios e grade de programação. WP: wp_json_encode dos termos da taxonomia "cidade" (+ grade do CPT "programa") -->
+<script type="application/json" id="vfm-cidades">
+[{"slug": "cuiaba", "nome": "Cuiabá", "frequencia": "103.7", "stream": "https://streaming.livespanel.com:20086/verdefm", "ativa": true, "logo": "/assets/img/logos/cuiaba.png", "grade": [{"rotulo": "Segunda a Sexta", "dias": [1, 2, 3, 4, 5], "programas": [{"inicio": 5, "fim": 6, "programa": "Coração Caipira", "apresentador": ""}, {"inicio": 6, "fim": 8, "programa": "Alô, Bom Dia", "apresentador": ""}, {"inicio": 8, "fim": 11, "programa": "Jornal da Verde FM", "apresentador": "Jornalista: Marina Martins"}, {"inicio": 11, "fim": 15, "programa": "Aqui é Verde", "apresentador": ""}, {"inicio": 15, "fim": 18, "programa": "Tarde na Verde", "apresentador": "Locutora: Cleidy Coelho"}, {"inicio": 18, "fim": 19, "programa": "Radar Sertanejo", "apresentador": ""}, {"inicio": 19, "fim": 20, "programa": "1 Hora de Saudade", "apresentador": ""}, {"inicio": 20, "fim": 21, "programa": "Voz do Brasil", "apresentador": ""}, {"inicio": 21, "fim": 0, "programa": "Sofrência Máxima", "apresentador": ""}, {"inicio": 0, "fim": 5, "programa": "Sereno da Madrugada", "apresentador": ""}]}, {"rotulo": "Sábado e Domingo", "dias": [6, 0], "programas": [{"inicio": 5, "fim": 6, "programa": "Clássicos da Verde", "apresentador": ""}, {"inicio": 6, "fim": 8, "programa": "Alô, Bom Dia", "apresentador": ""}, {"inicio": 8, "fim": 12, "programa": "Manhã na Verde", "apresentador": ""}, {"inicio": 12, "fim": 15, "programa": "Violada da Verde", "apresentador": ""}, {"inicio": 15, "fim": 18, "programa": "Tarde na Verde", "apresentador": ""}, {"inicio": 18, "fim": 19, "programa": "Radar Sertanejo", "apresentador": ""}, {"inicio": 19, "fim": 20, "programa": "1 Hora de Saudade", "apresentador": ""}, {"inicio": 20, "fim": 0, "programa": "Sofrência Máxima", "apresentador": ""}, {"inicio": 0, "fim": 5, "programa": "Sereno da Madrugada", "apresentador": ""}]}]}, {"slug": "campo-verde", "nome": "Campo Verde", "frequencia": "96.3", "stream": "https://str1.streamhostpg.com.br:8062/stream", "ativa": true, "logo": "/assets/img/logos/campo-verde.png", "grade": [{"rotulo": "Segunda a Sexta", "dias": [1, 2, 3, 4, 5], "programas": [{"inicio": 5, "fim": 8, "programa": "Coração Caipira", "apresentador": "Locutor: Claudiney Nascimento"}, {"inicio": 8, "fim": 11, "programa": "Manhã na Verde FM", "apresentador": "Jornalista: Evando Mendes"}, {"inicio": 11, "fim": 13, "programa": "Momento Gospel", "apresentador": "Locutor: Kleberson Almeida"}, {"inicio": 13, "fim": 15, "programa": "Aqui é Verde – Rede", "apresentador": ""}, {"inicio": 15, "fim": 18, "programa": "Tarde na Verde", "apresentador": "Locutora: Antonella Almeida"}, {"inicio": 18, "fim": 20, "programa": "Radar Sertanejo", "apresentador": "Claudiney Nascimento"}, {"inicio": 20, "fim": 21, "programa": "Voz do Brasil", "apresentador": ""}, {"inicio": 21, "fim": 0, "programa": "Sofrência Máxima", "apresentador": ""}, {"inicio": 0, "fim": 3, "programa": "Sereno da Madrugada", "apresentador": ""}, {"inicio": 3, "fim": 5, "programa": "Alô, Bom Dia", "apresentador": ""}]}, {"rotulo": "Sábado", "dias": [6], "programas": [{"inicio": 5, "fim": 6, "programa": "Clássicos da Verde", "apresentador": ""}, {"inicio": 6, "fim": 8, "programa": "Alô, Bom Dia", "apresentador": ""}, {"inicio": 8, "fim": 12, "programa": "Manhã na Verde", "apresentador": "Claudiney Nascimento"}, {"inicio": 12, "fim": 15, "programa": "Violada da Verde", "apresentador": ""}, {"inicio": 15, "fim": 18, "programa": "Tarde na Verde", "apresentador": ""}, {"inicio": 18, "fim": 19, "programa": "Radar Sertanejo", "apresentador": ""}, {"inicio": 19, "fim": 20, "programa": "1 Hora de Saudade", "apresentador": ""}, {"inicio": 20, "fim": 0, "programa": "Sofrência Máxima", "apresentador": ""}, {"inicio": 0, "fim": 5, "programa": "Sereno da Madrugada", "apresentador": ""}]}, {"rotulo": "Domingo", "dias": [0], "programas": [{"inicio": 5, "fim": 6, "programa": "Clássicos da Verde", "apresentador": ""}, {"inicio": 6, "fim": 8, "programa": "Alô, Bom Dia", "apresentador": ""}, {"inicio": 8, "fim": 9, "programa": "Missa", "apresentador": ""}, {"inicio": 9, "fim": 12, "programa": "Encontro c/ a Querência", "apresentador": "Locutor: Seu Lino"}, {"inicio": 12, "fim": 15, "programa": "Violada da Verde", "apresentador": ""}, {"inicio": 15, "fim": 18, "programa": "Tarde na Verde", "apresentador": ""}, {"inicio": 18, "fim": 19, "programa": "Radar Sertanejo", "apresentador": ""}, {"inicio": 19, "fim": 20, "programa": "1 Hora de Saudade", "apresentador": ""}, {"inicio": 20, "fim": 0, "programa": "Sofrência Máxima", "apresentador": ""}, {"inicio": 0, "fim": 5, "programa": "Sereno da Madrugada", "apresentador": ""}]}]}, {"slug": "jaciara", "nome": "Jaciara", "frequencia": "102.3", "stream": "https://streaming.livespanel.com:20120/verdefmjaciara", "ativa": true, "logo": "/assets/img/logos/jaciara.png", "grade": [{"rotulo": "Segunda a Sexta", "dias": [1, 2, 3, 4, 5], "programas": [{"inicio": 5, "fim": 8, "programa": "Coração Caipira", "apresentador": "Juliano Souza"}, {"inicio": 8, "fim": 11, "programa": "Manhã na Verde", "apresentador": "Elisângela Souza"}, {"inicio": 11, "fim": 15, "programa": "Aqui é Verde", "apresentador": ""}, {"inicio": 15, "fim": 18, "programa": "Tarde na Verde", "apresentador": "Mari Souza"}, {"inicio": 18, "fim": 19, "programa": "Radar Sertanejo", "apresentador": ""}, {"inicio": 19, "fim": 20, "programa": "1 Hora de Saudade", "apresentador": ""}, {"inicio": 20, "fim": 21, "programa": "Voz do Brasil", "apresentador": ""}, {"inicio": 21, "fim": 0, "programa": "Sofrência Máxima", "apresentador": ""}, {"inicio": 0, "fim": 3, "programa": "Sereno da Madrugada", "apresentador": ""}, {"inicio": 3, "fim": 5, "programa": "Alô, Bom Dia", "apresentador": ""}]}, {"rotulo": "Sábado", "dias": [6], "programas": [{"inicio": 5, "fim": 6, "programa": "Clássicos da Verde", "apresentador": ""}, {"inicio": 6, "fim": 8, "programa": "Alô, Bom Dia", "apresentador": ""}, {"inicio": 8, "fim": 12, "programa": "Manhã na Verde", "apresentador": "Bianne Flores e Elisângela Souza"}, {"inicio": 12, "fim": 15, "programa": "Violada da Verde", "apresentador": ""}, {"inicio": 15, "fim": 18, "programa": "Tarde na Verde", "apresentador": ""}, {"inicio": 18, "fim": 19, "programa": "Radar Sertanejo", "apresentador": ""}, {"inicio": 19, "fim": 20, "programa": "1 Hora de Saudade", "apresentador": ""}, {"inicio": 20, "fim": 0, "programa": "Sofrência Máxima", "apresentador": ""}, {"inicio": 0, "fim": 5, "programa": "Sereno da Madrugada", "apresentador": ""}]}, {"rotulo": "Domingo", "dias": [0], "programas": [{"inicio": 5, "fim": 6, "programa": "Clássicos da Verde", "apresentador": ""}, {"inicio": 6, "fim": 8, "programa": "Alô, Bom Dia", "apresentador": ""}, {"inicio": 8, "fim": 12, "programa": "Manhã na Verde", "apresentador": ""}, {"inicio": 12, "fim": 15, "programa": "Violada da Verde", "apresentador": ""}, {"inicio": 15, "fim": 18, "programa": "Tarde na Verde", "apresentador": ""}, {"inicio": 18, "fim": 19, "programa": "Radar Sertanejo", "apresentador": ""}, {"inicio": 19, "fim": 20, "programa": "1 Hora de Saudade", "apresentador": ""}, {"inicio": 20, "fim": 0, "programa": "Sofrência Máxima", "apresentador": ""}, {"inicio": 0, "fim": 5, "programa": "Sereno da Madrugada", "apresentador": ""}]}]}, {"slug": "arenapolis", "nome": "Arenápolis", "frequencia": "102.1", "stream": "", "ativa": false, "logo": "/assets/img/logos/arenapolis.png", "grade": []}]
+</script>
+<!-- WP: wp_footer() -->
+</body>
+</html>
