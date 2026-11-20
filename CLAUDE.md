@@ -6,6 +6,7 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 
 ## Quem é o Luiz
 
+- **Padrão em todo projeto web:** assinatura da Astravox no rodapé = **só o ícone** da Astravox (sem "Desenvolvido por", sem o nome), pequeno e discreto, com link para https://www.astravox.com.br em nova aba e `aria-label="Astravox"`.
 - Não é desenvolvedor. Quando precisar ele fazer algo (GitHub, Netlify, domínio), dar o passo a passo clicável, sem jargão.
 - Quer **proposta ou protótipo antes de implementar**. Nada vai para o código sem aprovação.
 - Quer confirmação curta depois de cada entrega e que problemas próximos sejam apontados sem ele pedir.
@@ -43,7 +44,7 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 - **20/11/2026** — **Ao vivo e vídeos na home** (pedido do Luiz): bloco com a transmissão ao vivo do YouTube no quadro grande e os últimos vídeos do canal ao lado (no celular, embaixo, correndo para o lado). Tocar num vídeo abre no quadro grande. Rádio e vídeo não tocam juntos. O vídeo só carrega no toque. Substituiu o bloco "Entrevistas" da home; no menu, "Entrevistas" virou "Vídeos". Canal: @VerdeFMoficial (`UC6WHqxKeQgo9b7rRtF43ifA`).
 - **20/11/2026** — **Cabeçalho sempre à vista** (pedido do Luiz): logo, seletor de cidade e menu ficam presos no topo ao rolar; depois de descer um pouco, o cabeçalho encolhe e ganha sombra leve (`.vfm-rolou`). Ao pular para uma seção, o título não fica escondido atrás dele.
 - **20/11/2026** — **Demonstração com matérias reais** (pedido do Luiz): a home usa títulos, resumos e fotos das matérias recentes dos três sites atuais (verdefm.com.br, verdefmjaciara.com.br, verdefmcampoverde.com.br); os links abrem a matéria no site atual, em outra aba. "Em {cidade}" traz as notícias de Cuiabá, Jaciara e Campo Verde e mostra só as da cidade escolhida (`data-vfm-so-cidade`).
-- **20/11/2026** — **Assinatura da Astravox no rodapé** (pedido do Luiz): "Desenvolvido por" + ícone + Astravox, pequeno e discreto, com link para www.astravox.com.br em nova aba (`assets/img/astravox.svg`).
+- **20/11/2026** — **Assinatura da Astravox no rodapé** (pedido do Luiz): **só o ícone** (`assets/img/astravox.svg`), pequeno e discreto, com link para www.astravox.com.br em nova aba. Sem "Desenvolvido por" e sem o nome escrito. **Padrão de todos os projetos web do Luiz/Astravox.**
 
 ## Próximas etapas
 
