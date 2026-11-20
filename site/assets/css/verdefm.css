@@ -39,11 +39,12 @@
   --vfm-youtube: #FF0000;
 
   /* Letras */
-  /* Teste de tipografia pedido pelo Luiz (21/11/2026): Inter nos títulos, Aeonik no texto.
-     Aeonik é comercial (não está no Google Fonts): enquanto os arquivos .woff2 licenciados
-     não estiverem em assets/fonts/, o texto cai para a Inter. */
-  --vfm-fonte-titulo: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --vfm-fonte-texto: "Aeonik", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* Fontes (21/11/2026, pedido do Luiz): Grtsk nos títulos e Open Sans no texto.
+     Open Sans vem do Google Fonts. Grtsk é comercial (Production Type) e não está no Google Fonts:
+     enquanto os arquivos .woff2 licenciados não estiverem em assets/fonts/, os títulos usam a
+     Schibsted Grotesk (gratuita, mesmo estilo). */
+  --vfm-fonte-titulo: "Grtsk", "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --vfm-fonte-texto: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   /* Formas */
   /* Cantos (21/11/2026: menos arredondados, pedido do Luiz) */
@@ -72,9 +73,9 @@
 @media (min-width: 768px) { :root { --vfm-lateral: 32px; } }
 @media (min-width: 1024px) { :root { --vfm-barra-player: 80px; } }
 
-/* Aeonik (licença comercial). Quando os arquivos chegarem, colocar em assets/fonts/ e tirar o comentário:
-@font-face { font-family: "Aeonik"; src: url("../fonts/aeonik-regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "Aeonik"; src: url("../fonts/aeonik-bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+/* Grtsk (licença comercial). Quando os arquivos chegarem, colocar em assets/fonts/ e tirar o comentário:
+@font-face { font-family: "Grtsk"; src: url("../fonts/grtsk-regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Grtsk"; src: url("../fonts/grtsk-bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
 */
 
 /* 2. Base ----------------------------------------------------------------- */

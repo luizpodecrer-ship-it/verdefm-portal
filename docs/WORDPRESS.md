@@ -30,7 +30,7 @@ template-parts/  card-linha.php, card-cidade.php, editoria.php (repetem dentro d
 Enfileirar em `functions.php`:
 
 ```php
-wp_enqueue_style('vfm-fontes', 'https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Inter:wght@400;500;600&display=swap', [], null);
+wp_enqueue_style('vfm-fontes', 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap', [], null);
 wp_enqueue_style('vfm', get_theme_file_uri('assets/css/verdefm.css'), [], VFM_VERSAO);
 wp_enqueue_script('vfm', get_theme_file_uri('assets/js/verdefm.js'), [], VFM_VERSAO, ['strategy' => 'defer', 'in_footer' => false]);
 ```
