@@ -6,6 +6,7 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 
 ## Quem é o Luiz
 
+- **Responder sempre em português do Brasil** (pedido do Luiz em 21/11/2026), em toda mensagem.
 - **Padrão em todo projeto web:** assinatura da Astravox no rodapé = **só o ícone** da Astravox (sem "Desenvolvido por", sem o nome), pequeno e discreto, com link para https://www.astravox.com.br em nova aba e `aria-label="Astravox"`.
 - Não é desenvolvedor. Quando precisar ele fazer algo (GitHub, Netlify, domínio), dar o passo a passo clicável, sem jargão.
 - Quer **proposta ou protótipo antes de implementar**. Nada vai para o código sem aprovação.
@@ -60,6 +61,8 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 - **Pendências da auditoria (decisão do Luiz):** banner do topo no celular (peça própria 320 × 100), faixa "Últimas" no celular (um título por vez), estado "fora do ar" da transmissão do YouTube (precisa do WordPress) e assinatura "Redação Verde FM".
 
 - **21/11/2026** — **Efeitos de mouse suaves em todo o portal** (pedido do Luiz: "muito duro, amador"): nada pula nem cresce no mouse; só mudam cor, fundo, borda e sombra, em 260 ms suaves (`--vfm-transicao`). Fotos: zoom lento e leve (900 ms, `--vfm-transicao-foto`). Notícias: o título fica verde. Botão do YouTube: fundo rosado bem claro. **Regra para telas novas.**
+
+- **21/11/2026** — **Correção do foco no título** (Luiz viu um contorno verde em volta do título ao abrir as páginas no Safari): o foco que o site coloca no título ao trocar de página (para leitor de tela) não aparece mais na tela (`[tabindex="-1"]:focus`). Matéria sem foto aparece só com texto (destaque e cartões), sem quadro vazio; linha fina curta nos destaques e cartões. **Testar sempre navegando pelo menu, como o Luiz faz, antes de entregar.**
 
 ## Próximas etapas
 

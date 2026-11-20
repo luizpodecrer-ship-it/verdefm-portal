@@ -30,7 +30,7 @@ e = lambda t: html.escape(t or '', quote=True)
 MATERIAS = D['materias']
 POR_SLUG = {m['slug']: m for m in MATERIAS}
 POR_LINK = {m['link_antigo']: m for m in MATERIAS}
-FOTO_VAZIA = '/assets/img/foto-exemplo.svg'
+FOTO_VAZIA = '/assets/img/sem-foto.svg'  # matéria sem foto: fundo verde-claro com o símbolo de rádio
 
 CIDADES = [
     {'slug': 'cuiaba', 'nome': 'Cuiabá', 'frequencia': '103.7', 'stream': 'https://streaming.livespanel.com:20086/verdefm', 'ativa': True},
@@ -222,6 +222,13 @@ def chapeu(m):
 
 
 def card(m, titulo_tag='h3'):
+    if not m['foto_m']:  # sem foto: cartão só de texto (nada de quadro vazio)
+        return '''      <li><article class="vfm-card vfm-card--sem-foto">
+        <div class="vfm-meta"><span class="vfm-chapeu">{ed}</span><time datetime="{iso}">{d}</time></div>
+        <{t}><a href="{u}">{tit}</a></{t}>
+        <p>{res}</p>
+      </article></li>
+'''.format(u=url_materia(m), ed=e(m['editoria_rotulo']), iso=m['data'], d=data_br(m['data']), t=titulo_tag, tit=e(m['titulo']), res=e(fina(m['resumo'], 170)))
     return '''      <li><article class="vfm-card">
         <a class="vfm-card__foto" href="{u}" tabindex="-1" aria-hidden="true"><img src="{f}" alt="" width="768" height="480" loading="lazy"></a>
         <div class="vfm-meta"><span class="vfm-chapeu">{ed}</span><time datetime="{iso}">{d}</time></div>
@@ -229,10 +236,19 @@ def card(m, titulo_tag='h3'):
         <p>{res}</p>
       </article></li>
 '''.format(u=url_materia(m), f=e(m['foto_m'] or FOTO_VAZIA), ed=e(m['editoria_rotulo']), iso=m['data'], d=data_br(m['data']),
-           t=titulo_tag, tit=e(m['titulo']), res=e(m['resumo']))
+           t=titulo_tag, tit=e(m['titulo']), res=e(fina(m['resumo'], 170)))
 
 
 def destaque(m):
+    if not m['foto_g']:
+        return '''    <article class="vfm-destaque vfm-destaque--sem-foto">
+      <div class="vfm-destaque__texto">
+        <div class="vfm-meta"><span class="vfm-chapeu">{ed}</span><time datetime="{iso}">{d}</time></div>
+        <h2><a href="{u}">{tit}</a></h2>
+        <p>{res}</p>
+      </div>
+    </article>
+'''.format(u=url_materia(m), ed=e(m['editoria_rotulo']), iso=m['data'], d=data_br(m['data']), tit=e(m['titulo']), res=e(fina(m['resumo'], 240)))
     return '''    <article class="vfm-destaque">
       <a class="vfm-destaque__foto" href="{u}" tabindex="-1" aria-hidden="true"><img class="vfm-foto vfm-foto--16x9" src="{f}" alt="" width="1280" height="720"></a>
       <div class="vfm-destaque__texto">
@@ -242,15 +258,18 @@ def destaque(m):
       </div>
     </article>
 '''.format(u=url_materia(m), f=e(m['foto_g'] or FOTO_VAZIA), ed=e(m['editoria_rotulo']), iso=m['data'], d=data_br(m['data']),
-           tit=e(m['titulo']), res=e(m['resumo']))
+           tit=e(m['titulo']), res=e(fina(m['resumo'], 240)))
 
 
 def lista_materias(itens):
     if not itens:
         return '    <p class="vfm-resultado-vazio">Ainda não há notícias aqui.</p>\n'
-    s = destaque(itens[0])
-    if len(itens) > 1:
-        s += '    <ul class="vfm-cards">\n' + ''.join(card(m) for m in itens[1:13]) + '    </ul>\n'
+    com_foto = [m for m in itens if m['foto_g']]
+    primeira = com_foto[0] if com_foto else itens[0]   # o destaque sempre com foto, quando houver
+    resto = [m for m in itens if m is not primeira]
+    s = destaque(primeira)
+    if resto:
+        s += '    <ul class="vfm-cards">\n' + ''.join(card(m) for m in resto[:12]) + '    </ul>\n'
     s += '    <!-- WP: the_posts_pagination() gerando <nav class="vfm-paginacao"> com links e aria-current na página atual -->\n'
     return s
 
