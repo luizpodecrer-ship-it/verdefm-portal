@@ -59,6 +59,8 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 - **21/11/2026** — **Correções da auditoria de UX e acessibilidade** (aprovadas pelo Luiz): foco do teclado com anel duplo (branco + verde; verde vivo no escuro); ordem do cabeçalho = ordem da tela; página da cidade sem rolagem lateral em 320 px; painéis das abas com foco; movimento só com motivo (ondas do YouTube e pontinho piscam 3 vezes e param; equalizador e selo "Ao vivo" só se mexem com a rádio tocando; rodízio do banner com botão de pausa visível); no celular, ao rolar, o cabeçalho recolhe a linha da cidade e um alfinete reabre a escolha; formulário com validação e mensagens por campo; sem textos provisórios entre colchetes; links do rodapé com 44 px; trilha termina no título da matéria; player com erro apaga o selo e vira "tentar de novo".
 - **Pendências da auditoria (decisão do Luiz):** banner do topo no celular (peça própria 320 × 100), faixa "Últimas" no celular (um título por vez), estado "fora do ar" da transmissão do YouTube (precisa do WordPress) e assinatura "Redação Verde FM".
 
+- **21/11/2026** — **Efeitos de mouse suaves em todo o portal** (pedido do Luiz: "muito duro, amador"): nada pula nem cresce no mouse; só mudam cor, fundo, borda e sombra, em 260 ms suaves (`--vfm-transicao`). Fotos: zoom lento e leve (900 ms, `--vfm-transicao-foto`). Notícias: o título fica verde. Botão do YouTube: fundo rosado bem claro. **Regra para telas novas.**
+
 ## Próximas etapas
 
 1. Luiz revisar as páginas internas no Netlify e pedir ajustes.
