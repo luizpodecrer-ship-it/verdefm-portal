@@ -14,6 +14,7 @@
      5. Janelas ........ menu do celular e busca (<dialog>).
      6. Vídeos ......... transmissão ao vivo do YouTube e últimos vídeos: o vídeo só
                          carrega no toque (capa leve); vídeo e rádio não tocam juntos.
+     7. Cabeçalho ...... fica preso no topo ao rolar e encolhe um pouco (.vfm-rolou).
 
    Eventos para o WordPress / plugins (ouvir com document.addEventListener):
      "vfm:pagina"  → depois de trocar de página (reiniciar anúncios, embeds, analytics)
@@ -440,6 +441,34 @@
   }
 
   /* ----------------------------------------------------------------------
+     7. Cabeçalho fixo: sempre à vista; encolhe depois que a pessoa rola
+     ---------------------------------------------------------------------- */
+  function ligarTopo() {
+    var topo = $('.vfm-topo');
+    if (!topo) return;
+    var rolou = false;
+    var agendado = false;
+    function medir() { raiz.style.setProperty('--vfm-topo-altura', topo.offsetHeight + 'px'); }
+    function conferir() {
+      agendado = false;
+      var y = window.pageYOffset || doc.documentElement.scrollTop;
+      // Liga depois de 80 px e só desliga perto do topo: evita o cabeçalho "piscar".
+      if (!rolou && y > 80) rolou = true;
+      else if (rolou && y < 10) rolou = false;
+      else return;
+      raiz.classList.toggle('vfm-rolou', rolou);
+      setTimeout(medir, 220); // depois da animação de encolher
+    }
+    window.addEventListener('scroll', function () {
+      if (!agendado) { agendado = true; window.requestAnimationFrame(conferir); }
+    }, { passive: true });
+    window.addEventListener('resize', medir);
+    doc.addEventListener('vfm:pagina', conferir);
+    medir();
+    conferir();
+  }
+
+  /* ----------------------------------------------------------------------
      Utilitários
      ---------------------------------------------------------------------- */
   function anunciar(texto) {
@@ -468,6 +497,7 @@
     ligarNavegacao();
     ligarJanelas();
     ligarVideos();
+    ligarTopo();
     marcarMenu();
     preencherData();
   }

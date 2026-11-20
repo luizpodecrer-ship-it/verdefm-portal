@@ -60,7 +60,8 @@
 
 /* 2. Base ----------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-padding-top: 16px; }
+/* Ao pular para uma seção (#videos, #cidade…), o título não fica escondido atrás do cabeçalho fixo. */
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--vfm-topo-altura, 0px) + 16px); }
 body {
   margin: 0;
   background: var(--vfm-fundo);
@@ -130,20 +131,31 @@ p { margin: 0; }
 .vfm-icone-botao:hover { background: var(--vfm-verde-claro); border-color: var(--vfm-linha-forte); }
 
 /* 4. Cabeçalho ------------------------------------------------------------ */
-.vfm-topo { background: var(--vfm-superficie); border-bottom: 1px solid var(--vfm-linha); position: relative; z-index: 30; }
+/* O cabeçalho fica sempre à vista ao rolar a página. Depois que a pessoa desce
+   um pouco, o JS põe .vfm-rolou no <html>: ele encolhe e ganha uma sombra leve. */
+.vfm-topo {
+  position: sticky; top: 0; z-index: 30;
+  background: var(--vfm-superficie); border-bottom: 1px solid var(--vfm-linha);
+  transition: box-shadow var(--vfm-transicao);
+}
+html.vfm-rolou .vfm-topo { box-shadow: 0 6px 20px rgba(27, 36, 32, .08); }
 .vfm-topo__linha {
   display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px;
-  padding-block: 12px;
+  padding-block: 12px; transition: padding var(--vfm-transicao);
 }
+html.vfm-rolou .vfm-topo__linha { padding-block: 8px; gap: 8px; }
 .vfm-logo { display: inline-flex; }
-.vfm-logo img { height: 40px; width: auto; }
+.vfm-logo img { height: 40px; width: auto; transition: height var(--vfm-transicao); }
+html.vfm-rolou .vfm-logo img { height: 32px; }
 .vfm-topo__acoes { display: flex; align-items: center; gap: 8px; }
 .vfm-topo__youtube, .vfm-topo__data { display: none; }
 .vfm-topo__cidade { grid-column: 1 / -1; }
 
 @media (min-width: 1024px) {
   .vfm-topo__linha { display: flex; gap: 24px; padding-block: 18px; }
+  html.vfm-rolou .vfm-topo__linha { padding-block: 10px; gap: 24px; }
   .vfm-logo img { height: 52px; }
+  html.vfm-rolou .vfm-logo img { height: 40px; }
   .vfm-topo__cidade { grid-column: auto; order: 1; }
   .vfm-topo__acoes { order: 2; margin-left: auto; gap: 16px; }
   .vfm-topo__youtube { display: inline-flex; }

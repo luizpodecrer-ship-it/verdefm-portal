@@ -41,6 +41,7 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 - **20/11/2026** — Visual suave aprovado (ver seção Visual). Substituiu a primeira proposta, de verde forte e letras largas.
 - **20/11/2026** — Home em código, pronta para o WordPress, e publicada no Netlify para conferência.
 - **20/11/2026** — **Ao vivo e vídeos na home** (pedido do Luiz): bloco com a transmissão ao vivo do YouTube no quadro grande e os últimos vídeos do canal ao lado (no celular, embaixo, correndo para o lado). Tocar num vídeo abre no quadro grande. Rádio e vídeo não tocam juntos. O vídeo só carrega no toque. Substituiu o bloco "Entrevistas" da home; no menu, "Entrevistas" virou "Vídeos". Canal: @VerdeFMoficial (`UC6WHqxKeQgo9b7rRtF43ifA`).
+- **20/11/2026** — **Cabeçalho sempre à vista** (pedido do Luiz): logo, seletor de cidade e menu ficam presos no topo ao rolar; depois de descer um pouco, o cabeçalho encolhe e ganha sombra leve (`.vfm-rolou`). Ao pular para uma seção, o título não fica escondido atrás dele.
 
 ## Próximas etapas
 
