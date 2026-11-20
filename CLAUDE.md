@@ -48,7 +48,7 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 - **20/11/2026** — **Logo da cidade no rodapé** (pedido do Luiz): no lugar do texto "Verde FM", o logo da cidade escolhida, menor e discreto (34 px de altura); troca junto com o do cabeçalho (`data-vfm-logo`).
 - **21/11/2026** — **Faixa "Últimas" em movimento** (pedido do Luiz): letreiro que corre sem parar (velocidade constante), para com o mouse, com o foco do teclado e no botão de pausa; com "reduzir movimento" fica parada e dá para arrastar.
 - **21/11/2026** — **"Ao vivo no YouTube" com o ícone oficial** (vermelho), ondas pulsando em volta e "Ao vivo" com pontinho piscando; sobe no mouse. Mesmo botão no menu do celular (`.vfm-yt`).
-- **21/11/2026** — **Redes sociais com ícones no rodapé**: Instagram, Facebook e YouTube em botões redondos que ganham a cor da rede no mouse.
+- **21/11/2026** — **Redes sociais com ícones no rodapé**: Instagram, Facebook e YouTube em botões redondos brancos que ficam **verdes** no mouse (pedido do Luiz: nada das cores de cada rede).
 - **21/11/2026** — **Vídeos já abrem no último vídeo do canal** (pedido do Luiz): capa em alta do vídeo mais recente no quadro grande; o ao vivo fica como primeiro item da lista. No computador, a lista "Últimos vídeos" fica num painel à direita com a mesma altura do vídeo e rola por dentro.
 
 ## Próximas etapas

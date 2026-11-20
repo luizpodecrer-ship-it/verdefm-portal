@@ -35,10 +35,8 @@
   --vfm-grafite-texto: #B9C4BD;
   --vfm-grafite-linha: #33403A;
   --vfm-foto-vazia: linear-gradient(135deg, #E4EAE6, #EEF2EF);
-  /* Cores oficiais das redes (só nos ícones delas) */
+  /* Vermelho oficial do YouTube (só no ícone do botão "Ao vivo no YouTube") */
   --vfm-youtube: #FF0000;
-  --vfm-facebook: #1877F2;
-  --vfm-instagram: linear-gradient(45deg, #F58529, #DD2A7B 50%, #8134AF);
 
   /* Letras */
   --vfm-fonte-titulo: "Archivo", "Helvetica Neue", Arial, sans-serif;
@@ -558,19 +556,16 @@ html.vfm-tocando .vfm-ao-vivo .vfm-ponto { animation: vfm-pulsar 1.6s ease-in-ou
 .vfm-rodape__marca p { line-height: 1.6; color: var(--vfm-grafite-texto); }
 .vfm-rodape h2 { font-family: var(--vfm-fonte-texto); font-size: 14px; color: #fff; margin-bottom: 10px; }
 .vfm-rodape ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
-/* Redes sociais: ícones redondos que ganham a cor da rede no mouse */
+/* Redes sociais: ícones brancos que ficam verdes no mouse (verde da marca, não a cor de cada rede) */
 .vfm-rodape .vfm-redes { flex-direction: row; gap: 10px; }
 .vfm-rede {
   width: var(--vfm-alvo); height: var(--vfm-alvo); display: inline-flex; align-items: center; justify-content: center;
   border-radius: 50%; border: 1px solid var(--vfm-grafite-linha); background: rgba(255, 255, 255, .05); color: #E6ECE8;
   transition: transform var(--vfm-transicao), background var(--vfm-transicao), border-color var(--vfm-transicao), color var(--vfm-transicao);
 }
-.vfm-rodape .vfm-rede:hover, .vfm-rodape .vfm-rede:focus-visible { color: #fff; border-color: transparent; transform: translateY(-3px); text-decoration: none; }
+.vfm-rodape .vfm-rede:hover, .vfm-rodape .vfm-rede:focus-visible { color: #fff; background: var(--vfm-verde); border-color: var(--vfm-verde); transform: translateY(-3px); text-decoration: none; box-shadow: 0 8px 20px rgba(23, 128, 58, .35); }
 .vfm-rede svg { transition: transform var(--vfm-transicao); }
 .vfm-rede:hover svg { transform: scale(1.1); }
-.vfm-rede--instagram:hover, .vfm-rede--instagram:focus-visible { background: var(--vfm-instagram); }
-.vfm-rede--facebook:hover, .vfm-rede--facebook:focus-visible { background: var(--vfm-facebook); }
-.vfm-rede--youtube:hover, .vfm-rede--youtube:focus-visible { background: var(--vfm-youtube); }
 .vfm-rodape__fim {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px;
   padding-block: 18px 28px; border-top: 1px solid var(--vfm-grafite-linha); font-size: 13px; color: var(--vfm-grafite-texto);
