@@ -74,7 +74,7 @@
 /* 2. Base ----------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
 /* Ao pular para uma seção (#videos, #cidade…), o título não fica escondido atrás do cabeçalho fixo. */
-html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--vfm-topo-altura, 0px) + 16px); }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--vfm-topo-altura, 0px) + 16px); scroll-padding-bottom: calc(var(--vfm-barra-player) + 16px); }
 body {
   margin: 0;
   background: var(--vfm-fundo);
@@ -91,7 +91,9 @@ a:hover { color: var(--vfm-verde); }
 button { font: inherit; color: inherit; cursor: pointer; }
 h1, h2, h3, h4 { font-family: var(--vfm-fonte-titulo); font-weight: 700; margin: 0; text-wrap: balance; }
 p { margin: 0; }
-:focus-visible { outline: 3px solid var(--vfm-verde); outline-offset: 2px; border-radius: 4px; }
+/* Foco do teclado: anel duplo, visível em fundo claro, sobre botão verde e no escuro */
+:focus-visible { outline: 3px solid var(--vfm-verde); outline-offset: 2px; box-shadow: 0 0 0 2px #fff; }
+.vfm-barra-player :focus-visible, .vfm-rodape :focus-visible, .vfm-ouca :focus-visible, .vfm-tv__tela :focus-visible { outline-color: var(--vfm-verde-marca); }
 [hidden] { display: none !important; }
 
 /* 3. Estrutura ------------------------------------------------------------ */
@@ -158,15 +160,17 @@ html.vfm-rolou .vfm-topo__linha { padding-block: 8px; gap: 8px; }
 html.vfm-rolou .vfm-logo img { height: 32px; }
 .vfm-topo__acoes { display: flex; align-items: center; gap: 8px; }
 .vfm-topo__youtube, .vfm-topo__data { display: none; }
-.vfm-topo__cidade { grid-column: 1 / -1; }
+.vfm-logo { grid-row: 1; grid-column: 1; }
+.vfm-topo__acoes { grid-row: 1; grid-column: 2; }
+.vfm-topo__cidade { grid-row: 2; grid-column: 1 / -1; }
 
 @media (min-width: 1024px) {
   .vfm-topo__linha { display: flex; gap: 24px; padding-block: 18px; }
   html.vfm-rolou .vfm-topo__linha { padding-block: 10px; gap: 24px; }
   .vfm-logo img { height: 52px; }
   html.vfm-rolou .vfm-logo img { height: 40px; }
-  .vfm-topo__cidade { grid-column: auto; order: 1; }
-  .vfm-topo__acoes { order: 2; margin-left: auto; gap: 16px; }
+  .vfm-topo__cidade { grid-row: auto; grid-column: auto; }
+  .vfm-topo__acoes { grid-row: auto; grid-column: auto; margin-left: auto; gap: 16px; }
   .vfm-topo__youtube { display: inline-flex; }
   .vfm-topo__data { display: inline; font-size: 14px; color: var(--vfm-texto-2); }
   .vfm-topo__menu { display: none; }
@@ -183,7 +187,7 @@ html.vfm-rolou .vfm-logo img { height: 32px; }
 .vfm-yt__icone { position: relative; display: inline-flex; width: 28px; height: 20px; }
 .vfm-yt__icone::before, .vfm-yt__icone::after {
   content: ""; position: absolute; inset: 0; border-radius: 6px; background: var(--vfm-youtube);
-  opacity: 0; animation: vfm-onda 2.4s ease-out infinite;
+  opacity: 0; animation: vfm-onda 2.4s ease-out 3; /* três ondas e para */
 }
 .vfm-yt__icone::after { animation-delay: 1.2s; }
 .vfm-yt__logo { position: relative; z-index: 1; transition: transform var(--vfm-transicao); }
@@ -191,7 +195,7 @@ html.vfm-rolou .vfm-logo img { height: 32px; }
 @keyframes vfm-onda { 0% { transform: scale(1); opacity: .35; } 100% { transform: scale(1.9); opacity: 0; } }
 .vfm-yt__texto { display: flex; flex-direction: column; line-height: 1.1; }
 .vfm-yt__texto strong { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 600; color: var(--vfm-vermelho-texto); }
-.vfm-yt__texto strong .vfm-ponto { width: 6px; height: 6px; animation: vfm-pulsar 1.4s ease-in-out infinite; }
+.vfm-yt__texto strong .vfm-ponto { width: 6px; height: 6px; animation: vfm-pulsar 1.4s ease-in-out 3; }
 .vfm-yt__texto small { font-size: 12px; color: var(--vfm-texto-2); }
 .vfm-yt--largo { justify-content: center; width: 100%; min-height: 52px; }
 /* No celular o botão do YouTube fica só no menu; no cabeçalho aparece a partir do computador */
@@ -199,6 +203,13 @@ html.vfm-rolou .vfm-logo img { height: 32px; }
 @media (min-width: 1024px) { .vfm-yt.vfm-topo__youtube { display: inline-flex; } }
 .vfm-ponto { width: 8px; height: 8px; border-radius: 50%; background: var(--vfm-vermelho); flex: 0 0 auto; }
 .vfm-ponto--verde { width: 7px; height: 7px; background: var(--vfm-verde-marca); }
+
+/* Celular com a página rolada: fica só logo + ações; o alfinete reabre a escolha da cidade */
+.vfm-topo__atalho-cidade { display: none; color: var(--vfm-verde); }
+@media (max-width: 1023px) {
+  html.vfm-rolou:not(.vfm-mostrar-cidade) .vfm-topo__cidade { display: none; }
+  html.vfm-rolou:not(.vfm-mostrar-cidade) .vfm-topo__atalho-cidade { display: inline-flex; }
+}
 
 /* Seletor de cidade */
 .vfm-cidade { position: relative; }
@@ -310,7 +321,15 @@ html.vfm-rolou .vfm-logo img { height: 32px; }
 .vfm-pub-topo__peca { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity 600ms ease, visibility 0s linear 600ms; }
 .vfm-pub-topo__peca.vfm-ativa { opacity: 1; visibility: visible; transition: opacity 600ms ease; }
 .vfm-pub-topo__peca img { width: 100%; height: 100%; object-fit: cover; }
-.vfm-pub-topo__rotulo { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--vfm-texto-2); }
+.vfm-pub-topo__rodape { display: flex; align-items: center; gap: 2px; }
+.vfm-pub-topo__rotulo { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--vfm-texto-2); }
+.vfm-pub-topo__pausa {
+  width: var(--vfm-alvo); height: var(--vfm-alvo); margin: -12px -12px -12px 0; border: 0; border-radius: var(--vfm-raio-p);
+  display: inline-flex; align-items: center; justify-content: center; background: transparent; color: var(--vfm-texto-2);
+}
+.vfm-pub-topo__pausa:hover { color: var(--vfm-verde); }
+.vfm-pub-topo__i-tocar, .vfm-pub-topo__pausa[aria-pressed="true"] .vfm-pub-topo__i-pausa { display: none; }
+.vfm-pub-topo__pausa[aria-pressed="true"] .vfm-pub-topo__i-tocar { display: block; }
 
 /* Bloco de destaques: manchete + coluna lateral */
 .vfm-destaques { display: grid; gap: 24px; padding-block: 16px 32px; }
@@ -425,20 +444,20 @@ html.vfm-tocando .vfm-play--barra::after { animation: vfm-anel 2s ease-out infin
   display: inline-flex; align-items: center; gap: 5px; flex: 0 0 auto; padding: 2px 7px; border-radius: 4px;
   background: var(--vfm-vermelho); color: #fff; font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
 }
-.vfm-selo-aovivo .vfm-ponto { width: 6px; height: 6px; background: #fff; animation: vfm-pulsar 1.4s ease-in-out infinite; }
+.vfm-selo-aovivo .vfm-ponto { width: 6px; height: 6px; background: #fff; }
+html.vfm-tocando .vfm-selo-aovivo .vfm-ponto { animation: vfm-pulsar 1.4s ease-in-out infinite; }
+/* Rádio não carregou: o selo apaga (o aviso explica e o play vira "tentar de novo") */
+html.vfm-radio-erro .vfm-barra-player .vfm-selo-aovivo { background: var(--vfm-texto-2); }
 .vfm-barra-player__texto strong { font-family: var(--vfm-fonte-titulo); font-weight: 700; font-size: 15px; line-height: 1.25; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .vfm-barra-player .vfm-player-status { color: var(--vfm-vermelho-claro); font-size: 12px; }
 
 /* Equalizador: barrinhas que dançam enquanto a rádio toca */
 .vfm-eq { display: inline-flex; align-items: flex-end; gap: 3px; height: 22px; flex: 0 0 auto; }
-.vfm-eq i {
-  display: block; width: 3px; height: 100%; border-radius: 2px; background: var(--vfm-verde-marca); transform-origin: bottom;
-  opacity: .7; animation: vfm-eq-calmo 1.6s ease-in-out infinite;
-}
-.vfm-eq i:nth-child(2) { animation-delay: -.4s; } .vfm-eq i:nth-child(3) { animation-delay: -.8s; }
-.vfm-eq i:nth-child(4) { animation-delay: -1.2s; } .vfm-eq i:nth-child(5) { animation-delay: -.2s; }
-@keyframes vfm-eq-calmo { 0%, 100% { transform: scaleY(.18); } 50% { transform: scaleY(.5); } }
-html.vfm-tocando .vfm-eq i { opacity: 1; animation-name: vfm-eq; animation-duration: 1s; }
+/* Parado: barrinhas quietas, em alturas diferentes. Tocando: dançam (o equalizador mostra o estado real da rádio) */
+.vfm-eq i { display: block; width: 3px; height: 100%; border-radius: 2px; background: var(--vfm-verde-marca); transform-origin: bottom; opacity: .55; transition: transform 300ms ease, opacity 300ms ease; }
+.vfm-eq i:nth-child(1) { transform: scaleY(.35); } .vfm-eq i:nth-child(2) { transform: scaleY(.6); } .vfm-eq i:nth-child(3) { transform: scaleY(.45); }
+.vfm-eq i:nth-child(4) { transform: scaleY(.7); } .vfm-eq i:nth-child(5) { transform: scaleY(.3); }
+html.vfm-tocando .vfm-eq i { opacity: 1; animation: vfm-eq 1s ease-in-out infinite; }
 html.vfm-tocando .vfm-eq i:nth-child(2) { animation-duration: .8s; animation-delay: -.3s; }
 html.vfm-tocando .vfm-eq i:nth-child(3) { animation-duration: 1.15s; animation-delay: -.6s; }
 html.vfm-tocando .vfm-eq i:nth-child(4) { animation-duration: .9s; animation-delay: -.15s; }
@@ -632,6 +651,8 @@ html.vfm-tocando .vfm-eq i:nth-child(5) { animation-duration: 1.05s; animation-d
 .vfm-rodape__marca p { line-height: 1.6; color: var(--vfm-grafite-texto); }
 .vfm-rodape h2 { font-family: var(--vfm-fonte-texto); font-size: 14px; color: #fff; margin-bottom: 10px; }
 .vfm-rodape ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.vfm-rodape ul:not(.vfm-redes) { gap: 0; }
+.vfm-rodape ul:not(.vfm-redes) a { display: inline-flex; align-items: center; min-height: var(--vfm-alvo); }
 /* Redes sociais: ícones brancos que ficam verdes no mouse (verde da marca, não a cor de cada rede) */
 .vfm-rodape .vfm-redes { flex-direction: row; gap: 10px; }
 .vfm-rede {
@@ -714,7 +735,7 @@ html.vfm-navegando #vfm-conteudo { opacity: .55; }
 .vfm-cabeca-pagina { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 32px; padding-block: 16px 24px; }
 .vfm-cabeca-pagina h1 { font-size: clamp(30px, 4vw, 44px); line-height: 1.08; letter-spacing: -.015em; }
 .vfm-cabeca-pagina p { margin-top: 8px; max-width: 60ch; color: var(--vfm-texto-2); font-size: 16px; }
-.vfm-cabeca-pagina__marca { display: flex; align-items: center; gap: 16px; }
+.vfm-cabeca-pagina__marca { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
 .vfm-cabeca-pagina__marca img { height: 48px; width: auto; }
 @media (min-width: 1024px) { .vfm-cabeca-pagina { padding-block: 24px 32px; } .vfm-cabeca-pagina__marca img { height: 64px; } }
 
@@ -869,6 +890,10 @@ html.vfm-navegando #vfm-conteudo { opacity: .55; }
 .vfm-campo input:focus, .vfm-campo select:focus { outline: none; border-color: var(--vfm-verde); box-shadow: 0 0 0 3px rgba(23, 128, 58, .18); }
 .vfm-aceite { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--vfm-texto-3); }
 .vfm-aceite input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--vfm-verde); }
+.vfm-campo input[aria-invalid="true"], .vfm-campo select[aria-invalid="true"] { border-color: var(--vfm-vermelho-texto); box-shadow: 0 0 0 3px rgba(179, 38, 30, .12); }
+.vfm-erro-campo { margin: 0; font-size: 13px; font-weight: 500; color: var(--vfm-vermelho-texto); }
+.vfm-promo-vazia { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 40px; }
+.vfm-promo-vazia strong { font-family: var(--vfm-fonte-titulo); font-size: 22px; color: var(--vfm-texto); }
 .vfm-aviso-form { padding: 12px 14px; border-radius: var(--vfm-raio-p); background: var(--vfm-verde-claro); color: var(--vfm-verde-escuro); font-size: 14px; }
 
 /* Busca e página não encontrada ---------------------------------------- */

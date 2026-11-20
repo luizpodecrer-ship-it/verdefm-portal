@@ -31,7 +31,7 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 - Verde só como acento: `#17803A` (botões, links, etiquetas), `#EEF4F0` (fundos suaves), `#2DBE4E` só em detalhes decorativos. Rodapé grafite `#1B2420`.
 - Fontes (teste pedido pelo Luiz em 21/11/2026): **Inter** nos títulos (700) e **Aeonik** no texto (400/700). Aeonik é comercial: até os arquivos `.woff2` licenciados irem para `site/assets/fonts/` (o `@font-face` já está comentado no CSS), o texto cai para a Inter. Menu de navegação em 600. Antes: Archivo 600 nos títulos.
 - Cantos arredondados por igual, **pouco arredondados** (6, 8, 10 e 12 px; pedido do Luiz em 21/11/2026, antes 10–20 px); botões em pílula continuam. Linhas finas, sombras discretas.
-- Player: volume em trilho fino branco, sem contorno; equalizador "ao vivo" sempre se mexendo (calmo parado, forte tocando).
+- Player: volume em trilho fino branco, sem contorno; equalizador **parado (barrinhas quietas) com a rádio parada e dançando com a rádio tocando** (auditoria de 21/11/2026, aprovada: substitui o "sempre se mexendo").
 - Protótipo aprovado (canvas): https://claude.ai/artifact/4QqTTzzLXqrU77uNBGwR7M
 
 ## Decisões aprovadas
@@ -55,6 +55,9 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 - **21/11/2026** — **Player da rádio fixo no rodapé em todas as telas** (pedido do Luiz; saiu o cartão "No ar agora" do lado da manchete): barra grafite com play (anel pulsando ao tocar), logo da cidade, selo "Ao vivo", nome do programa no ar, equalizador animado, link da programação e volume com botão de mudo. No lugar do cartão, a coluna ao lado da manchete tem **5 notícias** (fecha na altura da manchete).
 - **21/11/2026** — **Programa no ar de verdade**: a grade real das três rádios (copiada das páginas /programacao/ dos sites atuais) vai no JSON das cidades; o player mostra o programa do momento pelo fuso de Cuiabá e as grades marcam "No ar".
 - **21/11/2026** — **Páginas internas** (pedido do Luiz: "desenvolva todas as internas agora"; feitas direto, sem protótipo): matéria (`/noticia/…`), editoria (`/editoria/…`: Política, Economia e negócios, Esporte e cultura, Policial, Brasil), cidade (`/cidade/…`, com "Ouvir a Verde {cidade}"), Vídeos, Programação (abas por dia, abre no dia de hoje, por cidade), Promoções (formulário de inscrição), Busca e 404. Tudo com a navegação contínua: a rádio não para. As páginas da demonstração são geradas por `ferramentas/gerar-demo.py` a partir da home e de `ferramentas/dados/demo.json` (matérias reais dos três sites, grade e vídeos, coletados por `ferramentas/coletar-demo.py`).
+
+- **21/11/2026** — **Correções da auditoria de UX e acessibilidade** (aprovadas pelo Luiz): foco do teclado com anel duplo (branco + verde; verde vivo no escuro); ordem do cabeçalho = ordem da tela; página da cidade sem rolagem lateral em 320 px; painéis das abas com foco; movimento só com motivo (ondas do YouTube e pontinho piscam 3 vezes e param; equalizador e selo "Ao vivo" só se mexem com a rádio tocando; rodízio do banner com botão de pausa visível); no celular, ao rolar, o cabeçalho recolhe a linha da cidade e um alfinete reabre a escolha; formulário com validação e mensagens por campo; sem textos provisórios entre colchetes; links do rodapé com 44 px; trilha termina no título da matéria; player com erro apaga o selo e vira "tentar de novo".
+- **Pendências da auditoria (decisão do Luiz):** banner do topo no celular (peça própria 320 × 100), faixa "Últimas" no celular (um título por vez), estado "fora do ar" da transmissão do YouTube (precisa do WordPress) e assinatura "Redação Verde FM".
 
 ## Próximas etapas
 

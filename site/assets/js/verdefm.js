@@ -120,12 +120,24 @@
         alvo && alvo.focus();
       }
     }
+    var atalho = $('[data-vfm-atalho-cidade]');
     function fechar(devolverFoco) {
       if (lista.hidden) return;
       lista.hidden = true;
       botao.setAttribute('aria-expanded', 'false');
+      // Aberta pelo atalho do cabeçalho recolhido (celular): recolhe de novo e devolve o foco ao atalho.
+      if (raiz.classList.contains('vfm-mostrar-cidade')) {
+        raiz.classList.remove('vfm-mostrar-cidade');
+        if (devolverFoco && atalho) atalho.focus();
+        return;
+      }
       if (devolverFoco) botao.focus();
     }
+    if (atalho) atalho.addEventListener('click', function (e) {
+      e.stopPropagation();
+      raiz.classList.add('vfm-mostrar-cidade');
+      abrir(true);
+    });
 
     botao.addEventListener('click', function () { lista.hidden ? abrir(false) : fechar(false); });
     botao.addEventListener('keydown', function (e) {
@@ -161,7 +173,7 @@
   function radioEstado() {
     var tocando = audio && !audio.paused && querTocar;
     raiz.classList.toggle('vfm-tocando', !!tocando);
-    var rotulo = tocando ? 'Pausar a rádio' : 'Ouvir a rádio ao vivo';
+    var rotulo = tocando ? 'Pausar a rádio' : (raiz.classList.contains('vfm-radio-erro') ? 'Tentar tocar de novo a rádio' : 'Ouvir a rádio ao vivo');
     $$('[data-vfm-play]').forEach(function (b) {
       b.setAttribute('aria-label', rotulo + ' de ' + cidade.nome);
       b.setAttribute('aria-pressed', tocando ? 'true' : 'false');
@@ -176,6 +188,7 @@
   function tocar() {
     if (!audio || !cidade.stream) { radioAviso('A rádio desta cidade ainda não está no ar.'); return; }
     querTocar = true;
+    raiz.classList.remove('vfm-radio-erro');
     radioAviso('');
     pararVideos(); // rádio e vídeo não tocam ao mesmo tempo
     // Rádio ao vivo: sempre recarrega o endereço para voltar ao "agora".
@@ -184,6 +197,7 @@
     var p = audio.play();
     if (p && p.catch) p.catch(function () {
       querTocar = false; carregando(false); radioEstado();
+      raiz.classList.add('vfm-radio-erro');
       radioAviso('Não foi possível tocar agora. Tente de novo em instantes.');
     });
     raiz.classList.add('vfm-tocou');
@@ -220,6 +234,7 @@
     audio.addEventListener('error', function () {
       if (!querTocar) return;
       querTocar = false; carregando(false); radioEstado();
+      raiz.classList.add('vfm-radio-erro');
       radioAviso('A transmissão caiu. Toque de novo para voltar.');
     });
     // Delegação: funciona também nos botões que chegam com a navegação contínua.
@@ -543,7 +558,9 @@
       var pecas = $$('.vfm-pub-topo__peca, [data-vfm-peca]', caixa);
       if (pecas.length < 2) return;
       var atual = 0;
-      var parado = false;
+      var parado = false;          // mouse ou foco em cima
+      var pausadoBotao = false;    // a pessoa apertou "pausar"
+      var botao = caixa.parentNode && caixa.parentNode.querySelector('[data-vfm-rodizio-pausa]');
       function mostrar(i) {
         pecas.forEach(function (p, j) {
           var ativa = j === i;
@@ -556,13 +573,23 @@
       // Cada visita começa num anúncio diferente, para todos aparecerem.
       mostrar(Math.floor(Math.random() * pecas.length));
       if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (botao) {
+        botao.hidden = false;
+        botao.addEventListener('click', function () {
+          pausadoBotao = !pausadoBotao;
+          botao.setAttribute('aria-pressed', pausadoBotao ? 'true' : 'false');
+          var t = pausadoBotao ? 'Continuar a troca de anúncios' : 'Pausar a troca de anúncios';
+          botao.setAttribute('aria-label', t);
+          botao.setAttribute('title', t);
+        });
+      }
       caixa.addEventListener('mouseenter', function () { parado = true; });
       caixa.addEventListener('mouseleave', function () { parado = false; });
       caixa.addEventListener('focusin', function () { parado = true; });
       caixa.addEventListener('focusout', function () { parado = false; });
       var relogio = setInterval(function () {
         if (!caixa.isConnected) { clearInterval(relogio); return; } // a página trocou
-        if (parado || doc.hidden) return;
+        if (parado || pausadoBotao || doc.hidden) return;
         mostrar((atual + 1) % pecas.length);
       }, RODIZIO_MS);
     });

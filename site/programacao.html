@@ -19,8 +19,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="/assets/css/verdefm.css?v=202611210310">
-<script src="/assets/js/verdefm.js?v=202611210310" defer></script>
+<link rel="stylesheet" href="/assets/css/verdefm.css?v=202611210400">
+<script src="/assets/js/verdefm.js?v=202611210400" defer></script>
 </head>
 <body class="vfm-pagina-programacao">
 <!-- WP: body_class() -->
@@ -36,24 +36,9 @@
       <img data-vfm-logo src="/assets/img/logos/cuiaba.png" alt="Verde FM Cuiabá 103.7" width="840" height="200">
     </a>
 
-    <div class="vfm-topo__acoes">
-      <a class="vfm-yt vfm-topo__youtube" href="https://www.youtube.com/@VerdeFMoficial/live" target="_blank" rel="noopener">
-        <span class="vfm-yt__icone"><svg class="vfm-yt__logo" aria-hidden="true" width="28" height="20" viewBox="0 0 28 20"><path fill="#FF0000" d="M27.4 3.1A3.5 3.5 0 0 0 24.9.6C22.7 0 14 0 14 0S5.3 0 3.1.6A3.5 3.5 0 0 0 .6 3.1C0 5.3 0 10 0 10s0 4.7.6 6.9a3.5 3.5 0 0 0 2.5 2.5C5.3 20 14 20 14 20s8.7 0 10.9-.6a3.5 3.5 0 0 0 2.5-2.5C28 14.7 28 10 28 10s0-4.7-.6-6.9z"/><path fill="#FFFFFF" d="M11.2 14.3 18.5 10l-7.3-4.3z"/></svg></span>
-        <span class="vfm-yt__texto"><strong><span class="vfm-ponto" aria-hidden="true"></span>Ao vivo</strong><small>no YouTube</small></span>
-      </a>
-      <!-- WP: echo date_i18n('l, j \d\e F'); (pode ficar vazio: o JS preenche) -->
-      <span class="vfm-topo__data" data-vfm-data></span>
-      <button class="vfm-icone-botao" type="button" data-vfm-abrir="vfm-busca" aria-label="Buscar">
-        <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8"/></svg>
-      </button>
-      <button class="vfm-icone-botao vfm-topo__menu" type="button" data-vfm-abrir="vfm-menu" aria-label="Abrir o menu">
-        <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      </button>
-    </div>
-
     <!-- Seletor de cidade. WP: um <li> por termo da taxonomia "cidade"; cidade desligada = aria-disabled="true" -->
     <div class="vfm-cidade vfm-topo__cidade">
-      <button class="vfm-cidade__botao" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="vfm-cidades-lista">
+      <button class="vfm-cidade__botao" type="button" aria-expanded="false" aria-controls="vfm-cidades-lista">
         <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#17803A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
         <span class="vfm-cidade__prefixo">Você está em</span>
         <span class="vfm-cidade__nome" data-vfm-texto="cidade">Cuiabá</span>
@@ -67,6 +52,23 @@
         <li><button class="vfm-cidade__opcao" type="button" data-cidade="jaciara" aria-current="false"><span><strong>Jaciara</strong><small>Verde FM 102.3</small></span><span class="vfm-cidade__nota"></span></button></li>
         <li><button class="vfm-cidade__opcao" type="button" data-cidade="arenapolis" aria-current="false" aria-disabled="true"><span><strong>Arenápolis</strong><small>Verde FM 102.1</small></span><span class="vfm-cidade__nota">Em breve</span></button></li>
       </ul>
+    </div>
+
+    <div class="vfm-topo__acoes">
+      <!-- Celular com o cabeçalho recolhido: atalho que reabre a escolha da cidade -->
+      <button class="vfm-icone-botao vfm-topo__atalho-cidade" type="button" data-vfm-atalho-cidade aria-label="Trocar de cidade" title="Trocar de cidade"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></button>
+      <a class="vfm-yt vfm-topo__youtube" href="https://www.youtube.com/@VerdeFMoficial/live" target="_blank" rel="noopener">
+        <span class="vfm-yt__icone"><svg class="vfm-yt__logo" aria-hidden="true" width="28" height="20" viewBox="0 0 28 20"><path fill="#FF0000" d="M27.4 3.1A3.5 3.5 0 0 0 24.9.6C22.7 0 14 0 14 0S5.3 0 3.1.6A3.5 3.5 0 0 0 .6 3.1C0 5.3 0 10 0 10s0 4.7.6 6.9a3.5 3.5 0 0 0 2.5 2.5C5.3 20 14 20 14 20s8.7 0 10.9-.6a3.5 3.5 0 0 0 2.5-2.5C28 14.7 28 10 28 10s0-4.7-.6-6.9z"/><path fill="#FFFFFF" d="M11.2 14.3 18.5 10l-7.3-4.3z"/></svg></span>
+        <span class="vfm-yt__texto"><strong><span class="vfm-ponto" aria-hidden="true"></span>Ao vivo</strong><small>no YouTube</small></span>
+      </a>
+      <!-- WP: echo date_i18n('l, j \d\e F'); (pode ficar vazio: o JS preenche) -->
+      <span class="vfm-topo__data" data-vfm-data></span>
+      <button class="vfm-icone-botao" type="button" data-vfm-abrir="vfm-busca" aria-label="Buscar">
+        <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8"/></svg>
+      </button>
+      <button class="vfm-icone-botao vfm-topo__menu" type="button" data-vfm-abrir="vfm-menu" aria-label="Abrir o menu">
+        <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
     </div>
   </div>
 
@@ -118,7 +120,7 @@
     </header>
     <section data-vfm-so-cidade="cuiaba" data-vfm-abas aria-label="Programação da Verde FM Cuiabá">
       <div class="vfm-abas" role="tablist" aria-label="Dias da semana"><button type="button" role="tab" id="aba-cuiaba-0" aria-controls="grade-cuiaba-0" aria-selected="true" tabindex="0" data-vfm-dias="1,2,3,4,5">Segunda a Sexta</button><button type="button" role="tab" id="aba-cuiaba-1" aria-controls="grade-cuiaba-1" aria-selected="false" tabindex="-1" data-vfm-dias="6,0">Sábado e Domingo</button></div>
-      <div role="tabpanel" id="grade-cuiaba-0" aria-labelledby="aba-cuiaba-0">
+      <div role="tabpanel" id="grade-cuiaba-0" aria-labelledby="aba-cuiaba-0" tabindex="0">
         <ol class="vfm-grade-programas" data-vfm-grade data-vfm-dias="1,2,3,4,5">
           <li data-inicio="5" data-fim="6"><time>05h às 06h</time><span><strong>Coração Caipira</strong></span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
           <li data-inicio="6" data-fim="8"><time>06h às 08h</time><span><strong>Alô, Bom Dia</strong></span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
@@ -132,7 +134,7 @@
           <li data-inicio="0" data-fim="5"><time>00h às 05h</time><span><strong>Sereno da Madrugada</strong></span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
         </ol>
       </div>
-      <div role="tabpanel" id="grade-cuiaba-1" aria-labelledby="aba-cuiaba-1" hidden>
+      <div role="tabpanel" id="grade-cuiaba-1" aria-labelledby="aba-cuiaba-1" tabindex="0" hidden>
         <ol class="vfm-grade-programas" data-vfm-grade data-vfm-dias="6,0">
           <li data-inicio="5" data-fim="6"><time>05h às 06h</time><span><strong>Clássicos da Verde</strong></span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
           <li data-inicio="6" data-fim="8"><time>06h às 08h</time><span><strong>Alô, Bom Dia</strong></span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
@@ -148,7 +150,7 @@
     </section>
     <section data-vfm-so-cidade="campo-verde" data-vfm-abas hidden aria-label="Programação da Verde FM Campo Verde">
       <div class="vfm-abas" role="tablist" aria-label="Dias da semana"><button type="button" role="tab" id="aba-campo-verde-0" aria-controls="grade-campo-verde-0" aria-selected="true" tabindex="0" data-vfm-dias="1,2,3,4,5">Segunda a Sexta</button><button type="button" role="tab" id="aba-campo-verde-1" aria-controls="grade-campo-verde-1" aria-selected="false" tabindex="-1" data-vfm-dias="6">Sábado</button><button type="button" role="tab" id="aba-campo-verde-2" aria-controls="grade-campo-verde-2" aria-selected="false" tabindex="-1" data-vfm-dias="0">Domingo</button></div>
-      <div role="tabpanel" id="grade-campo-verde-0" aria-labelledby="aba-campo-verde-0">
+      <div role="tabpanel" id="grade-campo-verde-0" aria-labelledby="aba-campo-verde-0" tabindex="0">
         <ol class="vfm-grade-programas" data-vfm-grade data-vfm-dias="1,2,3,4,5">
           <li data-inicio="5" data-fim="8"><time>05h às 08h</time><span><strong>Coração Caipira</strong><small>Locutor: Claudiney Nascimento</small></span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
           <li data-inicio="8" data-fim="11"><time>08h às 11h</time><span><strong>Manhã na Verde FM</strong><small>Jornalista: Evando Mendes</small></span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
@@ -162,7 +164,7 @@
           <li data-inicio="3" data-fim="5"><time>03h às 05h</time><span><strong>Alô, Bom Dia</strong></span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
         </ol>
       </div>
-      <div role="tabpanel" id="grade-campo-verde-1" aria-labelledby="aba-campo-verde-1" hidden>
+      <div role="tabpanel" id="grade-campo-verde-1" aria-labelledby="aba-campo-verde-1" tabindex="0" hidden>
         <ol class="vfm-grade-programas" data-vfm-grade data-vfm-dias="6">
           <li data-inicio="5" data-fim="6"><time>05h às 06h</time><span><strong>Clássicos da Verde</strong></span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
           <li data-inicio="6" data-fim="8"><time>06h às 08h</time><span><strong>Alô, Bom Dia</strong></span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
@@ -175,7 +177,7 @@
           <li data-inicio="0" data-fim="5"><time>00h às 05h</time><span><strong>Sereno da Madrugada</strong></span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
         </ol>
       </div>
-      <div role="tabpanel" id="grade-campo-verde-2" aria-labelledby="aba-campo-verde-2" hidden>
+      <div role="tabpanel" id="grade-campo-verde-2" aria-labelledby="aba-campo-verde-2" tabindex="0" hidden>
         <ol class="vfm-grade-programas" data-vfm-grade data-vfm-dias="0">
           <li data-inicio="5" data-fim="6"><time>05h às 06h</time><span><strong>Clássicos da Verde</strong></span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
           <li data-inicio="6" data-fim="8"><time>06h às 08h</time><span><strong>Alô, Bom Dia</strong></span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
@@ -192,7 +194,7 @@
     </section>
     <section data-vfm-so-cidade="jaciara" data-vfm-abas hidden aria-label="Programação da Verde FM Jaciara">
       <div class="vfm-abas" role="tablist" aria-label="Dias da semana"><button type="button" role="tab" id="aba-jaciara-0" aria-controls="grade-jaciara-0" aria-selected="true" tabindex="0" data-vfm-dias="1,2,3,4,5">Segunda a Sexta</button><button type="button" role="tab" id="aba-jaciara-1" aria-controls="grade-jaciara-1" aria-selected="false" tabindex="-1" data-vfm-dias="6">Sábado</button><button type="button" role="tab" id="aba-jaciara-2" aria-controls="grade-jaciara-2" aria-selected="false" tabindex="-1" data-vfm-dias="0">Domingo</button></div>
-      <div role="tabpanel" id="grade-jaciara-0" aria-labelledby="aba-jaciara-0">
+      <div role="tabpanel" id="grade-jaciara-0" aria-labelledby="aba-jaciara-0" tabindex="0">
         <ol class="vfm-grade-programas" data-vfm-grade data-vfm-dias="1,2,3,4,5">
           <li data-inicio="5" data-fim="8"><time>05h às 08h</time><span><strong>Coração Caipira</strong><small>Juliano Souza</small></span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
           <li data-inicio="8" data-fim="11"><time>08h às 11h</time><span><strong>Manhã na Verde</strong><small>Elisângela Souza</small></span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
@@ -206,7 +208,7 @@
           <li data-inicio="3" data-fim="5"><time>03h às 05h</time><span><strong>Alô, Bom Dia</strong></span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
         </ol>
       </div>
-      <div role="tabpanel" id="grade-jaciara-1" aria-labelledby="aba-jaciara-1" hidden>
+      <div role="tabpanel" id="grade-jaciara-1" aria-labelledby="aba-jaciara-1" tabindex="0" hidden>
         <ol class="vfm-grade-programas" data-vfm-grade data-vfm-dias="6">
           <li data-inicio="5" data-fim="6"><time>05h às 06h</time><span><strong>Clássicos da Verde</strong></span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
           <li data-inicio="6" data-fim="8"><time>06h às 08h</time><span><strong>Alô, Bom Dia</strong></span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
@@ -219,7 +221,7 @@
           <li data-inicio="0" data-fim="5"><time>00h às 05h</time><span><strong>Sereno da Madrugada</strong></span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
         </ol>
       </div>
-      <div role="tabpanel" id="grade-jaciara-2" aria-labelledby="aba-jaciara-2" hidden>
+      <div role="tabpanel" id="grade-jaciara-2" aria-labelledby="aba-jaciara-2" tabindex="0" hidden>
         <ol class="vfm-grade-programas" data-vfm-grade data-vfm-dias="0">
           <li data-inicio="5" data-fim="6"><time>05h às 06h</time><span><strong>Clássicos da Verde</strong></span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
           <li data-inicio="6" data-fim="8"><time>06h às 08h</time><span><strong>Alô, Bom Dia</strong></span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
@@ -245,7 +247,7 @@
       <a class="vfm-rodape__logo" href="/" aria-label="Verde FM, página inicial">
         <img data-vfm-logo src="/assets/img/logos/cuiaba.png" alt="Verde FM Cuiabá 103.7" width="840" height="200" loading="lazy">
       </a>
-      <p>Notícias e rádio de Mato Grosso. [Texto institucional curto da rádio]</p>
+      <p>Notícias de Mato Grosso e a Verde FM ao vivo em Cuiabá, Campo Verde e Jaciara.</p>
     </div>
     <div>
       <h2>Nossas rádios</h2>
@@ -269,7 +271,7 @@
     <span>© Verde FM. Versão de demonstração com matérias dos sites atuais da Verde FM.</span>
     <!-- Assinatura da Astravox: só o ícone, com link (padrão dos projetos web da Astravox) -->
     <a class="vfm-assinatura" href="https://www.astravox.com.br" target="_blank" rel="noopener" aria-label="Astravox (abre em nova aba)" title="Astravox">
-      <img src="/assets/img/astravox.svg" alt="" width="14" height="18">
+      <img src="/assets/img/astravox.svg" alt="" width="14" height="18" loading="lazy">
     </a>
   </div>
 </footer>
@@ -289,7 +291,7 @@
         <span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>Ao vivo</span>
         <span>Verde FM <span data-vfm-texto="cidade">Cuiabá</span> · <span data-vfm-texto="frequencia">103.7</span></span>
       </span>
-      <strong data-vfm-programa>[Nome do programa]</strong>
+      <strong data-vfm-programa>Verde FM ao vivo</strong>
       <span class="vfm-player-status" data-vfm-player-status role="status"></span>
     </div>
     <span class="vfm-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>

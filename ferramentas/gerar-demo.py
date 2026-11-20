@@ -77,6 +77,10 @@ def fina(t, limite=200):
     return t if len(t) <= limite else t[:limite].rsplit(' ', 1)[0].rstrip(',;:') + '…'
 
 
+def curto(t, limite=42):
+    return t if len(t) <= limite else t[:limite].rsplit(' ', 1)[0].rstrip(',;:') + '…'
+
+
 def url_materia(m):
     return '/noticia/%s.html' % m['slug']
 
@@ -296,7 +300,7 @@ for m in MATERIAS:
         rel += [x for x in MATERIAS if x['slug'] != m['slug'] and x not in rel][:3 - len(rel)]
     lat = ''.join('<li><a href="%s">%s</a></li>' % (url_materia(x), e(x['titulo'])) for x in ultimas if x['slug'] != m['slug'])
     ed_href = url_editoria(m)
-    corpo = BANNER + trilha(('Início', '/'), (m['editoria_rotulo'], ed_href), ('Notícia', None)) + '''  <article class="vfm-container vfm-materia">
+    corpo = BANNER + trilha(('Início', '/'), (m['editoria_rotulo'], ed_href), (curto(m['titulo']), None)) + '''  <article class="vfm-container vfm-materia">
     <!-- WP: single.php -->
     <header class="vfm-materia__cabeca">
       {chap}
@@ -430,7 +434,7 @@ for c in CIDADES:
         itens = ''.join('''          <li data-inicio="{i}" data-fim="{f}"><time>{hi} às {hf}</time><span><strong>{p}</strong>{a}</span><span class="vfm-selo-aovivo"><span class="vfm-ponto" aria-hidden="true"></span>No ar</span></li>
 '''.format(i=p['inicio'], f=p['fim'], hi=hora(p['inicio']), hf=hora(p['fim']), p=e(p['programa']),
            a=('<small>%s</small>' % e(p['apresentador'])) if p['apresentador'] else '') for p in b['programas'])
-        paineis += '''      <div role="tabpanel" id="{idp}" aria-labelledby="{ida}"{h}>
+        paineis += '''      <div role="tabpanel" id="{idp}" aria-labelledby="{ida}" tabindex="0"{h}>
         <ol class="vfm-grade-programas" data-vfm-grade data-vfm-dias="{d}">
 {itens}        </ol>
       </div>
@@ -452,30 +456,56 @@ pagina('programacao.html', 'Programação · Verde FM', 'Grade de programação 
 # ======================================================================= 8. promoções
 opcoes = ''.join('<option>%s</option>' % e(c['nome']) for c in CIDADES if c['ativa'])
 corpo = trilha(('Início', '/'), ('Promoções', None)) + '''  <div class="vfm-container">
-    <!-- WP: page-promocoes.php (CPT "promocao"; formulário por Contact Form 7, Gravity Forms ou similar com estas classes) -->
+    <!-- WP: page-promocoes.php (CPT "promocao"; formulário por Contact Form 7, Gravity Forms ou similar com estas classes).
+         Sem promoção ativa: só o aviso .vfm-promo-vazia. Com promoção: o bloco .vfm-promo com os dados reais. -->
     <header class="vfm-cabeca-pagina">
       <div><span class="vfm-chapeu">Ouvinte da Verde ganha mais</span><h1>Promoções</h1><p>Participe das promoções da Verde FM da sua cidade.</p></div>
     </header>
+    <div class="vfm-resultado-vazio vfm-promo-vazia" role="status">
+      <strong>Nenhuma promoção aberta agora.</strong>
+      <span>Fique ligado na Verde: a próxima é anunciada no ar e aparece aqui.</span>
+      <button class="vfm-botao" type="button" data-vfm-play aria-pressed="false" aria-label="Ouvir a rádio ao vivo"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l12 7-12 7z"/></svg> Ouvir a Verde agora</button>
+    </div>
+    <h2 class="vfm-secao-titulo">Como uma promoção aparece no portal</h2>
+    <p class="vfm-meta" style="margin: -12px 0 20px">Exemplo de demonstração do layout: nenhuma inscrição é enviada.</p>
     <article class="vfm-promo">
       <div class="vfm-promo__arte">
-        <span class="vfm-chapeu">Promoção da semana</span>
-        <h2>[Nome da promoção]</h2>
-        <p>[Regras resumidas: o que o ouvinte ganha, até quando vale e como o ganhador é escolhido.]</p>
+        <span class="vfm-chapeu">Exemplo</span>
+        <h2>Promoção da semana</h2>
+        <p>Aqui entram o prêmio, até quando vale e como o ganhador é escolhido.</p>
       </div>
       <form class="vfm-formulario" data-vfm-promo-demo novalidate>
-        <div class="vfm-campo"><label for="p-nome">Seu nome</label><input id="p-nome" name="nome" autocomplete="name" required></div>
-        <div class="vfm-campo"><label for="p-zap">WhatsApp</label><input id="p-zap" name="whatsapp" type="tel" inputmode="tel" placeholder="(65) 99999-9999" autocomplete="tel" required></div>
+        <div class="vfm-campo"><label for="p-nome">Seu nome</label><input id="p-nome" name="nome" autocomplete="name" aria-describedby="p-nome-erro"><p class="vfm-erro-campo" id="p-nome-erro" hidden>Informe seu nome.</p></div>
+        <div class="vfm-campo"><label for="p-zap">WhatsApp</label><input id="p-zap" name="whatsapp" type="tel" inputmode="tel" placeholder="(65) 99999-9999" autocomplete="tel" aria-describedby="p-zap-erro"><p class="vfm-erro-campo" id="p-zap-erro" hidden>Informe o WhatsApp com DDD, como (65) 99999-9999.</p></div>
         <div class="vfm-campo"><label for="p-cidade">Cidade</label><select id="p-cidade" name="cidade">{op}</select></div>
-        <label class="vfm-aceite"><input type="checkbox" name="aceite" required> Li e aceito o regulamento e o uso dos meus dados para esta promoção.</label>
+        <label class="vfm-aceite"><input type="checkbox" name="aceite" id="p-aceite" aria-describedby="p-aceite-erro"> Li e aceito o regulamento e o uso dos meus dados para esta promoção.</label>
+        <p class="vfm-erro-campo" id="p-aceite-erro" hidden>Para participar, aceite o regulamento.</p>
         <button class="vfm-botao" type="submit">Quero participar</button>
-        <p class="vfm-aviso-form" data-vfm-promo-aviso hidden role="status">Demonstração: nesta versão a inscrição não é enviada.</p>
+        <p class="vfm-aviso-form" data-vfm-promo-aviso hidden role="status">Inscrição feita! Boa sorte: o resultado sai na programação da Verde. (Demonstração: nada foi enviado.)</p>
       </form>
     </article>
     <script>
-      /* Só da demonstração: no WordPress o plugin de formulário cuida do envio. */
+      /* Só da demonstração: no WordPress o plugin de formulário envia. A validação mostra o padrão de erro do tema. */
       (function () {{
         var f = document.querySelector('[data-vfm-promo-demo]');
-        if (f) f.addEventListener('submit', function (ev) {{ ev.preventDefault(); f.querySelector('[data-vfm-promo-aviso]').hidden = false; }});
+        if (!f) return;
+        var aviso = f.querySelector('[data-vfm-promo-aviso]');
+        function marcar(campo, erro, ok) {{
+          campo.setAttribute('aria-invalid', ok ? 'false' : 'true');
+          document.getElementById(erro).hidden = ok;
+          return ok;
+        }}
+        f.addEventListener('submit', function (ev) {{
+          ev.preventDefault();
+          var nome = f.elements.nome, zap = f.elements.whatsapp, aceite = f.elements.aceite;
+          var digitos = zap.value.replace(/[^0-9]/g, '');
+          var ok1 = marcar(nome, 'p-nome-erro', nome.value.trim().length > 1);
+          var ok2 = marcar(zap, 'p-zap-erro', digitos.length === 10 || digitos.length === 11);
+          var ok3 = marcar(aceite, 'p-aceite-erro', aceite.checked);
+          aviso.hidden = !(ok1 && ok2 && ok3);
+          var primeiro = !ok1 ? nome : !ok2 ? zap : !ok3 ? aceite : null;
+          if (primeiro) primeiro.focus();
+        }});
       }})();
     </script>
   </div>
