@@ -64,6 +64,8 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 
 - **21/11/2026** — **Correção do foco no título** (Luiz viu um contorno verde em volta do título ao abrir as páginas no Safari): o foco que o site coloca no título ao trocar de página (para leitor de tela) não aparece mais na tela (`[tabindex="-1"]:focus`). Matéria sem foto aparece só com texto (destaque e cartões), sem quadro vazio; linha fina curta nos destaques e cartões. **Testar sempre navegando pelo menu, como o Luiz faz, antes de entregar.**
 
+- **21/11/2026** — **Nomes das páginas menores** (pedido do Luiz: "não gostei desses nomes grandes"): título de editoria, cidade, vídeos, programação etc. entre 24 e 30 px (antes até 44 px); logo da página da cidade menor.
+
 ## Próximas etapas
 
 1. Luiz revisar as páginas internas no Netlify e pedir ajustes.
