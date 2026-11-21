@@ -2,18 +2,20 @@ import Link from "next/link";
 import { HOME, VIDEOS, urlMateria } from "@/lib/conteudo";
 import { LinkMais } from "@/components/verde/blocos";
 import { BannerTopo, EmCidade, ProgramacaoHoje, TV } from "@/components/verde/interativos";
-import { Parada } from "@/components/verde/parada";
+import { ParadaLateral } from "@/components/verde/parada";
 
 /* eslint-disable @next/next/no-img-element */
 
 export default function Home() {
   const { manchete, subs, faixa, editorias } = HOME;
+  // faixa abaixo da manchete: 4 notícias (as 2 que ficavam ao lado da manchete + as 2 seguintes)
+  const faixa4 = [...subs, ...faixa].slice(0, 4);
   const mm = manchete.materia;
   return (
     <>
       <BannerTopo />
 
-      {/* Destaques: manchete + 2 notícias ao lado (no WordPress: post fixado "Manchete" + os 2 seguintes) */}
+      {/* Destaques: manchete + as 10 mais tocadas ao lado (no WordPress: post fixado "Manchete") */}
       <div className="vfm-container vfm-destaques">
         <article className="vfm-manchete">
           {mm.foto_g && (
@@ -26,25 +28,14 @@ export default function Home() {
           <p className="vfm-manchete__fina">{manchete.fina}</p>
         </article>
 
-        <aside className="vfm-lateral" aria-label="Outros destaques">
-          {subs.map(({ materia: m, chapeu }) => (
-            <article className="vfm-sub" key={m.slug}>
-              {(m.foto_m || m.foto_g) && (
-                <Link className="vfm-sub__foto" href={urlMateria(m)} tabIndex={-1} aria-hidden="true">
-                  <img className="vfm-foto vfm-foto--16x9" src={m.foto_m || m.foto_g} alt="" width={768} height={432} loading="lazy" />
-                </Link>
-              )}
-              <span className="vfm-chapeu">{chapeu}</span>
-              <h2><Link href={urlMateria(m)}>{m.titulo}</Link></h2>
-            </article>
-          ))}
-        </aside>
+        {/* As 10 mais tocadas ao lado da manchete (opção C, aprovada em 21/11/2026) */}
+        <ParadaLateral />
       </div>
 
-      {/* Faixa de 3 destaques abaixo da manchete */}
+      {/* Faixa de 4 destaques abaixo da manchete */}
       <section className="vfm-container vfm-mais-destaques" aria-label="Mais destaques">
         <ul className="vfm-mais-destaques__lista">
-          {faixa.map(({ materia: m, chapeu }) => (
+          {faixa4.map(({ materia: m, chapeu }) => (
             <li key={m.slug}>
               <article className="vfm-card-linha">
                 {m.foto_m && (
@@ -102,8 +93,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      <Parada />
 
       <section className="vfm-secao vfm-secao--branca">
         <div className="vfm-container vfm-extras">
