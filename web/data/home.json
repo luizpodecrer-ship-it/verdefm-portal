@@ -1,0 +1,712 @@
+{
+ "manchete": {
+  "slug": "marcia-pinheiro-recebe-alta-apos-66-dias-internada-por-avc-hemorragico",
+  "chapeu": "Cidades · Saúde",
+  "fina": "Márcia Pinheiro, ex-primeira-dama de Cuiabá, recebeu alta hospitalar nesta quinta-feira (19), após 66 dias internada em decorrência de um Acidente Vascular Cerebral (AVC) hemorrágico."
+ },
+ "subs": [
+  [
+   "lula-visita-raoni-em-mt-apos-cacique-receber-alta-hospitalar",
+   "Política"
+  ],
+  [
+   "governo-nao-retira-projeto-e-almt-aprova-orcamento-de-r-461-bilhoes",
+   "Política"
+  ]
+ ],
+ "faixa": [
+  [
+   "flavia-sai-em-defesa-do-filho-apos-denuncia-de-ameaca-feita-por-ativista",
+   "Política"
+  ],
+  [
+   "policia-sequestra-apartamento-de-r-450-mil-ligado-a-lider-de-faccao-em-mt",
+   "Policial"
+  ],
+  [
+   "bombeiros-descartam-barragem-como-causa-de-enxurrada-que-atingiu-distrito-de-cuiaba",
+   "Cidades"
+  ]
+ ],
+ "ultimas": [
+  "marcia-pinheiro-recebe-alta-apos-66-dias-internada-por-avc-hemorragico",
+  "lula-regulamenta-escala-5x2-e-reducao-da-jornada-de-trabalho-no-brasil",
+  "tj-manda-suspender-cobrancas-de-cartoes-consignados-de-servidores",
+  "lula-visita-raoni-em-mt-apos-cacique-receber-alta-hospitalar"
+ ],
+ "cidades": {
+  "cuiaba": [
+   [
+    "forca-tarefa-resgata-familias-e-distribui-mantimentos-apos-enchente-no-aguacu",
+    "Chuvas"
+   ],
+   [
+    "dia-da-consciencia-negra-confira-o-que-abre-e-o-que-fecha-no-servico-publico-estadual",
+    "Feriado"
+   ],
+   [
+    "rodoviaria-de-cuiaba-deve-receber-20-mil-passageiros-durante-feriado-da-consciencia-negra",
+    "Transporte"
+   ],
+   [
+    "arena-pantanal-vira-centro-de-operacoes-para-atender-ocorrencias-da-chuva-em-cuiaba",
+    "Defesa Civil"
+   ]
+  ],
+  "jaciara": [
+   [
+    "dia-do-conselheiro-tutelar-saiba-quando-pedir-ajuda-e-como-denunciar-em-jaciara",
+    "Cidadania"
+   ],
+   [
+    "jaciara-abre-pre-matriculas-para-umeis-integrais-ate-27-de-novembro",
+    "Educação"
+   ],
+   [
+    "gap-resgata-homem-que-seria-levado-a-tribunal-do-crime-e-prende-dois-suspeitos-em-jaciara",
+    "Policial"
+   ],
+   [
+    "gap-apreende-32-pedras-de-entorpecente-em-casa-de-tetraplegico-apontada-como-ponto-de-trafico-em-jaciara",
+    "Policial"
+   ]
+  ],
+  "campo-verde": [
+   [
+    "defesa-civil-de-campo-verde-alerta-para-riscos-e-cuidados-durante-a-temporada-de-chuvas",
+    "Chuvas"
+   ],
+   [
+    "inauguracao-de-supermercado-em-campo-verde-reforca-o-potencial-economico-do-municipio",
+    "Economia"
+   ],
+   [
+    "prefeitura-de-campo-verde-lanca-programa-extraordinario-de-recuperacao-de-debitos-tributarios-foco-e-o-issqn",
+    "Prefeitura"
+   ],
+   [
+    "campo-verde-recebe-a-11a-edicao-do-country-mix-rodeo-evento-tera-entrada-gratuita-na-pista",
+    "Eventos"
+   ]
+  ]
+ },
+ "editorias": [
+  {
+   "nome": "Política",
+   "rota": "/editoria/politica",
+   "principal": "max-promete-punicao-rigorosa-a-servidores-envolvidos-em-morte-de-empresario",
+   "lista": [
+    "vereadores-de-vg-aprovam-aumento-de-verba-e-ampliacao-de-assessores",
+    "vice-eleita-afasta-candidatura-a-prefeitura-de-cuiaba-em-2028"
+   ]
+  },
+  {
+   "nome": "Economia e negócios",
+   "rota": "/editoria/economia",
+   "principal": "lula-regulamenta-escala-5x2-e-reducao-da-jornada-de-trabalho-no-brasil",
+   "lista": [
+    "agua-ficara-mais-barata-mas-conta-pode-nao-diminuir-em-cuiaba",
+    "tj-manda-suspender-cobrancas-de-cartoes-consignados-de-servidores"
+   ]
+  },
+  {
+   "nome": "Esporte e cultura",
+   "rota": "/editoria/esporte-e-cultura",
+   "principal": "alan-empereur-encerra-ciclo-no-cuiaba-apos-temporada-marcada-por-lesoes",
+   "lista": [
+    "santos-e-condenado-a-pagar-r-186-milhoes-ao-cuiaba-por-divida-envolvendo-joaquim",
+    "cuiabana-que-marcou-carnaval-e-moda-nos-anos-70-e-80-ganha-documentario-conheca-jane"
+   ]
+  }
+ ],
+ "banners": [
+  {
+   "href": "https://www.mrv.com.br/",
+   "img": "https://www.verdefm.com.br/wp-content/uploads/2026/08/1414-7_fullbanner_730x72px_1.jpg.jpeg",
+   "alt": "MRV: visite a nova loja MRV em Várzea Grande",
+   "w": 730,
+   "h": 72
+  },
+  {
+   "href": "https://www.helpvida.com.br/",
+   "img": "https://www.verdefm.com.br/wp-content/uploads/2026/07/banner-site-HelpVida-1260-x-120-px.gif",
+   "alt": "Help Vida",
+   "w": 1260,
+   "h": 120
+  }
+ ],
+ "radios": [
+  {
+   "slug": "cuiaba",
+   "nome": "Cuiabá",
+   "frequencia": "103.7",
+   "stream": "https://streaming.livespanel.com:20086/verdefm",
+   "ativa": true,
+   "logo": "/assets/img/logos/cuiaba.png",
+   "grade": [
+    {
+     "rotulo": "Segunda a Sexta",
+     "dias": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "programas": [
+      {
+       "inicio": 5,
+       "fim": 6,
+       "programa": "Coração Caipira",
+       "apresentador": ""
+      },
+      {
+       "inicio": 6,
+       "fim": 8,
+       "programa": "Alô, Bom Dia",
+       "apresentador": ""
+      },
+      {
+       "inicio": 8,
+       "fim": 11,
+       "programa": "Jornal da Verde FM",
+       "apresentador": "Jornalista: Marina Martins"
+      },
+      {
+       "inicio": 11,
+       "fim": 15,
+       "programa": "Aqui é Verde",
+       "apresentador": ""
+      },
+      {
+       "inicio": 15,
+       "fim": 18,
+       "programa": "Tarde na Verde",
+       "apresentador": "Locutora: Cleidy Coelho"
+      },
+      {
+       "inicio": 18,
+       "fim": 19,
+       "programa": "Radar Sertanejo",
+       "apresentador": ""
+      },
+      {
+       "inicio": 19,
+       "fim": 20,
+       "programa": "1 Hora de Saudade",
+       "apresentador": ""
+      },
+      {
+       "inicio": 20,
+       "fim": 21,
+       "programa": "Voz do Brasil",
+       "apresentador": ""
+      },
+      {
+       "inicio": 21,
+       "fim": 0,
+       "programa": "Sofrência Máxima",
+       "apresentador": ""
+      },
+      {
+       "inicio": 0,
+       "fim": 5,
+       "programa": "Sereno da Madrugada",
+       "apresentador": ""
+      }
+     ]
+    },
+    {
+     "rotulo": "Sábado e Domingo",
+     "dias": [
+      6,
+      0
+     ],
+     "programas": [
+      {
+       "inicio": 5,
+       "fim": 6,
+       "programa": "Clássicos da Verde",
+       "apresentador": ""
+      },
+      {
+       "inicio": 6,
+       "fim": 8,
+       "programa": "Alô, Bom Dia",
+       "apresentador": ""
+      },
+      {
+       "inicio": 8,
+       "fim": 12,
+       "programa": "Manhã na Verde",
+       "apresentador": ""
+      },
+      {
+       "inicio": 12,
+       "fim": 15,
+       "programa": "Violada da Verde",
+       "apresentador": ""
+      },
+      {
+       "inicio": 15,
+       "fim": 18,
+       "programa": "Tarde na Verde",
+       "apresentador": ""
+      },
+      {
+       "inicio": 18,
+       "fim": 19,
+       "programa": "Radar Sertanejo",
+       "apresentador": ""
+      },
+      {
+       "inicio": 19,
+       "fim": 20,
+       "programa": "1 Hora de Saudade",
+       "apresentador": ""
+      },
+      {
+       "inicio": 20,
+       "fim": 0,
+       "programa": "Sofrência Máxima",
+       "apresentador": ""
+      },
+      {
+       "inicio": 0,
+       "fim": 5,
+       "programa": "Sereno da Madrugada",
+       "apresentador": ""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "campo-verde",
+   "nome": "Campo Verde",
+   "frequencia": "96.3",
+   "stream": "https://str1.streamhostpg.com.br:8062/stream",
+   "ativa": true,
+   "logo": "/assets/img/logos/campo-verde.png",
+   "grade": [
+    {
+     "rotulo": "Segunda a Sexta",
+     "dias": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "programas": [
+      {
+       "inicio": 5,
+       "fim": 8,
+       "programa": "Coração Caipira",
+       "apresentador": "Locutor: Claudiney Nascimento"
+      },
+      {
+       "inicio": 8,
+       "fim": 11,
+       "programa": "Manhã na Verde FM",
+       "apresentador": "Jornalista: Evando Mendes"
+      },
+      {
+       "inicio": 11,
+       "fim": 13,
+       "programa": "Momento Gospel",
+       "apresentador": "Locutor: Kleberson Almeida"
+      },
+      {
+       "inicio": 13,
+       "fim": 15,
+       "programa": "Aqui é Verde – Rede",
+       "apresentador": ""
+      },
+      {
+       "inicio": 15,
+       "fim": 18,
+       "programa": "Tarde na Verde",
+       "apresentador": "Locutora: Antonella Almeida"
+      },
+      {
+       "inicio": 18,
+       "fim": 20,
+       "programa": "Radar Sertanejo",
+       "apresentador": "Claudiney Nascimento"
+      },
+      {
+       "inicio": 20,
+       "fim": 21,
+       "programa": "Voz do Brasil",
+       "apresentador": ""
+      },
+      {
+       "inicio": 21,
+       "fim": 0,
+       "programa": "Sofrência Máxima",
+       "apresentador": ""
+      },
+      {
+       "inicio": 0,
+       "fim": 3,
+       "programa": "Sereno da Madrugada",
+       "apresentador": ""
+      },
+      {
+       "inicio": 3,
+       "fim": 5,
+       "programa": "Alô, Bom Dia",
+       "apresentador": ""
+      }
+     ]
+    },
+    {
+     "rotulo": "Sábado",
+     "dias": [
+      6
+     ],
+     "programas": [
+      {
+       "inicio": 5,
+       "fim": 6,
+       "programa": "Clássicos da Verde",
+       "apresentador": ""
+      },
+      {
+       "inicio": 6,
+       "fim": 8,
+       "programa": "Alô, Bom Dia",
+       "apresentador": ""
+      },
+      {
+       "inicio": 8,
+       "fim": 12,
+       "programa": "Manhã na Verde",
+       "apresentador": "Claudiney Nascimento"
+      },
+      {
+       "inicio": 12,
+       "fim": 15,
+       "programa": "Violada da Verde",
+       "apresentador": ""
+      },
+      {
+       "inicio": 15,
+       "fim": 18,
+       "programa": "Tarde na Verde",
+       "apresentador": ""
+      },
+      {
+       "inicio": 18,
+       "fim": 19,
+       "programa": "Radar Sertanejo",
+       "apresentador": ""
+      },
+      {
+       "inicio": 19,
+       "fim": 20,
+       "programa": "1 Hora de Saudade",
+       "apresentador": ""
+      },
+      {
+       "inicio": 20,
+       "fim": 0,
+       "programa": "Sofrência Máxima",
+       "apresentador": ""
+      },
+      {
+       "inicio": 0,
+       "fim": 5,
+       "programa": "Sereno da Madrugada",
+       "apresentador": ""
+      }
+     ]
+    },
+    {
+     "rotulo": "Domingo",
+     "dias": [
+      0
+     ],
+     "programas": [
+      {
+       "inicio": 5,
+       "fim": 6,
+       "programa": "Clássicos da Verde",
+       "apresentador": ""
+      },
+      {
+       "inicio": 6,
+       "fim": 8,
+       "programa": "Alô, Bom Dia",
+       "apresentador": ""
+      },
+      {
+       "inicio": 8,
+       "fim": 9,
+       "programa": "Missa",
+       "apresentador": ""
+      },
+      {
+       "inicio": 9,
+       "fim": 12,
+       "programa": "Encontro c/ a Querência",
+       "apresentador": "Locutor: Seu Lino"
+      },
+      {
+       "inicio": 12,
+       "fim": 15,
+       "programa": "Violada da Verde",
+       "apresentador": ""
+      },
+      {
+       "inicio": 15,
+       "fim": 18,
+       "programa": "Tarde na Verde",
+       "apresentador": ""
+      },
+      {
+       "inicio": 18,
+       "fim": 19,
+       "programa": "Radar Sertanejo",
+       "apresentador": ""
+      },
+      {
+       "inicio": 19,
+       "fim": 20,
+       "programa": "1 Hora de Saudade",
+       "apresentador": ""
+      },
+      {
+       "inicio": 20,
+       "fim": 0,
+       "programa": "Sofrência Máxima",
+       "apresentador": ""
+      },
+      {
+       "inicio": 0,
+       "fim": 5,
+       "programa": "Sereno da Madrugada",
+       "apresentador": ""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "jaciara",
+   "nome": "Jaciara",
+   "frequencia": "102.3",
+   "stream": "https://streaming.livespanel.com:20120/verdefmjaciara",
+   "ativa": true,
+   "logo": "/assets/img/logos/jaciara.png",
+   "grade": [
+    {
+     "rotulo": "Segunda a Sexta",
+     "dias": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "programas": [
+      {
+       "inicio": 5,
+       "fim": 8,
+       "programa": "Coração Caipira",
+       "apresentador": "Juliano Souza"
+      },
+      {
+       "inicio": 8,
+       "fim": 11,
+       "programa": "Manhã na Verde",
+       "apresentador": "Elisângela Souza"
+      },
+      {
+       "inicio": 11,
+       "fim": 15,
+       "programa": "Aqui é Verde",
+       "apresentador": ""
+      },
+      {
+       "inicio": 15,
+       "fim": 18,
+       "programa": "Tarde na Verde",
+       "apresentador": "Mari Souza"
+      },
+      {
+       "inicio": 18,
+       "fim": 19,
+       "programa": "Radar Sertanejo",
+       "apresentador": ""
+      },
+      {
+       "inicio": 19,
+       "fim": 20,
+       "programa": "1 Hora de Saudade",
+       "apresentador": ""
+      },
+      {
+       "inicio": 20,
+       "fim": 21,
+       "programa": "Voz do Brasil",
+       "apresentador": ""
+      },
+      {
+       "inicio": 21,
+       "fim": 0,
+       "programa": "Sofrência Máxima",
+       "apresentador": ""
+      },
+      {
+       "inicio": 0,
+       "fim": 3,
+       "programa": "Sereno da Madrugada",
+       "apresentador": ""
+      },
+      {
+       "inicio": 3,
+       "fim": 5,
+       "programa": "Alô, Bom Dia",
+       "apresentador": ""
+      }
+     ]
+    },
+    {
+     "rotulo": "Sábado",
+     "dias": [
+      6
+     ],
+     "programas": [
+      {
+       "inicio": 5,
+       "fim": 6,
+       "programa": "Clássicos da Verde",
+       "apresentador": ""
+      },
+      {
+       "inicio": 6,
+       "fim": 8,
+       "programa": "Alô, Bom Dia",
+       "apresentador": ""
+      },
+      {
+       "inicio": 8,
+       "fim": 12,
+       "programa": "Manhã na Verde",
+       "apresentador": "Bianne Flores e Elisângela Souza"
+      },
+      {
+       "inicio": 12,
+       "fim": 15,
+       "programa": "Violada da Verde",
+       "apresentador": ""
+      },
+      {
+       "inicio": 15,
+       "fim": 18,
+       "programa": "Tarde na Verde",
+       "apresentador": ""
+      },
+      {
+       "inicio": 18,
+       "fim": 19,
+       "programa": "Radar Sertanejo",
+       "apresentador": ""
+      },
+      {
+       "inicio": 19,
+       "fim": 20,
+       "programa": "1 Hora de Saudade",
+       "apresentador": ""
+      },
+      {
+       "inicio": 20,
+       "fim": 0,
+       "programa": "Sofrência Máxima",
+       "apresentador": ""
+      },
+      {
+       "inicio": 0,
+       "fim": 5,
+       "programa": "Sereno da Madrugada",
+       "apresentador": ""
+      }
+     ]
+    },
+    {
+     "rotulo": "Domingo",
+     "dias": [
+      0
+     ],
+     "programas": [
+      {
+       "inicio": 5,
+       "fim": 6,
+       "programa": "Clássicos da Verde",
+       "apresentador": ""
+      },
+      {
+       "inicio": 6,
+       "fim": 8,
+       "programa": "Alô, Bom Dia",
+       "apresentador": ""
+      },
+      {
+       "inicio": 8,
+       "fim": 12,
+       "programa": "Manhã na Verde",
+       "apresentador": ""
+      },
+      {
+       "inicio": 12,
+       "fim": 15,
+       "programa": "Violada da Verde",
+       "apresentador": ""
+      },
+      {
+       "inicio": 15,
+       "fim": 18,
+       "programa": "Tarde na Verde",
+       "apresentador": ""
+      },
+      {
+       "inicio": 18,
+       "fim": 19,
+       "programa": "Radar Sertanejo",
+       "apresentador": ""
+      },
+      {
+       "inicio": 19,
+       "fim": 20,
+       "programa": "1 Hora de Saudade",
+       "apresentador": ""
+      },
+      {
+       "inicio": 20,
+       "fim": 0,
+       "programa": "Sofrência Máxima",
+       "apresentador": ""
+      },
+      {
+       "inicio": 0,
+       "fim": 5,
+       "programa": "Sereno da Madrugada",
+       "apresentador": ""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "arenapolis",
+   "nome": "Arenápolis",
+   "frequencia": "102.1",
+   "stream": "",
+   "ativa": false,
+   "logo": "/assets/img/logos/arenapolis.png",
+   "grade": []
+  }
+ ]
+}

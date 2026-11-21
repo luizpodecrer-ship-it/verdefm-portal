@@ -2,10 +2,11 @@
 
 Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rádio, o seu logo, as suas notícias e a sua publicidade. Site atual: verdefm.com.br.
 
-**Este repositório entrega só o front-end** (HTML, CSS e JavaScript). O back-end será WordPress, feito por outro desenvolvedor. Guia para ele: `docs/WORDPRESS.md`.
+**21/11/2026 — migração aprovada pelo Luiz:** o portal passa a ser **Next.js + React + TypeScript + Tailwind + shadcn** na pasta `web/` (WordPress "headless": só o painel da redação, entregando as matérias por API). A versão antiga em HTML/CSS/JS puros (`site/`, publicada em verdefm-portal.netlify.app) fica no ar até a nova estar igual ou melhor; depois é aposentada. Guia antigo do programador: `docs/WORDPRESS.md` (será refeito para o formato headless).
 
 ## Quem é o Luiz
 
+- **Padrão de tecnologia em TODOS os projetos web (decisão do Luiz em 21/11/2026):** **Next.js + React + TypeScript + Tailwind CSS + shadcn/ui** (componentes em `components/ui`), com `lucide-react`, `motion` e `next-themes` quando precisar. "Todos os nossos projetos são e serão de ponta com essas tecnologias." Não propor HTML/CSS/JS puros. Back-end de conteúdo (ex.: WordPress) fica "headless", entregando dados por API.
 - **Responder sempre em português do Brasil** (pedido do Luiz em 21/11/2026), em toda mensagem.
 - **Padrão em todo projeto web:** assinatura da Astravox no rodapé = **só o ícone** da Astravox (sem "Desenvolvido por", sem o nome), pequeno e discreto, com link para https://www.astravox.com.br em nova aba e `aria-label="Astravox"`.
 - Não é desenvolvedor. Quando precisar ele fazer algo (GitHub, Netlify, domínio), dar o passo a passo clicável, sem jargão.
@@ -15,16 +16,22 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 
 ## Como o código é feito
 
-- HTML, CSS e JS puros, sem framework e sem build. Pasta publicada: `site/`.
-- Uma folha só (`site/assets/css/verdefm.css`), com variáveis no topo; classes com prefixo `vfm-` (padrão BEM). Não criar cores soltas fora das variáveis.
-- Um script só (`site/assets/js/verdefm.js`), clássico (não ES module), tudo dentro de uma função; API pública em `window.VerdeFM`.
-- Comportamento ligado por atributos `data-vfm-*`, nunca por texto ou posição, para o WordPress poder gerar o HTML livremente.
-- Cada página tem um único `<main id="vfm-conteudo">`: só ele troca na navegação contínua.
-- Comentários `<!-- WP: ... -->` no HTML dizem qual template ou função do WordPress gera cada trecho.
+**Portal novo (`web/`, desde 21/11/2026):**
+- Next.js (App Router) + React + TypeScript + Tailwind CSS + shadcn/ui. Ler `web/AGENTS.md`: esta versão do Next tem mudanças (ex.: `params` é Promise; ver `node_modules/next/dist/docs`).
+- Por enquanto gera site estático (`output: "export"` → `web/out/`). Com o WordPress no ar, passar a revalidar as páginas (ISR) sem mudar os componentes.
+- Conteúdo só por `web/lib/conteudo.ts` (hoje lê `web/data/demo.json` e `home.json`; depois, a API REST do WordPress headless).
+- Estado do site inteiro em `web/components/verde/provedores.tsx` (fica no layout): tema (`next-themes`, classe `dark` no `<html>`), cidade (cookie `vfm_cidade` + localStorage) e a rádio (um `<audio>` só, não para ao navegar).
+- Visual: `web/app/verdefm.css` (mesmas classes `vfm-*` e variáveis do site antigo; escuro em `html.dark`), importado em `globals.css` depois do Tailwind. Componentes shadcn em `web/components/ui` (ex.: `theme-switcher-1.tsx`, copiado exatamente como o Luiz mandou); peças do portal em `web/components/verde`.
+- Links internos com `next/link`. Cada página tem um `<main id="vfm-conteudo">` (no layout) e um `<h1>`; ao trocar de página o foco vai para o conteúdo sem contorno na tela.
+- Fontes por `next/font/google`: Sora (700) e Manrope (400–700).
+
+**Site antigo (`site/`, no ar até o novo substituir):** HTML, CSS e JS puros, sem build. Uma folha (`site/assets/css/verdefm.css`) e um script (`site/assets/js/verdefm.js`, API `window.VerdeFM`); comportamento por atributos `data-vfm-*`; comentários `<!-- WP: ... -->`. Só corrigir, não evoluir.
+
+**Para os dois:**
 - Textos, nomes de classe e comentários em português do Brasil.
 - Mobile first: conferir em 375 px, 1366–1440 px e 1920 px.
 - Acessibilidade WCAG 2.1 AA: contraste 4,5:1, alvos de 44 px, um `<h1>` por página, tudo pelo teclado, "reduzir movimento" respeitado.
-- Sem dados no navegador além das preferências: cidade (cookie `vfm_cidade` e o mesmo valor no localStorage) e tema (`vfm_tema` no localStorage: `sistema`, `claro` ou `escuro`).
+- Sem dados no navegador além das preferências: cidade (cookie `vfm_cidade` e o mesmo valor no localStorage) e tema (no novo, `theme` do next-themes: `system`, `light` ou `dark`).
 
 ## Visual (aprovado em 20/11/2026)
 
@@ -81,8 +88,8 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 
 ## Próximas etapas
 
-1. Luiz revisar as páginas internas no Netlify e pedir ajustes.
-2. Arquivos da Aeonik (ou voltar para outra fonte de texto, se o teste não agradar).
+1. Luiz revisar o portal novo (Next.js) em verdefm-portal-next.netlify.app; quando estiver igual ou melhor, apontar o endereço principal para ele e aposentar `site/`.
+2. Refazer `docs/WORDPRESS.md` para o WordPress headless (API REST, campos de cidade, crédito da foto, banners, grade).
 
 ## Pendências
 
@@ -96,11 +103,14 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 ## Publicar
 
 - GitHub: `luizpodecrer-ship-it/verdefm-portal`, branch `main`.
+- **Portal novo (Next.js):** projeto Netlify **verdefm-portal-next** (id `cb07a262-7adc-4deb-adf7-e91ba22db327`, time "luizpodecrer"), endereço **verdefm-portal-next.netlify.app**, acesso aberto. Publicar com a ferramenta do Netlify (deploy-site com esse id) rodando o comando dentro de `web/` (lá está o `netlify.toml`: `npm run build`, publica `out`).
+- **Site antigo:** ver abaixo.
 - Netlify: projeto **verdefm-portal** (id `5f327f1e-1d67-44ec-879f-db751dbdb975`, time "luizpodecrer"), endereço **verdefm-portal.netlify.app**, acesso de visitantes aberto. Publica a pasta `site/` (configurado em `netlify.toml`).
 - Primeira publicação (20/11/2026) foi enviada direto pelo Claude. Enquanto o Netlify não estiver ligado ao GitHub, cada entrega precisa ser publicada de novo pela ferramenta do Netlify (deploy-site com o id acima).
 - A cada publicação, trocar o número `?v=` do CSS e do JS em `site/index.html` e rodar `python3 ferramentas/gerar-demo.py` (as páginas internas copiam o cabeçalho e o rodapé da home). **Mudou cabeçalho, rodapé ou player na home? Rode o gerador de novo.**
 
 ## Testar
 
+- Portal novo: `cd web && npm run build` e servir `web/out/` por HTTP (endereço sem `.html` deve abrir `x.html`); testar com o Playwright navegando pelo menu, no computador e no celular.
 - Abrir `site/` num navegador de teste servido por HTTP (a navegação contínua não funciona abrindo o arquivo com dois cliques; nesse caso o site navega do jeito normal).
 - O som da rádio só dá para conferir no endereço publicado.

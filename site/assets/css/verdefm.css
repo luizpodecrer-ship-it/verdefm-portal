@@ -848,7 +848,7 @@ html.vfm-navegando #vfm-conteudo { opacity: .55; }
 /* Texto corrido da matéria */
 .vfm-texto { max-width: 720px; font-size: 18px; line-height: 1.75; color: var(--vfm-texto-corrido); overflow-wrap: break-word; }
 .vfm-texto :where(p, ul, ol, blockquote, figure, h2, h3, h4, .vfm-texto__video, img) + :where(p, ul, ol, blockquote, figure, h2, h3, h4, .vfm-texto__video, img) { margin-top: 1.1em; }
-.vfm-texto p { margin: 0; }
+.vfm-texto p { margin-bottom: 0; }
 .vfm-texto h2, .vfm-texto h3, .vfm-texto h4 { margin-top: 1.6em; line-height: 1.25; color: var(--vfm-texto); }
 .vfm-texto h2 { font-size: 26px; } .vfm-texto h3 { font-size: 22px; } .vfm-texto h4 { font-size: 19px; }
 .vfm-texto a { color: var(--vfm-verde); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
