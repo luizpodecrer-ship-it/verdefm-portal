@@ -138,6 +138,11 @@ to{opacity:1;transform:none}
 .agro .linhas line.on{stroke:var(--broto);stroke-dasharray:none;animation:none;stroke-width:3}
 @keyframes agro-flui{to{stroke-dashoffset:-24}
 }
+.agro .fichas{display:grid}
+.agro .fichas>.ficha{grid-area:1/1}
+.agro .fichas>.ficha.fora{visibility:hidden}
+.agro .fichas .ex{margin-top:auto}
+@media(max-width:900px){.agro .fichas>.ficha.fora{display:none}}
 .agro .ficha{background:var(--card);border-radius:28px 28px 28px 6px;padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:14px}
 .agro .ficha .funcao{font:400 22px/1 var(--font-bebas),"Bebas Neue",sans-serif;color:var(--mata);letter-spacing:.04em}
 .agro .ficha h3{font-size:clamp(40px,4vw,56px)}

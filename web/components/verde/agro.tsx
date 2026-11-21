@@ -203,7 +203,6 @@ export function AgroEcossistema() {
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
-  const c = CANAIS[sel];
   return (
     <div className="eco">
       <div className="mapa" ref={mapa}>
@@ -217,16 +216,21 @@ export function AgroEcossistema() {
           </button>
         ))}
       </div>
-      <article className="ficha troca" key={sel} aria-live="polite">
-        <span className="funcao">{c.f}</span>
-        <h3>{c.n}</h3>
-        <p className="onde">{c.onde}</p>
-        <div className="numero"><Contador alvo={c.num} /><span>{c.sufixo} <span className="nota">{c.num2}</span></span></div>
-        <ul className="itens">
-          {c.itens.map(([t, d, s]) => <li key={t}><div><strong>{t}</strong><span>{d}</span></div>{s && <span className="tag">Sugestão</span>}</li>)}
-        </ul>
-        <p className="ex"><b>Exemplo:</b> {c.ex}</p>
-      </article>
+      {/* As 5 fichas ficam empilhadas no mesmo lugar: a caixa tem sempre a altura da maior e não muda ao trocar de canal. */}
+      <div className="fichas" aria-live="polite">
+        {CANAIS.map((c, k) => (
+          <article key={c.k} className={`ficha${k === sel ? " troca" : " fora"}`} inert={k !== sel} aria-hidden={k !== sel || undefined}>
+            <span className="funcao">{c.f}</span>
+            <h3>{c.n}</h3>
+            <p className="onde">{c.onde}</p>
+            <div className="numero">{k === sel ? <Contador key={sel} alvo={c.num} /> : <b>{c.num}</b>}<span>{c.sufixo} <span className="nota">{c.num2}</span></span></div>
+            <ul className="itens">
+              {c.itens.map(([t, d, s]) => <li key={t}><div><strong>{t}</strong><span>{d}</span></div>{s && <span className="tag">Sugestão</span>}</li>)}
+            </ul>
+            <p className="ex"><b>Exemplo:</b> {c.ex}</p>
+          </article>
+        ))}
+      </div>
     </div>
   );
 }
