@@ -66,6 +66,8 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 
 - **21/11/2026** — **Nomes das páginas menores** (pedido do Luiz: "não gostei desses nomes grandes"): título de editoria, cidade, vídeos, programação etc. entre 24 e 30 px (antes até 44 px); logo da página da cidade menor.
 
+- **21/11/2026** — **Cabeçalho da página da cidade alinhado à marca** (pedido do Luiz): título e frase mais juntos; no computador o bloco de texto tem a mesma altura da marca (54 px), de cima a baixo.
+
 ## Próximas etapas
 
 1. Luiz revisar as páginas internas no Netlify e pedir ajustes.
