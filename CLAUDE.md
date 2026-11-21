@@ -71,6 +71,8 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 
 - **21/11/2026** — **Destaques da home reorganizados** (pedido do Luiz: "fotos pequenas, muito texto, bagunçado"): ao lado da manchete, **2 notícias com foto grande 16:9** e título de até 3 linhas; logo abaixo da manchete, **faixa com 3 notícias lado a lado** (foto pequena + título). No celular, todas viram lista com foto à esquerda. Manchete com título até 40 px e resumo de até 3 linhas. Substitui a coluna de 5 notícias.
 
+- **21/11/2026** — Publicidade 300 × 250 da matéria **centralizada no celular** (pedido do Luiz).
+
 ## Próximas etapas
 
 1. Luiz revisar as páginas internas no Netlify e pedir ajustes.

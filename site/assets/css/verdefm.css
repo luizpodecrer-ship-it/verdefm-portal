@@ -872,6 +872,7 @@ html.vfm-navegando #vfm-conteudo { opacity: .55; }
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; aspect-ratio: 300 / 250; width: 100%; max-width: 320px;
   border: 1px dashed #B5C0B9; border-radius: var(--vfm-raio-m); background: var(--vfm-superficie); color: var(--vfm-texto-2); font-size: 13px; text-align: center;
 }
+.vfm-pub-quadrado { margin-inline: auto; } /* centralizado quando a coluna é mais larga que o anúncio (celular e tablet) */
 .vfm-pub-quadrado span:first-child { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
 .vfm-lista-numerada h2 { font-size: 18px; padding-bottom: 10px; margin-bottom: 4px; border-bottom: 1px solid var(--vfm-linha-forte); }
 .vfm-lista-numerada ol { margin: 0; padding: 0; list-style: none; counter-reset: vfm-n; }
