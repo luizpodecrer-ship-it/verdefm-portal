@@ -282,6 +282,11 @@ html.vfm-rolou .vfm-logo img { height: 32px; }
   .vfm-nav a:hover { color: var(--vfm-verde); }
   .vfm-nav a[aria-current="page"] { color: var(--vfm-verde); box-shadow: inset 0 -2px 0 var(--vfm-verde); }
 }
+/* notebook pequeno: menu numa linha só */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .vfm-nav ul { gap: 0 18px; }
+  .vfm-nav a { font-size: 14px; }
+}
 
 /* Faixa "Últimas" */
 .vfm-ultimas { padding-top: 16px; }
@@ -1105,17 +1110,30 @@ html.vfm-trocando-tema *, html.vfm-trocando-tema *::before, html.vfm-trocando-te
    Seção grafite com brilho verde, igual nos temas claro e escuro.
    ========================================================================== */
 .vfm-parada {
-  --vfm-parada-apoio: #B9C7BF;
+  /* mesmo verde-escuro da seção "Ao vivo e vídeos" (pedido do Luiz em 21/11/2026) */
+  --vfm-parada-apoio: var(--vfm-verde-nevoa);
   --vfm-parada-vivo: #4CD282;
-  position: relative; overflow: hidden; color: #fff;
+  position: relative; isolation: isolate; overflow: hidden; color: #fff;
   background:
-    radial-gradient(900px 420px at 0% 0%, rgba(45, 190, 78, .20), transparent 70%),
-    radial-gradient(700px 400px at 100% 100%, rgba(45, 190, 78, .14), transparent 70%),
-    #141B17;
+    radial-gradient(55% 70% at 12% 0%, rgba(45, 190, 78, .30), transparent 62%),
+    radial-gradient(45% 60% at 100% 100%, rgba(45, 190, 78, .20), transparent 60%),
+    linear-gradient(160deg, var(--vfm-verde-noite-claro) 0%, var(--vfm-verde-noite) 55%, #072A19 100%);
   padding-block: 56px;
 }
+/* ondas de rádio saindo de trás do disco do 1º lugar */
+.vfm-parada::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: repeating-radial-gradient(circle at 24% 50%, rgba(255, 255, 255, .07) 0 1px, transparent 1.5px 56px);
+  -webkit-mask-image: radial-gradient(70% 85% at 24% 50%, #000 20%, transparent 75%);
+          mask-image: radial-gradient(70% 85% at 24% 50%, #000 20%, transparent 75%);
+}
+.vfm-parada::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .12; mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+@media (min-width: 1024px) { .vfm-parada::before { background: repeating-radial-gradient(circle at 24% 50%, rgba(255, 255, 255, .07) 0 1px, transparent 1.5px 72px); } }
 @media (min-width: 1024px) { .vfm-parada { padding-block: 72px 64px; } }
-.vfm-parada .vfm-chapeu { color: var(--vfm-parada-vivo); text-transform: uppercase; letter-spacing: .08em; }
+.vfm-parada .vfm-chapeu { color: var(--vfm-verde-luz); text-transform: uppercase; letter-spacing: .08em; }
 .vfm-parada__cabeca { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px 32px; margin-bottom: 32px; }
 .vfm-parada__cabeca > div { display: flex; flex-direction: column; gap: 8px; }
 .vfm-parada__titulo { color: #fff; font-size: clamp(28px, 3.2vw, 40px); line-height: 1.12; }

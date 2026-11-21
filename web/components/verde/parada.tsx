@@ -8,7 +8,7 @@ import { PARADA, hora, type MusicaParada } from "@/lib/conteudo";
 
 /* eslint-disable @next/next/no-img-element */
 
-const CORES = [["#0E7A3A", "#2DBE4E"], ["#5B2A86", "#C04BB0"], ["#9A3412", "#F59E0B"], ["#1E3A8A", "#38BDF8"], ["#7F1D1D", "#F43F5E"],
+const CORES = [["#B45309", "#FBBF24"], ["#5B2A86", "#C04BB0"], ["#9A3412", "#F59E0B"], ["#1E3A8A", "#38BDF8"], ["#7F1D1D", "#F43F5E"],
   ["#134E4A", "#14B8A6"], ["#3F3F46", "#A1A1AA"], ["#713F12", "#FACC15"], ["#1E1B4B", "#818CF8"], ["#365314", "#A3E635"]];
 
 const sigla = (a: string) => a.split(/[\s&,]+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join("");

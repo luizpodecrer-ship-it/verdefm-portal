@@ -19,6 +19,7 @@ function menuItens(cidade: string) {
     { rotulo: "Economia e negócios", href: "/editoria/economia" },
     { rotulo: "Esporte e cultura", href: "/editoria/esporte-e-cultura" },
     { rotulo: "Vídeos", href: "/videos" },
+    { rotulo: "Mais tocadas", href: "/mais-tocadas" },
     { rotulo: "Programação", href: "/programacao" },
     { rotulo: "Promoções", href: "/promocoes" },
   ];
