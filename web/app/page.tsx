@@ -2,6 +2,7 @@ import Link from "next/link";
 import { HOME, VIDEOS, urlMateria } from "@/lib/conteudo";
 import { LinkMais } from "@/components/verde/blocos";
 import { BannerTopo, EmCidade, ProgramacaoHoje, TV } from "@/components/verde/interativos";
+import { Parada } from "@/components/verde/parada";
 
 /* eslint-disable @next/next/no-img-element */
 
@@ -101,6 +102,8 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <Parada />
 
       <section className="vfm-secao vfm-secao--branca">
         <div className="vfm-container vfm-extras">
