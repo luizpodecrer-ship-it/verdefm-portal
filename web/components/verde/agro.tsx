@@ -2,7 +2,8 @@
 
 /* Portal Agro na Verde (aprovado em 21/11/2026): partes que mexem. */
 import { useEffect, useRef, useState } from "react";
-import { agoraEmCuiaba, useRadio } from "./provedores";
+import Link from "next/link";
+import { agoraEmCuiaba, useCidade, useRadio } from "./provedores";
 import { COTACOES, PRACAS } from "@/lib/agro";
 
 const brl = (v: number) => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -188,5 +189,18 @@ export function AgroNewsletter() {
       <button className="btn escuro" type="submit">Quero receber</button>
       <p className="ok" id="agro-news-msg" role="status">{msg}</p>
     </form>
+  );
+}
+
+/** "Voltar para a Verde FM" com o logo da cidade escolhida. */
+export function AgroVoltar() {
+  const { cidade } = useCidade();
+  return (
+    <Link className="voltar" href="/" aria-label="Voltar para o site da Verde FM">
+      <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 6l-6 6 6 6" /></svg>
+      <span>Voltar para a</span>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={cidade.logo} alt="" width={84} height={20} />
+    </Link>
   );
 }

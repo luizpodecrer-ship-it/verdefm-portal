@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Montserrat } from "next/font/google";
-import { AgroCotacoes, AgroLetreiro, AgroNewsletter, AgroOuvir, AgroQuadroDia, AgroStatus } from "@/components/verde/agro";
+import Link from "next/link";
+import { AgroCotacoes, AgroLetreiro, AgroNewsletter, AgroOuvir, AgroQuadroDia, AgroStatus, AgroVoltar } from "@/components/verde/agro";
 import { TV } from "@/components/verde/interativos";
 import { AGRO_DESTAQUES, AGRO_MANCHETE, AGRO_NOTICIAS, type NoticiaAgro } from "@/lib/agro";
 import { VIDEOS, dataBr } from "@/lib/conteudo";
@@ -47,6 +48,14 @@ export default function AgroNaVerde() {
   const m = AGRO_MANCHETE;
   return (
     <div className={`agro ${bebas.variable} ${montserrat.variable}`}>
+      {/* Faixa fina da Verde FM: o caminho de volta para o portal da rádio */}
+      <div className="rede">
+        <div className="agro-wrap">
+          <AgroVoltar />
+          <span className="producao">O Agro na Verde é uma produção da Verde FM</span>
+          <AgroStatus />
+        </div>
+      </div>
       <div className="topo">
         <div className="agro-wrap">
           <a href="#agro-inicio" aria-label="Agro na Verde, início"><img className="logo logo-claro" src={`${IMG}/logo-agro.png`} alt="Agro na Verde" width={743} height={297} /><img className="logo logo-escuro" src={`${IMG}/logo-agro-branco.png`} alt="Agro na Verde" width={743} height={297} /></a>
@@ -54,7 +63,6 @@ export default function AgroNaVerde() {
             <a href="#agro-noticias">Notícias</a><a href="#agro-cotacoes">Cotações</a><a href="#agro-videos">Vídeos</a><a href="#agro-entrevistas">Entrevistas e artigos</a><a href="#agro-newsletter">Newsletter</a>
           </nav>
           <div className="topo-dir">
-            <AgroStatus />
             <a className="btn verde" href="#agro-newsletter">Assine a newsletter</a>
           </div>
         </div>
@@ -150,6 +158,15 @@ export default function AgroNaVerde() {
           <AgroNewsletter />
         </div>
       </section>
+
+      <footer className="rodape">
+        <div className="agro-wrap">
+          <img src={`${IMG}/logo-agro-branco.png`} alt="Agro na Verde" width={743} height={297} />
+          <p>Feito em Mato Grosso, para quem movimenta o agro de Mato Grosso. Uma produção da Verde FM. <Link href="/">Ir para o site da Verde FM</Link></p>
+          {/* Assinatura da Astravox: só o ícone (padrão dos projetos web da Astravox) */}
+          <a className="astravox" href="https://www.astravox.com.br" target="_blank" rel="noopener" aria-label="Astravox"><img src="/assets/img/astravox.svg" alt="" width={14} height={18} /></a>
+        </div>
+      </footer>
     </div>
   );
 }

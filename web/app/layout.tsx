@@ -5,6 +5,7 @@ import { Provedores } from "@/components/verde/provedores";
 import { Cabecalho } from "@/components/verde/cabecalho";
 import { BarraPlayer, Rodape } from "@/components/verde/rodape";
 import { AoNavegar } from "@/components/verde/ao-navegar";
+import { SoNoPortal } from "@/components/verde/moldura";
 import { HOME, ENDERECO } from "@/lib/conteudo";
 
 const sora = Sora({ variable: "--font-sora", subsets: ["latin"], weight: ["700"], display: "swap" });
@@ -23,16 +24,17 @@ export const viewport: Viewport = {
   ],
 };
 
-/** Estrutura de todas as páginas. Só o <main> troca ao navegar: a rádio, o cabeçalho e o rodapé ficam. */
+/** Estrutura de todas as páginas. Só o <main> troca ao navegar: a rádio, o cabeçalho e o rodapé ficam.
+ *  No Agro na Verde o cabeçalho e o rodapé da Verde saem (ele tem os dele); o player continua. */
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" className={`${sora.variable} ${manrope.variable}`} suppressHydrationWarning>
       <body>
         <Provedores>
           <a className="vfm-pular" href="#vfm-conteudo">Pular para o conteúdo</a>
-          <Cabecalho ultimas={HOME.ultimas} />
+          <SoNoPortal><Cabecalho ultimas={HOME.ultimas} /></SoNoPortal>
           <main id="vfm-conteudo" tabIndex={-1}>{children}</main>
-          <Rodape />
+          <SoNoPortal><Rodape /></SoNoPortal>
           <BarraPlayer />
           <AoNavegar />
         </Provedores>
