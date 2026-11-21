@@ -38,7 +38,14 @@ html.dark .agro{--bg:#1C1612;--card:#2A211B;--ink:#F3ECE8;--apoio:#CDBFB6;--terr
 @media(max-width:700px){.agro .rede .producao{display:none}}
 
 /* cabeçalho do Agro */
-.agro .topo{background:var(--card);border-bottom:1px solid var(--linha)}
+/* cabeçalho do Agro preso no topo ao rolar (pedido do Luiz em 21/11/2026); encolhe e ganha sombra depois de descer */
+.agro .topo{position:sticky;top:0;z-index:40;background:var(--card);border-bottom:1px solid var(--linha);transition:box-shadow .35s ease}
+.agro .topo .agro-wrap{transition:min-height .35s var(--chega,ease),padding .35s var(--chega,ease)}
+.agro .topo .logo{transition:height .35s var(--chega,ease)}
+.agro.agro-rolou .topo{box-shadow:0 8px 24px rgba(42,33,27,.10)}
+html.dark .agro.agro-rolou .topo{box-shadow:0 8px 24px rgba(0,0,0,.45)}
+.agro.agro-rolou .topo .agro-wrap{min-height:60px;padding-block:6px}
+.agro.agro-rolou .topo .logo{height:36px}
 .agro .topo .agro-wrap{display:flex;align-items:center;gap:12px 24px;min-height:76px;flex-wrap:wrap;padding-block:10px}
 .agro .topo .logo{height:46px;width:auto}
 .agro .topo .logo-escuro{display:none}
@@ -53,7 +60,7 @@ html.dark .agro .topo .logo-escuro{display:block}
 .agro-status.no-ar{color:var(--mata)}
 .agro-status.no-ar .ponto{animation:agro-pulso 1.6s infinite}
 @keyframes agro-pulso{0%{box-shadow:0 0 0 0 rgba(77,179,54,.6)}100%{box-shadow:0 0 0 10px rgba(77,179,54,0)}}
-@media(max-width:900px){.agro .topo nav{order:3;width:100%;overflow-x:auto;flex-wrap:nowrap}.agro .topo nav a{flex:none}.agro .topo-dir{margin-left:0}}
+@media(max-width:900px){.agro .topo nav{order:3;width:100%;overflow-x:auto;flex-wrap:nowrap}.agro .topo nav a{flex:none}.agro .topo-dir{margin-left:auto}.agro .topo .btn{min-height:40px;padding:0 14px;font-size:13px}.agro.agro-rolou .topo nav a{padding:6px 0}}
 
 /* letreiro de cotações */
 .agro .letreiro{background:var(--degrade);color:#fff;overflow:hidden;font-size:14px}

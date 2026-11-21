@@ -19,11 +19,28 @@ export function AgroMovimento() {
     if (!raiz) return;
     const reduzir = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    /* 0. cabeçalho do Agro preso no topo: depois de descer um pouco, encolhe e ganha sombra */
+    let rolou = false;
+    const conferirTopo = () => {
+      const y = scrollY;
+      if (!rolou && y > 120) rolou = true;
+      else if (rolou && y < 40) rolou = false;
+      else return;
+      raiz.classList.toggle("agro-rolou", rolou);
+    };
+    conferirTopo();
+    addEventListener("scroll", conferirTopo, { passive: true });
+    // altura do cabeçalho preso (encolhido), para a rolagem parar logo abaixo dele
+    const alturaTopo = () => {
+      const t = raiz.querySelector<HTMLElement>(".topo");
+      return t ? Math.min(t.offsetHeight, innerWidth < 900 ? 120 : 64) : 0;
+    };
+
     /* 1. rolagem suave até a seção */
     let animacao = 0;
     const rolarAte = (alvo: HTMLElement) => {
       const de = scrollY;
-      const para = Math.max(0, alvo.getBoundingClientRect().top + scrollY - 12);
+      const para = Math.max(0, alvo.getBoundingClientRect().top + scrollY - alturaTopo() - 8);
       const dist = para - de;
       const tempo = Math.min(1400, 650 + Math.abs(dist) * 0.25);
       cancelAnimationFrame(animacao);
@@ -42,7 +59,7 @@ export function AgroMovimento() {
       const alvo = document.getElementById(a.getAttribute("href")!.slice(1));
       if (!alvo) return;
       e.preventDefault();
-      if (reduzir) { alvo.scrollIntoView(); alvo.setAttribute("tabindex", "-1"); alvo.focus({ preventScroll: true }); return; }
+      if (reduzir) { scrollTo(0, Math.max(0, alvo.getBoundingClientRect().top + scrollY - alturaTopo() - 8)); alvo.setAttribute("tabindex", "-1"); alvo.focus({ preventScroll: true }); return; }
       rolarAte(alvo);
     };
     raiz.addEventListener("click", aoClicar);
@@ -52,7 +69,7 @@ export function AgroMovimento() {
     addEventListener("touchstart", parar, { passive: true });
 
     if (reduzir) {
-      return () => { raiz.removeEventListener("click", aoClicar); removeEventListener("wheel", parar); removeEventListener("touchstart", parar); };
+      return () => { raiz.removeEventListener("click", aoClicar); removeEventListener("wheel", parar); removeEventListener("touchstart", parar); removeEventListener("scroll", conferirTopo); };
     }
 
     /* 2. seções e cartões que surgem */
@@ -87,7 +104,7 @@ export function AgroMovimento() {
     return () => {
       raiz.removeEventListener("click", aoClicar);
       removeEventListener("wheel", parar); removeEventListener("touchstart", parar);
-      removeEventListener("scroll", aoRolar); removeEventListener("resize", aoRolar);
+      removeEventListener("scroll", aoRolar); removeEventListener("resize", aoRolar); removeEventListener("scroll", conferirTopo);
       cancelAnimationFrame(pedido); cancelAnimationFrame(animacao);
       observador.disconnect();
     };
