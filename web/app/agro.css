@@ -177,4 +177,26 @@ html.dark .agro .topo .logo-escuro{display:block}
 .agro .rodape .astravox:hover{opacity:1}
 .agro .rodape .astravox img{height:18px;width:auto;filter:brightness(0) invert(1)}
 
+/* movimento (pedido do Luiz em 21/11/2026: paralaxe e rolagem bem suaves) */
+.agro{--chega:cubic-bezier(.22,1,.36,1)}
+/* entrada da página: faixa, cabeçalho, letreiro e destaques chegam em sequência */
+.agro .rede{animation:agro-desce .8s var(--chega) both}
+.agro .topo{animation:agro-desce .9s var(--chega) .08s both}
+.agro .letreiro{animation:agro-aparece 1s var(--chega) .2s both}
+.agro .manchete{animation:agro-sobe 1.1s var(--chega) .25s both}
+@keyframes agro-desce{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+@keyframes agro-sobe{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+@keyframes agro-aparece{from{opacity:0}to{opacity:1}}
+/* fotos em moldura: a imagem anda dentro dela (paralaxe) e a moldura fica parada */
+.agro .foto{display:block;overflow:hidden;border-radius:10px;isolation:isolate}
+.agro .manchete .foto{border-radius:12px}
+.agro .foto img{border-radius:0;will-change:transform;transition:transform .6s var(--chega)}
+.agro .manchete .foto img{transform:scale(1.14)}
+.agro .mini .foto img{transform:scale(1.14)}
+/* seções e cartões surgem subindo, um depois do outro (--i) */
+.agro.agro-js .revela{opacity:0;transform:translateY(36px);transition:opacity 1s var(--chega),transform 1.2s var(--chega);transition-delay:calc(var(--i,0) * 110ms)}
+.agro.agro-js .revela.visivel{opacity:1;transform:none}
+.agro .card .foto img{transition:transform .9s var(--chega)}
+@media(hover:hover){.agro .card:hover .foto img{transform:scale(1.04)}}
+
 @media(prefers-reduced-motion:reduce){.agro *,.agro *::before,.agro *::after{animation:none!important;transition:none!important}}

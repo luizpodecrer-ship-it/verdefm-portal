@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Montserrat } from "next/font/google";
 import Link from "next/link";
+import { AgroMovimento } from "@/components/verde/agro-movimento";
 import { AgroCotacoes, AgroLetreiro, AgroNewsletter, AgroOuvir, AgroQuadroDia, AgroStatus, AgroVoltar } from "@/components/verde/agro";
 import { TV } from "@/components/verde/interativos";
 import { AGRO_DESTAQUES, AGRO_MANCHETE, AGRO_NOTICIAS, type NoticiaAgro } from "@/lib/agro";
@@ -21,16 +22,17 @@ export const metadata: Metadata = {
 const IMG = "/assets/img/agro";
 const ext = { target: "_blank", rel: "noopener" } as const;
 
-function Card({ n }: { n: NoticiaAgro }) {
+function Card({ n, i }: { n: NoticiaAgro; i: number }) {
+  const atraso = { ["--i" as string]: i };
   return n.foto ? (
-    <a className="card" href={n.link} {...ext}>
-      <img src={n.foto} alt="" width={768} height={512} loading="lazy" />
+    <a className="card revela" href={n.link} {...ext} style={atraso}>
+      <span className="foto"><img src={n.foto} alt="" width={768} height={512} loading="lazy" /></span>
       <span className="chapeu">{n.chapeu}</span>
       <h3>{n.titulo}</h3>
       <time dateTime={n.data}>{dataBr(n.data)}</time>
     </a>
   ) : (
-    <a className="card texto" href={n.link} {...ext}>
+    <a className="card texto revela" href={n.link} {...ext} style={atraso}>
       <span className="chapeu">{n.chapeu}</span>
       <h3>{n.titulo}</h3>
       <p>{n.resumo}</p>
@@ -48,6 +50,7 @@ export default function AgroNaVerde() {
   const m = AGRO_MANCHETE;
   return (
     <div className={`agro ${bebas.variable} ${montserrat.variable}`}>
+      <AgroMovimento />
       {/* Faixa fina da Verde FM: o caminho de volta para o portal da rádio */}
       <div className="rede">
         <div className="agro-wrap">
@@ -73,16 +76,16 @@ export default function AgroNaVerde() {
       <div className="agro-wrap destaques" id="agro-inicio">
         <article className="manchete">
           <a href={m.link} {...ext}>
-            <img src={m.foto} alt="Luiz Pedro Bier, eleito presidente da Aprosoja MT" width={560} height={524} fetchPriority="high" />
+            <span className="foto"><img src={m.foto} alt="Luiz Pedro Bier, eleito presidente da Aprosoja MT" width={560} height={524} fetchPriority="high" data-paralaxe="0.12" /></span>
             <span className="chapeu">{m.chapeu}</span>
             <h1>{m.titulo}</h1>
             <p>{m.resumo}</p>
           </a>
         </article>
         <div className="lado">
-          {AGRO_DESTAQUES.map((n) => (
-            <a className="mini" key={n.link} href={n.link} {...ext}>
-              <img src={n.foto} alt="" width={768} height={432} />
+          {AGRO_DESTAQUES.map((n, i) => (
+            <a className="mini revela" key={n.link} href={n.link} {...ext} style={{ ["--i" as string]: i + 1 }}>
+              <span className="foto"><img src={n.foto} alt="" width={768} height={432} data-paralaxe="0.08" /></span>
               <span className="chapeu">{n.chapeu}</span>
               <h3>{n.titulo}</h3>
             </a>
@@ -91,12 +94,12 @@ export default function AgroNaVerde() {
       </div>
 
       <section className="sec" id="agro-cotacoes" aria-labelledby="agro-t-cot" style={{ paddingTop: 8 }}>
-        <div className="agro-wrap"><AgroCotacoes /></div>
+        <div className="agro-wrap revela"><AgroCotacoes /></div>
       </section>
 
       <section className="programa" aria-labelledby="agro-t-prog">
-        <div className="agro-wrap">
-          <img src={`${IMG}/logo-agro-branco.png`} alt="" width={160} height={64} />
+        <div className="agro-wrap revela">
+          <img src={`${IMG}/logo-agro-branco.png`} alt="" width={160} height={64} data-paralaxe="-0.06" />
           <div>
             <h2 id="agro-t-prog">Ao vivo de segunda a sexta, das 7h às 8h</h2>
             <p>Manchetes, radar do mercado, a conversa de negócios do dia e o que acontece nas regiões de Mato Grosso.</p>
@@ -108,24 +111,24 @@ export default function AgroNaVerde() {
 
       <section className="sec" id="agro-noticias" aria-labelledby="agro-t-not">
         <div className="agro-wrap">
-          <div className="tit"><h2 id="agro-t-not">Notícias do agro</h2></div>
-          <div className="grade">{AGRO_NOTICIAS.map((n) => <Card key={n.link} n={n} />)}</div>
+          <div className="tit revela"><h2 id="agro-t-not">Notícias do agro</h2></div>
+          <div className="grade">{AGRO_NOTICIAS.map((n, i) => <Card key={n.link} n={n} i={i % 4} />)}</div>
         </div>
       </section>
 
       <section className="sec videos vfm-secao--tv" id="agro-videos" aria-labelledby="agro-t-vid">
         <div className="agro-wrap">
-          <div className="tit"><h2 id="agro-t-vid">Vídeos e entrevistas</h2><a href="https://www.youtube.com/@VerdeFMoficial" {...ext}>Ver no YouTube</a></div>
-          <TV videos={VIDEOS.slice(0, 6)} />
+          <div className="tit revela"><h2 id="agro-t-vid">Vídeos e entrevistas</h2><a href="https://www.youtube.com/@VerdeFMoficial" {...ext}>Ver no YouTube</a></div>
+          <div className="revela" style={{ ["--i" as string]: 1 }}><TV videos={VIDEOS.slice(0, 6)} /></div>
           <p className="nota">Provisório: vídeos do canal da Verde FM até a playlist do Agro na Verde ficar pronta.</p>
         </div>
       </section>
 
       <section className="sec" id="agro-entrevistas" aria-labelledby="agro-t-ea">
         <div className="agro-wrap">
-          <div className="tit"><h2 id="agro-t-ea">Entrevistas e artigos</h2><span className="nota">Conteúdo de exemplo para mostrar o formato</span></div>
+          <div className="tit revela"><h2 id="agro-t-ea">Entrevistas e artigos</h2><span className="nota">Conteúdo de exemplo para mostrar o formato</span></div>
           <div className="ea">
-            <article className="entrevista">
+            <article className="entrevista revela" style={{ ["--i" as string]: 1 }}>
               <span className="tag">Entrevista · pergunta e resposta</span>
               <h3>“A conta da safra fecha no frete, não só no preço da soja”</h3>
               <p className="nota">Com o presidente de uma cooperativa de Sorriso, na Conversa de Negócios</p>
@@ -140,8 +143,8 @@ export default function AgroNaVerde() {
               {[["CR", "Crédito rural", "O que muda no custo do financiamento com o novo Plano Safra"],
                 ["AG", "Coluna do agrônomo", "Manejo do solo na entressafra: o que fazer antes do plantio"],
                 ["EC", "Mercado", "Câmbio e soja: como o dólar mexe no preço da saca em Mato Grosso"],
-                ["RE", "De ponta a ponta", "O destaque da semana nas regiões produtoras de Mato Grosso"]].map(([s, c, t]) => (
-                <article className="coluna" key={s}><span className="av" aria-hidden="true">{s}</span><div><span className="chapeu">{c}</span><h3>{t}</h3></div></article>
+                ["RE", "De ponta a ponta", "O destaque da semana nas regiões produtoras de Mato Grosso"]].map(([s, c, t], j) => (
+                <article className="coluna revela" key={s} style={{ ["--i" as string]: 2 + j }}><span className="av" aria-hidden="true">{s}</span><div><span className="chapeu">{c}</span><h3>{t}</h3></div></article>
               ))}
             </div>
           </div>
@@ -149,7 +152,7 @@ export default function AgroNaVerde() {
       </section>
 
       <section className="news" id="agro-newsletter" aria-labelledby="agro-t-news">
-        <div className="agro-wrap">
+        <div className="agro-wrap revela">
           <div>
             <span className="tag escura">Toda terça, às 7h</span>
             <h2 id="agro-t-news">A síntese da semana do agro no seu e-mail</h2>
