@@ -26,7 +26,7 @@ function Capa({ m, i, grande }: { m: MusicaParada; i: number; grande?: boolean }
   return (
     <span className={`vfm-parada__capa${grande ? " vfm-parada__capa--grande" : ""}`} aria-hidden="true"
       style={{ background: `linear-gradient(135deg, ${c[0]}, ${c[1]})` }}>
-      {m.capa ? <img src={m.capa} alt="" width={300} height={300} loading="lazy" /> : sigla(m.artista)}
+      {m.capa ? <img src={m.capa} alt="" width={400} height={400} loading={i < 4 ? undefined : "lazy"} /> : sigla(m.artista)}
     </span>
   );
 }
@@ -54,15 +54,17 @@ function usePrevia() {
   return { tocando, previa, elemento, radioTocando };
 }
 
-/** Botão de ouvir: com prévia toca aqui 30 s; sem prévia, abre a música no YouTube. */
+/** Botão de ouvir: com prévia toca aqui 30 s; sem prévia, abre a música no YouTube Music. */
 function BotaoOuvir({ i, grande, classe, ativo, previa }: { i: number; grande?: boolean; classe?: string; ativo: boolean; previa: (i: number) => void }) {
   const m = PARADA.musicas[i];
   const c = classe ?? (grande ? "vfm-parada__ouvir" : "vfm-parada__play");
   if (!m.previa) {
-    const busca = `https://www.youtube.com/results?search_query=${encodeURIComponent(`${m.musica} ${m.artista}`)}`;
+    const link = m.youtube
+      ? `https://music.youtube.com/watch?v=${m.youtube}`
+      : `https://music.youtube.com/search?q=${encodeURIComponent(`${m.musica} ${m.artista}`)}`;
     return (
-      <a className={c} href={busca} target="_blank" rel="noopener" aria-label={grande ? undefined : `Ouvir ${m.musica} no YouTube (abre em nova aba)`}>
-        <IcoPlay t={grande ? 16 : 14} />{grande && <>Ouvir no YouTube<span className="vfm-so-leitor"> (abre em nova aba)</span></>}
+      <a className={c} href={link} target="_blank" rel="noopener" aria-label={grande ? undefined : `Ouvir ${m.musica} no YouTube Music (abre em nova aba)`}>
+        <IcoPlay t={grande ? 16 : 14} />{grande && <>Ouvir no YouTube Music<span className="vfm-so-leitor"> (abre em nova aba)</span></>}
       </a>
     );
   }

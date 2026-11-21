@@ -169,22 +169,25 @@ export type MusicaParada = {
   semanas: number;
   capa?: string;
   previa?: string;
+  youtube?: string; // id do vídeo: o botão abre no YouTube Music
 };
+// Capas e links provisórios (demonstração): arte oficial dos singles e o vídeo oficial de cada música.
+const C = (n: string) => `/assets/img/parada/${n}.jpg`;
 export const PARADA = {
   semana: "Semana de 16 a 22 de novembro",
   semanaCurta: "Semana de 16 a 22/11",
   exemplo: true,
   semanasNoTopo: 3,
   musicas: [
-    { musica: "Erro Gostoso", artista: "Simone Mendes", anterior: 1, semanas: 9 },
-    { musica: "Leão", artista: "Marília Mendonça", anterior: 4, semanas: 12 },
-    { musica: "Nosso Quadro", artista: "Ana Castela", anterior: 2, semanas: 15 },
-    { musica: "Desejo Imortal", artista: "Gusttavo Lima", anterior: null, semanas: 1 },
-    { musica: "Haja Colírio", artista: "Guilherme & Benuto", anterior: 8, semanas: 7 },
-    { musica: "Seu Brilho Sumiu", artista: "Israel & Rodolffo", anterior: 4, semanas: 10 },
-    { musica: "Coração Cigano", artista: "Luan Santana", anterior: 8, semanas: 4 },
-    { musica: "Casca de Bala", artista: "Thullio Milionário", anterior: 8, semanas: 8 },
-    { musica: "Bombonzinho", artista: "Israel & Rodolffo e Ana Castela", anterior: 6, semanas: 11 },
-    { musica: "Pipoco", artista: "Ana Castela, Melody e DJ Chris no Beat", anterior: null, semanas: 1 },
+    { musica: "Erro Gostoso", artista: "Simone Mendes", anterior: 1, semanas: 9, capa: C("erro-gostoso"), youtube: "mr09lDl_Tfk" },
+    { musica: "Leão", artista: "Marília Mendonça", anterior: 4, semanas: 12, capa: C("leao"), youtube: "tI55Zu9uZEM" },
+    { musica: "Nosso Quadro", artista: "Ana Castela", anterior: 2, semanas: 15, capa: C("nosso-quadro"), youtube: "vzEIwc0rG8Y" },
+    { musica: "Desejo Imortal", artista: "Gusttavo Lima", anterior: null, semanas: 1, capa: C("desejo-imortal"), youtube: "-UUe7g8-E0k" },
+    { musica: "Haja Colírio", artista: "Guilherme & Benuto e Hugo & Guilherme", anterior: 8, semanas: 7, capa: C("haja-colirio"), youtube: "qjxNM9qF3LA" },
+    { musica: "Seu Brilho Sumiu", artista: "Israel & Rodolffo e Mari Fernandez", anterior: 4, semanas: 10, capa: C("seu-brilho-sumiu"), youtube: "bHT5GvYi6io" },
+    { musica: "Coração Cigano", artista: "Luan Santana e Luísa Sonza", anterior: 8, semanas: 4, capa: C("coracao-cigano"), youtube: "Vz4Sb1bl1IE" },
+    { musica: "Casca de Bala", artista: "Thullio Milionário", anterior: 8, semanas: 8, capa: C("casca-de-bala"), youtube: "uSB58FixgSQ" },
+    { musica: "Bombonzinho", artista: "Israel & Rodolffo e Ana Castela", anterior: 6, semanas: 11, capa: C("bombonzinho"), youtube: "t050lriI0_w" },
+    { musica: "Pipoco", artista: "Ana Castela, Melody e DJ Chris no Beat", anterior: null, semanas: 1, capa: C("pipoco"), youtube: "69JAoslGYI8" },
   ] as MusicaParada[],
 };
