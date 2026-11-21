@@ -1,0 +1,215 @@
+/* Agro na Verde (página /agro-na-verde, aprovada em 21/11/2026). Cores e fontes do manual da marca:
+   Marrom Terra #96562A, Verde Folha #4DB336, Verde Broto #8EDB4A, Verde Mata #1F6B1A, Chumbo #686A69, Creme #F3ECE8,
+   Marrom Escuro #2A211B; Bebas Neue (títulos e números) + Montserrat (texto). Tudo dentro de .agro. */
+.agro{--bg:#F3ECE8;--card:#FFFFFF;--ink:#2A211B;--apoio:#5E554F;--terra:#96562A;--terra-txt:#96562A;--folha:#4DB336;--broto:#8EDB4A;--mata:#1F6B1A;--chumbo:#686A69;--linha:#E2D6CF;
+--degrade:linear-gradient(115deg,#96562A 0%,#7E5A3F 48%,#686A69 100%);--mola:cubic-bezier(.2,.9,.25,1.15);
+background:var(--bg);color:var(--ink);font:16px/1.6 var(--font-montserrat),Montserrat,system-ui,sans-serif;overflow-x:clip}
+html.dark .agro{--bg:#1C1612;--card:#2A211B;--ink:#F3ECE8;--apoio:#CDBFB6;--terra-txt:#D08A57;--mata:#8EDB4A;--linha:#3A2F28}
+.agro *{box-sizing:border-box;min-width:0}
+.agro img{max-width:100%;display:block}
+.agro p{margin:0}
+.agro :focus-visible{outline:3px solid var(--broto);outline-offset:3px;border-radius:6px}
+.agro-wrap{max-width:var(--vfm-largura,1240px);margin-inline:auto;padding-inline:var(--vfm-lateral,16px)}
+.agro .band{padding-block:clamp(48px,7vw,96px)}
+.agro .nota{font-size:13px;color:var(--apoio)}
+.agro h1,.agro h2,.agro h3,.agro h4{font-family:var(--font-bebas),"Bebas Neue",Impact,sans-serif;font-weight:400;line-height:1;letter-spacing:.01em;margin:0}
+.agro .capa{position:relative;background:var(--degrade);color:#fff;overflow:hidden}
+.agro .capa::before{content:"";position:absolute;left:-8%;top:-30%;width:42%;height:150%;background:#F3ECE8;opacity:.09;border-radius:0 0 60% 0;transform:skewX(-18deg)}
+.agro .capa .agro-wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(24px,4vw,56px);align-items:center;padding-block:clamp(36px,5vw,72px)}
+.agro .capa .logo{width:min(340px,70%);height:auto}
+.agro .capa h1{font-size:clamp(52px,7vw,96px);margin:22px 0 14px;text-wrap:balance}
+.agro .capa h1 span{color:var(--broto)}
+.agro .capa .lema{font-size:clamp(17px,1.5vw,20px);max-width:34ch;color:#F7EFEA}
+.agro .selos{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}
+.agro .selo{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.14);font-size:14px;font-weight:700}
+.agro .selo.vivo{background:var(--folha);color:#12210f}
+.agro .agora{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:12px;background:rgba(20,14,10,.32);border:1px solid rgba(255,255,255,.16);max-width:460px}
+.agro .agora strong{display:block;font-size:15px}
+.agro .agora span{font-size:14px;color:#EADFD8}
+.agro .ponto{width:12px;height:12px;border-radius:50%;background:var(--broto);flex:none;box-shadow:0 0 0 0 rgba(142,219,74,.6)}
+.agro .no-ar .ponto{animation:agro-pulso 1.6s infinite}
+@keyframes agro-pulso{to{box-shadow:0 0 0 14px rgba(142,219,74,0)}
+}
+.agro .acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.agro .btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 24px;border-radius:999px;font:700 15px var(--font-montserrat),Montserrat,sans-serif;text-decoration:none;border:0;cursor:pointer;transition:transform .25s var(--mola),background .25s,box-shadow .25s}
+.agro .btn:hover{transform:translateY(-2px)}
+.agro .btn:active{transform:scale(.97)}
+.agro .btn.verde{background:var(--folha);color:#12210f;box-shadow:0 8px 22px rgba(77,179,54,.35)}
+.agro .btn.verde:hover{background:var(--broto)}
+.agro .btn.vazado{border:1.5px solid rgba(255,255,255,.55);color:#fff;background:transparent}
+.agro .btn.vazado:hover{background:rgba(255,255,255,.12)}
+.agro .quadro{position:relative;aspect-ratio:5/6;max-height:620px;justify-self:center;width:100%}
+.agro .quadro img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:28px 28px 120px 28px;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+.agro .ondas{position:absolute;left:58%;top:52%;width:0;height:0;pointer-events:none}
+.agro .ondas i{position:absolute;left:-60px;top:-60px;width:120px;height:120px;border-radius:50%;border:2px solid rgba(142,219,74,.7);animation:agro-onda 3.6s ease-out infinite;opacity:0}
+.agro .ondas i:nth-child(2){animation-delay:1.2s}
+.agro .ondas i:nth-child(3){animation-delay:2.4s}
+@keyframes agro-onda{0%{transform:scale(.3);opacity:.9}
+100%{transform:scale(3.4);opacity:0}
+}
+.agro .chip{position:absolute;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:14px;background:#fff;color:#2A211B;font-size:13px;font-weight:700;box-shadow:0 12px 28px rgba(0,0,0,.25);animation:agro-boia 6s ease-in-out infinite}
+.agro .chip small{display:block;font-weight:500;color:#5E554F}
+.agro .chip b{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--terra);color:#fff;flex:none}
+.agro .chip.c1{left:-6%;top:12%}
+.agro .chip.c2{right:-4%;top:46%;animation-delay:-2s}
+.agro .chip.c3{left:2%;bottom:8%;animation-delay:-4s}
+@keyframes agro-boia{0%,100%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
+}
+@media(max-width:860px){.agro .capa .agro-wrap{grid-template-columns:minmax(0,1fr)}
+.agro .quadro{max-width:460px;aspect-ratio:4/4.4}
+.agro .chip.c1{left:0}
+.agro .chip.c2{right:0}
+}
+.agro .faixa{background:var(--folha);color:#12210f;overflow:hidden;font:400 26px/1 var(--font-bebas),"Bebas Neue",sans-serif;letter-spacing:.04em}
+.agro .faixa div{display:flex;gap:36px;width:max-content;padding:14px 0;animation:agro-corre 38s linear infinite}
+.agro .faixa span{display:flex;align-items:center;gap:36px}
+.agro .faixa span::after{content:"";width:10px;height:10px;border-radius:50% 0;background:#1F6B1A}
+@keyframes agro-corre{to{transform:translateX(-50%)}
+}
+.agro .cab{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px;margin-bottom:clamp(28px,4vw,44px)}
+.agro .cab h2{font-size:clamp(40px,5vw,64px)}
+.agro .cab h2 b{font-weight:400;color:var(--terra-txt)}
+.agro .cab p{max-width:52ch;font-size:17px;color:var(--apoio)}
+.agro .cab p strong{color:var(--ink)}
+.agro .tag{display:inline-block;padding:5px 12px;border-radius:999px 999px 999px 0;background:var(--folha);color:#12210f;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+.agro .tres{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.agro .card{background:var(--card);border-radius:24px 24px 24px 6px;padding:28px;transition:transform .35s var(--mola),box-shadow .35s}
+.agro .card:hover{transform:translateY(-6px) rotate(-.4deg);box-shadow:0 18px 40px rgba(42,33,27,.14)}
+.agro .folha{display:grid;place-items:center;width:56px;height:56px;border-radius:18px 18px 18px 4px;background:var(--terra);color:#fff;margin-bottom:18px}
+.agro .card h3{font-size:34px;color:var(--terra-txt);margin-bottom:8px}
+.agro .card p{color:var(--apoio)}
+.agro .assinatura{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:18px;padding:22px 28px;border-radius:24px 24px 24px 6px;background:var(--degrade);color:#fff}
+.agro .assinatura strong{font:400 clamp(28px,3.4vw,42px)/1 var(--font-bebas),"Bebas Neue",sans-serif;letter-spacing:.02em}
+@media(max-width:760px){.agro .tres{grid-template-columns:minmax(0,1fr)}
+}
+.agro .radio{background:var(--card)}
+.agro .regua{position:relative;margin-top:8px}
+.agro .trilho{display:flex;gap:6px;height:auto}
+.agro .seg{flex:var(--min) 1 0;min-width:122px;min-height:112px;padding:14px;border-radius:16px 16px 16px 4px;border:0;background:var(--bg);color:var(--ink);text-align:left;font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:6px;transition:background .3s,color .3s,transform .3s var(--mola)}
+.agro .seg:hover{transform:translateY(-3px)}
+.agro .seg small{font-weight:700;color:var(--terra-txt);font-size:13px;white-space:nowrap}
+.agro .seg strong{font:400 22px/1 var(--font-bebas),"Bebas Neue",sans-serif;letter-spacing:.02em}
+.agro .seg[aria-pressed=true]{background:var(--degrade);color:#fff}
+.agro .seg[aria-pressed=true] small{color:var(--broto)}
+.agro .seg.quadro-dia{background:color-mix(in srgb,var(--folha) 22%,var(--bg))}
+.agro .seg.quadro-dia[aria-pressed=true]{background:var(--folha);color:#12210f}
+.agro .seg.quadro-dia[aria-pressed=true] small{color:#1F6B1A}
+.agro .agulha{position:absolute;top:-10px;bottom:-10px;width:3px;margin-left:-1.5px;background:var(--folha);border-radius:2px;pointer-events:none;transition:left .25s ease-out}
+.agro .agulha::before{content:attr(data-h);position:absolute;top:-30px;left:50%;transform:translateX(-50%);background:var(--folha);color:#12210f;font-size:12px;font-weight:800;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.agro .relogio{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin:44px 0 22px}
+.agro .relogio label{font-weight:700;font-size:15px}
+.agro .relogio input{flex:1 1 280px;accent-color:var(--folha);height:44px}
+.agro .detalhe{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 22px;align-items:baseline;padding:24px 28px;border-radius:24px 24px 24px 6px;background:var(--bg)}
+.agro .detalhe .hora{font:400 54px/1 var(--font-bebas),"Bebas Neue",sans-serif;color:var(--terra-txt);grid-row:span 2}
+.agro .detalhe h3{font-size:34px}
+.agro .detalhe p{color:var(--apoio)}
+.agro .semana{margin-top:56px}
+.agro .semana h3{font-size:30px;margin-bottom:14px}
+.agro .abas{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.agro .aba{min-height:44px;padding:0 20px;border-radius:999px;border:1.5px solid var(--linha);background:transparent;color:var(--ink);font:700 14px var(--font-montserrat),Montserrat,sans-serif;cursor:pointer;transition:background .25s,border-color .25s}
+.agro .aba[aria-selected=true]{background:var(--terra);border-color:var(--terra);color:#fff}
+.agro .aba .hoje{font-size:11px;margin-left:6px;padding:2px 6px;border-radius:999px;background:var(--folha);color:#12210f}
+.agro .painel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:center;padding:28px;border-radius:24px 24px 24px 6px;background:var(--bg)}
+.agro .painel h4{margin:0;font:400 clamp(44px,6vw,76px)/.95 var(--font-bebas),"Bebas Neue",sans-serif;color:var(--mata)}
+.agro .painel p{font-size:18px}
+.agro .painel .tag{margin-bottom:12px}
+.agro .troca{animation:agro-entra .45s var(--mola)}
+@keyframes agro-entra{from{opacity:.2;transform:translateY(10px)}
+to{opacity:1;transform:none}
+}
+.agro .todo-dia{margin-top:16px;font-weight:600;color:var(--apoio)}
+@media(max-width:860px){.agro .trilho{flex-direction:column}
+.agro .seg{min-height:0;flex-basis:auto}
+.agro .agulha,.agro .relogio{display:none}
+.agro .painel{grid-template-columns:minmax(0,1fr)}
+}
+.agro .eco{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:28px;align-items:stretch}
+.agro .mapa{position:relative;min-height:440px;border-radius:28px;background:var(--degrade);overflow:hidden}
+.agro .mapa .nucleo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:180px;height:180px;border-radius:50%;background:var(--folha);color:#12210f;display:grid;place-items:center;text-align:center;padding:18px;box-shadow:0 0 0 18px rgba(142,219,74,.18),0 0 0 40px rgba(142,219,74,.08)}
+.agro .mapa .nucleo small{display:block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+.agro .mapa .nucleo strong{font:400 30px/1 var(--font-bebas),"Bebas Neue",sans-serif}
+.agro .canal{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:6px;min-width:96px;padding:12px;border:0;border-radius:18px 18px 18px 4px;background:rgba(255,255,255,.12);color:#fff;font:700 13px var(--font-montserrat),Montserrat,sans-serif;cursor:pointer;transition:background .25s,transform .35s var(--mola)}
+.agro .canal svg{width:26px;height:26px}
+.agro .canal:hover{transform:translate(-50%,-50%) scale(1.06)}
+.agro .canal[aria-pressed=true]{background:#fff;color:#96562A}
+.agro .linhas{position:absolute;inset:0;width:100%;height:100%}
+.agro .linhas line{stroke:rgba(255,255,255,.28);stroke-width:2;stroke-dasharray:4 8;animation:agro-flui 1.2s linear infinite}
+.agro .linhas line.on{stroke:var(--broto);stroke-dasharray:none;animation:none;stroke-width:3}
+@keyframes agro-flui{to{stroke-dashoffset:-24}
+}
+.agro .ficha{background:var(--card);border-radius:28px 28px 28px 6px;padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:14px}
+.agro .ficha .funcao{font:400 22px/1 var(--font-bebas),"Bebas Neue",sans-serif;color:var(--mata);letter-spacing:.04em}
+.agro .ficha h3{font-size:clamp(40px,4vw,56px)}
+.agro .ficha .onde{font-size:17px;color:var(--apoio)}
+.agro .numero{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 12px;padding:14px 0;border-block:1px solid var(--linha)}
+.agro .numero b{font:400 clamp(48px,5vw,68px)/1 var(--font-bebas),"Bebas Neue",sans-serif;color:var(--terra-txt)}
+.agro .numero span{font-weight:600}
+.agro .itens{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.agro .itens li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px}
+.agro .itens strong{display:block}
+.agro .itens span{color:var(--apoio);font-size:15px}
+.agro .itens .tag{align-self:start;font-size:10px}
+.agro .ex{font-size:15px;padding:12px 16px;border-radius:14px;background:var(--bg)}
+.agro .ex b{color:var(--terra-txt)}
+.agro .regra{margin-top:18px;display:flex;align-items:center;gap:16px;padding:18px 24px;border-radius:999px 999px 999px 8px;background:var(--degrade);color:#fff;font-weight:700}
+.agro .regra::before{content:"";width:28px;height:6px;border-radius:3px;background:var(--folha);flex:none}
+@media(max-width:900px){.agro .eco{grid-template-columns:minmax(0,1fr)}
+.agro .mapa{min-height:0;padding:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:10px}
+.agro .mapa .nucleo,.agro .linhas{display:none}
+.agro .canal{position:static;transform:none}
+.agro .canal:hover{transform:scale(1.04)}
+.agro .regra{border-radius:20px}
+}
+.agro .jornada{background:linear-gradient(180deg,var(--bg),var(--card))}
+.agro .trilha{position:relative;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px;padding-top:34px}
+.agro .trilha::before{content:"";position:absolute;left:4%;right:4%;top:12px;height:4px;border-radius:2px;background:var(--linha)}
+.agro .progresso{position:absolute;left:4%;top:12px;height:4px;border-radius:2px;background:var(--folha);transition:width .6s ease}
+.agro .token{position:absolute;top:2px;width:24px;height:24px;margin-left:-12px;border-radius:50% 50% 50% 4px;background:var(--terra);border:3px solid var(--broto);transition:left .6s var(--mola)}
+.agro .passo{border:0;text-align:left;font:inherit;color:inherit;cursor:pointer;background:var(--card);border-radius:20px 20px 20px 4px;padding:18px 16px;display:flex;flex-direction:column;gap:6px;transition:transform .3s var(--mola),background .3s,color .3s}
+.agro .passo b{font:400 38px/1 var(--font-bebas),"Bebas Neue",sans-serif;color:var(--terra-txt)}
+.agro .passo strong{font-size:14px;text-transform:uppercase;letter-spacing:.03em}
+.agro .passo span{font-size:14px;color:var(--apoio)}
+.agro .passo[aria-current=true]{background:var(--degrade);color:#fff;transform:translateY(-6px)}
+.agro .passo[aria-current=true] b{color:var(--broto)}
+.agro .passo[aria-current=true] span{color:#F2E8E2}
+.agro .resumo{margin-top:26px;font-size:clamp(18px,2vw,22px);max-width:62ch}
+.agro .resumo b{color:var(--mata)}
+.agro .pausa{margin-top:14px;min-height:44px;padding:0 18px;border-radius:999px;border:1.5px solid var(--linha);background:transparent;color:var(--ink);font:700 14px var(--font-montserrat),Montserrat,sans-serif;cursor:pointer}
+@media(max-width:1000px){.agro .trilha{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.agro .trilha::before,.agro .progresso,.agro .token{display:none}
+}
+.agro .cartas{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:18px}
+.agro .news{position:relative;overflow:hidden;border-radius:28px 28px 28px 6px;background:var(--degrade);color:#fff;padding:clamp(24px,4vw,44px);display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:24px;align-items:center}
+.agro .news h2{font-size:clamp(40px,5vw,60px)}
+.agro .news p{margin:8px 0 18px;color:#F2E8E2}
+.agro .news form{display:flex;flex-wrap:wrap;gap:10px}
+.agro .news label{flex:1 1 100%;font-size:14px;font-weight:700}
+.agro .news input{flex:1 1 220px;min-height:48px;border-radius:999px;border:0;padding:0 20px;font:16px var(--font-montserrat),Montserrat,sans-serif}
+.agro .news .ok{margin-top:12px;font-weight:700;color:var(--broto)}
+.agro .news img{width:180px;height:auto;filter:drop-shadow(0 16px 26px rgba(0,0,0,.35));animation:agro-boia 7s ease-in-out infinite}
+.agro .zap{border-radius:28px 28px 28px 6px;background:var(--folha);color:#12210f;padding:clamp(24px,4vw,40px);display:flex;flex-direction:column;gap:12px;justify-content:center}
+.agro .zap h3{font-size:42px}
+.agro .zap .tag{background:#12210f;color:var(--broto);align-self:flex-start}
+@media(max-width:860px){.agro .cartas{grid-template-columns:minmax(0,1fr)}
+.agro .news{grid-template-columns:minmax(0,1fr)}
+.agro .news img{display:none}
+}
+.agro .fotos{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px;margin-top:18px}
+.agro .fotos figure{margin:0;position:relative;overflow:hidden;border-radius:24px 24px 24px 6px;min-height:240px}
+.agro .fotos img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
+.agro .fotos figure:hover img{transform:scale(1.04)}
+.agro .fotos figcaption{position:absolute;left:14px;bottom:14px;right:14px;color:#fff;font:400 26px/1 var(--font-bebas),"Bebas Neue",sans-serif;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+@media(max-width:760px){.agro .fotos{grid-template-columns:minmax(0,1fr)}
+.agro .fotos img{aspect-ratio:16/10;height:auto}
+}
+.agro .fim{background:#2A211B;color:#F3ECE8}
+.agro .fim .agro-wrap{display:flex;flex-wrap:wrap;align-items:center;gap:24px 36px;padding-block:44px}
+.agro .fim .marcas{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.agro .fim .marcas img{height:56px;width:auto}
+.agro .fim .marcas .vf{height:38px}
+.agro .fim p{margin-left:auto;max-width:42ch;color:#CDBFB6;font-size:14px}
+.agro .astravox{display:inline-flex;padding:13px;opacity:.6;transition:opacity .25s}
+.agro .astravox:hover{opacity:1}
+.agro .astravox img{height:18px;width:auto;filter:brightness(0) invert(1)}
+@media(prefers-reduced-motion:reduce){.agro *,.agro *::before,.agro *::after{animation:none!important;transition:none!important}}
