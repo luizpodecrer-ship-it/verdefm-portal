@@ -66,7 +66,8 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 
 - **21/11/2026** — **Nomes das páginas menores** (pedido do Luiz: "não gostei desses nomes grandes"): título de editoria, cidade, vídeos, programação etc. entre 24 e 30 px (antes até 44 px); logo da página da cidade menor.
 
-- **21/11/2026** — **Cabeçalho da página da cidade alinhado à marca** (pedido do Luiz): título e frase mais juntos; no computador o bloco de texto tem a mesma altura da marca (54 px), de cima a baixo.
+- **21/11/2026** — **Cabeçalho da página da cidade alinhado à marca** (pedido do Luiz): título e frase mais juntos; no computador o bloco de texto tem a mesma altura da marca (50 px), de cima a baixo.
+- **21/11/2026** — **Títulos de página e de seção menores e verdes** (pedido do Luiz): "Notícias de Cuiabá", "Economia e negócios", "Programação"… (22–26 px) e, na home, "Em Cuiabá", "Ao vivo e vídeos" (22–26 px), na cor verde `--vfm-verde`.
 
 ## Próximas etapas
 
