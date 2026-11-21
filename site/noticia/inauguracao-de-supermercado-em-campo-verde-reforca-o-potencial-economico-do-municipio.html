@@ -15,12 +15,14 @@
 <title>Inauguração de supermercado em Campo Verde reforça o potencial econômico do município · Verde FM</title>
 <meta name="description" content="A inauguração da segunda unidade do Supermercado Itália, realizada na manhã desta quarta-feira (18), evidenciou o momento de expansão econômica vivenciado por Campo Verde. Durante ">
 <meta name="theme-color" content="#FFFFFF">
+<!-- Tema (claro, escuro ou automático): aplicado antes de pintar a página, para não piscar. WP: no header.php, antes do wp_head() -->
+<script>(function(){try{var t=localStorage.getItem('vfm_tema')||'claro',e=t==='escuro'||(t==='sistema'&&matchMedia('(prefers-color-scheme: dark)').matches),r=document.documentElement;r.setAttribute('data-vfm-tema',t);if(e)r.classList.add('vfm-escuro');}catch(x){}})();</script>
 <!-- WP: wp_head() — fontes e CSS entram por wp_enqueue_style em functions.php -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Manrope:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="/assets/css/verdefm.css?v=202611211000">
-<script src="/assets/js/verdefm.js?v=202611211000" defer></script>
+<link rel="stylesheet" href="/assets/css/verdefm.css?v=202611211100">
+<script src="/assets/js/verdefm.js?v=202611211100" defer></script>
 </head>
 <body class="vfm-pagina-materia">
 <!-- WP: body_class() -->
@@ -63,6 +65,7 @@
       </a>
       <!-- WP: echo date_i18n('l, j \d\e F'); (pode ficar vazio: o JS preenche) -->
       <span class="vfm-topo__data" data-vfm-data></span>
+      <div class="vfm-tema vfm-topo__tema" role="radiogroup" aria-label="Aparência do portal" data-vfm-tema data-atual="claro"><span class="vfm-tema__marca" aria-hidden="true"></span><button type="button" role="radio" aria-checked="false" data-vfm-tema-opcao="sistema" aria-label="Automático (segue o aparelho)" title="Automático"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></button><button type="button" role="radio" aria-checked="true" data-vfm-tema-opcao="claro" aria-label="Tema claro" title="Claro"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button><button type="button" role="radio" aria-checked="false" data-vfm-tema-opcao="escuro" aria-label="Tema escuro" title="Escuro"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/><path d="M20 3v4M22 5h-4"/></svg></button></div>
       <button class="vfm-icone-botao" type="button" data-vfm-abrir="vfm-busca" aria-label="Buscar">
         <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8"/></svg>
       </button>
@@ -312,6 +315,7 @@
     </ul>
   </nav>
   <div class="vfm-menu__extra">
+    <div class="vfm-menu__tema"><span>Aparência</span><div class="vfm-tema vfm-tema--grande" role="radiogroup" aria-label="Aparência do portal" data-vfm-tema data-atual="claro"><span class="vfm-tema__marca" aria-hidden="true"></span><button type="button" role="radio" aria-checked="false" data-vfm-tema-opcao="sistema" aria-label="Automático (segue o aparelho)" title="Automático"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></button><button type="button" role="radio" aria-checked="true" data-vfm-tema-opcao="claro" aria-label="Tema claro" title="Claro"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button><button type="button" role="radio" aria-checked="false" data-vfm-tema-opcao="escuro" aria-label="Tema escuro" title="Escuro"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/><path d="M20 3v4M22 5h-4"/></svg></button></div></div>
     <a class="vfm-yt vfm-yt--largo" href="https://www.youtube.com/@VerdeFMoficial/live" target="_blank" rel="noopener">
         <span class="vfm-yt__icone"><svg class="vfm-yt__logo" aria-hidden="true" width="28" height="20" viewBox="0 0 28 20"><path fill="#FF0000" d="M27.4 3.1A3.5 3.5 0 0 0 24.9.6C22.7 0 14 0 14 0S5.3 0 3.1.6A3.5 3.5 0 0 0 .6 3.1C0 5.3 0 10 0 10s0 4.7.6 6.9a3.5 3.5 0 0 0 2.5 2.5C5.3 20 14 20 14 20s8.7 0 10.9-.6a3.5 3.5 0 0 0 2.5-2.5C28 14.7 28 10 28 10s0-4.7-.6-6.9z"/><path fill="#FFFFFF" d="M11.2 14.3 18.5 10l-7.3-4.3z"/></svg></span>
         <span class="vfm-yt__texto"><strong><span class="vfm-ponto" aria-hidden="true"></span>Ao vivo</strong><small>no YouTube</small></span>

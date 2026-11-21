@@ -170,6 +170,10 @@ O `ul[data-vfm-letreiro-lista]` recebe os 5 posts mais recentes. O JS duplica os
 - Menus: `wp_nav_menu` com `theme_location` "editorias", usado no cabeçalho e no menu do celular (as duas `<nav>` levam `data-vfm-menu`).
 - Já previsto: link "Pular para o conteúdo", foco visível, alvos de 44 px, aviso para leitor de tela a cada troca de página (`#vfm-aviso`), "reduzir movimento" do sistema respeitado. Manter os `aria-*` e os `alt` ao converter.
 
+## 7.2 Tema claro / escuro
+
+O seletor `[data-vfm-tema]` (cabeçalho e menu do celular) troca entre `sistema`, `claro` e `escuro`, guardado em `localStorage` (`vfm_tema`). O escuro é a classe `vfm-escuro` no `<html>`, que só troca as variáveis do CSS. **Manter no `header.php` o script curto que vem logo depois do `<meta name="theme-color">`**: ele aplica o tema antes de a página aparecer (sem piscar branco). Cores novas devem sempre usar as variáveis, para funcionarem nos dois temas.
+
 ## 8. Páginas internas (templates)
 
 Cada página da demonstração mostra o HTML que o template deve gerar. Cabeçalho, faixa "Últimas", player, rodapé e janelas são sempre os mesmos (header.php / footer.php); só muda o `<main id="vfm-conteudo">`.

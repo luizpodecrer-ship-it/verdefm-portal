@@ -24,7 +24,7 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 - Textos, nomes de classe e comentários em português do Brasil.
 - Mobile first: conferir em 375 px, 1366–1440 px e 1920 px.
 - Acessibilidade WCAG 2.1 AA: contraste 4,5:1, alvos de 44 px, um `<h1>` por página, tudo pelo teclado, "reduzir movimento" respeitado.
-- Sem dados no navegador além da preferência de cidade (cookie `vfm_cidade` e o mesmo valor no localStorage).
+- Sem dados no navegador além das preferências: cidade (cookie `vfm_cidade` e o mesmo valor no localStorage) e tema (`vfm_tema` no localStorage: `sistema`, `claro` ou `escuro`).
 
 ## Visual (aprovado em 20/11/2026)
 
@@ -76,6 +76,8 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 - **21/11/2026** — **Seção "Ao vivo e vídeos" em verde-escuro** (pedido do Luiz: "fundo verde bem clássico, surpreendente"): fundo `--vfm-verde-noite` com brilho verde nos cantos, **ondas de rádio** finas saindo de trás do vídeo (anéis que somem nas bordas) e grão leve; títulos em branco, apoio em `--vfm-verde-luz`/`--vfm-verde-nevoa`; lista "Últimos vídeos" em painel de vidro escuro (`.vfm-secao--tv`). Só CSS.
 
 - **21/11/2026** — **Legenda e crédito em toda foto de matéria** (pedido do Luiz): abaixo da imagem, pequena (13 px), cinza e em itálico: "Legenda · Foto: Crédito" (`.vfm-legenda`). Na demonstração os sites atuais quase não têm legenda e nenhum crédito: legenda = legenda real, ou nome legível da foto (acentuado pelo título), ou o título; crédito = "Foto: Reprodução". No WordPress: legenda da mídia + campo "Crédito".
+
+- **21/11/2026** — **Seletor de aparência: Automático · Claro · Escuro** (pedido do Luiz, a partir do componente React "theme-switcher-1"; refeito em HTML/CSS/JS puros porque o portal não usa React/Tailwind/shadcn e vira tema WordPress). Pílula com três ícones e marca redonda que desliza com efeito de mola; no computador no cabeçalho (antes da busca), no celular dentro do menu ("Aparência"). **Tema escuro completo** só trocando variáveis (`html.vfm-escuro`); verde vivo `#4CD282` para texto e fundos de botão no escuro, com texto escuro por cima (`--vfm-sobre-verde`). Padrão: **claro** (o visual aprovado); a escolha fica lembrada. Script curto no `<head>` aplica o tema antes de pintar (sem piscar).
 
 ## Próximas etapas
 

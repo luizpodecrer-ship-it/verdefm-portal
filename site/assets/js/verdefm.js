@@ -20,6 +20,7 @@
     10. Programação ... programa no ar pela grade da cidade (fuso de Cuiabá); marca o programa no ar
                          nas grades ([data-vfm-grade]) e abre a aba do dia.
     11. Ações ......... [data-vfm-ouvir-cidade] troca a cidade e toca; [data-vfm-copiar] copia o link.
+    12. Tema .......... Automático / Claro / Escuro ([data-vfm-tema]); lembra a escolha (localStorage "vfm_tema").
 
    Eventos para o WordPress / plugins (ouvir com document.addEventListener):
      "vfm:pagina"  → depois de trocar de página (reiniciar anúncios, embeds, analytics)
@@ -720,6 +721,59 @@
   }
 
   /* ----------------------------------------------------------------------
+     12. Tema: automático (segue o aparelho), claro ou escuro
+     ---------------------------------------------------------------------- */
+  var TEMA_CHAVE = 'vfm_tema';
+  var escuroDoAparelho = window.matchMedia ? matchMedia('(prefers-color-scheme: dark)') : null;
+  function temaEscolhido() {
+    try { return localStorage.getItem(TEMA_CHAVE) || 'claro'; } catch (e) { return 'claro'; }
+  }
+  function aplicarTema(tema, suave) {
+    var escuro = tema === 'escuro' || (tema === 'sistema' && escuroDoAparelho && escuroDoAparelho.matches);
+    if (suave) {
+      raiz.classList.add('vfm-trocando-tema');
+      setTimeout(function () { raiz.classList.remove('vfm-trocando-tema'); }, 400);
+    }
+    raiz.setAttribute('data-vfm-tema', tema);
+    raiz.classList.toggle('vfm-escuro', escuro);
+    var meta = $('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', escuro ? '#161E1A' : '#FFFFFF');
+    $$('[data-vfm-tema]').forEach(function (grupo) {
+      grupo.setAttribute('data-atual', tema);
+      $$('[data-vfm-tema-opcao]', grupo).forEach(function (b) {
+        var sel = b.getAttribute('data-vfm-tema-opcao') === tema;
+        b.setAttribute('aria-checked', sel ? 'true' : 'false');
+        b.setAttribute('tabindex', sel ? '0' : '-1');
+      });
+    });
+  }
+  function ligarTema() {
+    aplicarTema(temaEscolhido(), false);
+    doc.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-vfm-tema-opcao]');
+      if (!b) return;
+      var tema = b.getAttribute('data-vfm-tema-opcao');
+      try { localStorage.setItem(TEMA_CHAVE, tema); } catch (x) {}
+      aplicarTema(tema, true);
+      anunciar(b.getAttribute('aria-label') + ' ativado');
+    });
+    // setas trocam a opção (padrão de grupo de rádio)
+    doc.addEventListener('keydown', function (e) {
+      var b = e.target.closest && e.target.closest('[data-vfm-tema-opcao]');
+      if (!b || (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft')) return;
+      var ops = $$('[data-vfm-tema-opcao]', b.closest('[data-vfm-tema]'));
+      var alvo = ops[(ops.indexOf(b) + (e.key === 'ArrowRight' ? 1 : -1) + ops.length) % ops.length];
+      e.preventDefault();
+      alvo.focus();
+      alvo.click();
+    });
+    // no automático, acompanha quando o aparelho troca de claro para escuro
+    if (escuroDoAparelho && escuroDoAparelho.addEventListener) escuroDoAparelho.addEventListener('change', function () {
+      if (temaEscolhido() === 'sistema') aplicarTema('sistema', true);
+    });
+  }
+
+  /* ----------------------------------------------------------------------
      Utilitários
      ---------------------------------------------------------------------- */
   function anunciar(texto) {
@@ -753,6 +807,7 @@
     ligarRodizios();
     ligarProgramacao();
     ligarAcoes();
+    ligarTema();
     doc.addEventListener('vfm:pagina', ligarRodizios);
     marcarMenu();
     preencherData();
