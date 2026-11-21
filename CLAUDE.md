@@ -69,6 +69,8 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 - **21/11/2026** — **Cabeçalho da página da cidade alinhado à marca** (pedido do Luiz): título e frase mais juntos; no computador o bloco de texto tem a mesma altura da marca (50 px), de cima a baixo.
 - **21/11/2026** — **Títulos de página e de seção menores e verdes** (pedido do Luiz): "Notícias de Cuiabá", "Economia e negócios", "Programação"… (22–26 px) e, na home, "Em Cuiabá", "Ao vivo e vídeos" (22–26 px), na cor verde `--vfm-verde`.
 
+- **21/11/2026** — **Destaques da home reorganizados** (pedido do Luiz: "fotos pequenas, muito texto, bagunçado"): ao lado da manchete, **2 notícias com foto grande 16:9** e título de até 3 linhas; logo abaixo da manchete, **faixa com 3 notícias lado a lado** (foto pequena + título). No celular, todas viram lista com foto à esquerda. Manchete com título até 40 px e resumo de até 3 linhas. Substitui a coluna de 5 notícias.
+
 ## Próximas etapas
 
 1. Luiz revisar as páginas internas no Netlify e pedir ajustes.

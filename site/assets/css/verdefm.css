@@ -335,20 +335,45 @@ html.vfm-rolou .vfm-logo img { height: 32px; }
 /* Bloco de destaques: manchete + coluna lateral */
 .vfm-destaques { display: grid; gap: 24px; padding-block: 16px 32px; }
 @media (min-width: 1024px) {
-  .vfm-destaques { grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr); gap: 32px; padding-block: 24px 56px; }
+  .vfm-destaques { grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr); gap: 32px; padding-block: 24px 28px; }
 }
 .vfm-manchete { display: flex; flex-direction: column; gap: 12px; }
 .vfm-manchete__foto { border-radius: var(--vfm-raio-g); overflow: hidden; }
 .vfm-manchete__foto img { transition: transform var(--vfm-transicao-foto); }
 .vfm-manchete:hover .vfm-manchete__foto img { transform: scale(1.02); }
-.vfm-manchete h1 { font-size: clamp(26px, 3.6vw, 46px); line-height: 1.12; letter-spacing: 0; }
-.vfm-manchete__fina { font-size: 16px; line-height: 1.55; color: var(--vfm-texto-2); max-width: 62ch; }
+.vfm-manchete h1 { font-size: clamp(26px, 3vw, 40px); line-height: 1.14; letter-spacing: 0; }
+.vfm-manchete__fina { font-size: 16px; line-height: 1.55; color: var(--vfm-texto-2); max-width: 62ch; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 @media (min-width: 1024px) {
   .vfm-manchete { gap: 16px; }
   .vfm-manchete__foto { border-radius: var(--vfm-raio-gg); }
   .vfm-manchete__fina { font-size: 18px; }
 }
 .vfm-lateral { display: flex; flex-direction: column; gap: 0; }
+
+/* Destaques ao lado da manchete: 2 notícias com foto grande (computador); lista com foto à esquerda (celular) */
+.vfm-sub { display: grid; grid-template-columns: 104px minmax(0, 1fr); grid-template-rows: auto 1fr; column-gap: 14px; row-gap: 6px; align-items: start; padding-block: 16px; border-top: 1px solid var(--vfm-linha); }
+.vfm-sub__foto { grid-row: 1 / 3; display: block; border-radius: var(--vfm-raio-m); overflow: hidden; }
+.vfm-sub__foto img { aspect-ratio: 4 / 3; transition: transform var(--vfm-transicao-foto); }
+.vfm-sub h2 { font-size: 16px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+@media (min-width: 1024px) {
+  .vfm-lateral { gap: 28px; }
+  .vfm-sub { display: flex; flex-direction: column; gap: 10px; padding: 0; border-top: 0; }
+  .vfm-sub__foto { border-radius: var(--vfm-raio-g); }
+  .vfm-sub__foto img { aspect-ratio: 16 / 9; }
+  .vfm-sub h2 { font-size: 19px; line-height: 1.3; }
+}
+@media (hover: hover) { .vfm-sub:hover .vfm-sub__foto img { transform: scale(1.025); } }
+
+/* Faixa abaixo da manchete: 3 notícias lado a lado (computador) */
+.vfm-mais-destaques { padding-bottom: 32px; }
+.vfm-mais-destaques__lista { margin: 0; padding: 0; list-style: none; display: grid; }
+.vfm-mais-destaques .vfm-card-linha h2 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+@media (min-width: 1024px) {
+  .vfm-mais-destaques { padding-bottom: 48px; }
+  .vfm-mais-destaques__lista { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; padding-top: 24px; border-top: 1px solid var(--vfm-linha); }
+  .vfm-mais-destaques .vfm-card-linha { padding: 0; border-top: 0; }
+  .vfm-mais-destaques .vfm-card-linha h2 { font-size: 16px; }
+}
 
 /* Cartão em linha: miniatura à esquerda, título à direita */
 .vfm-card-linha { display: flex; gap: 14px; align-items: flex-start; padding-block: 16px; border-top: 1px solid var(--vfm-linha); }
@@ -932,11 +957,11 @@ html.vfm-navegando #vfm-conteudo { opacity: .55; }
 
 
 /* Mouse sobre uma notícia: o título fica verde, devagar (cartões, listas, manchete e destaques) */
-.vfm-manchete h1 a, .vfm-card-linha h2 a, .vfm-card-cidade h3 a, .vfm-card h3 a, .vfm-destaque h2 a, .vfm-editoria__principal a, .vfm-lista-numerada a {
+.vfm-manchete h1 a, .vfm-sub h2 a, .vfm-card-linha h2 a, .vfm-card-cidade h3 a, .vfm-card h3 a, .vfm-destaque h2 a, .vfm-editoria__principal a, .vfm-lista-numerada a {
   transition: color var(--vfm-transicao);
 }
 @media (hover: hover) {
-  .vfm-manchete:hover h1 a, .vfm-card-linha:hover h2 a, .vfm-card-cidade:hover h3 a, .vfm-card:hover h3 a, .vfm-destaque:hover h2 a { color: var(--vfm-verde); }
+  .vfm-manchete:hover h1 a, .vfm-sub:hover h2 a, .vfm-card-linha:hover h2 a, .vfm-card-cidade:hover h3 a, .vfm-card:hover h3 a, .vfm-destaque:hover h2 a { color: var(--vfm-verde); }
 }
 
 /* Matéria sem foto: só texto, sem quadro vazio */

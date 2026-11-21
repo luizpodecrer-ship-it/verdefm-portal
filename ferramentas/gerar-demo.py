@@ -135,7 +135,7 @@ def link_interno(mt):
 idx = re.sub(r'href="(https://www\.verdefm[a-z]*\.com\.br/\d{4}/\d\d/\d\d/[^"]+/)" target="_blank" rel="noopener"', link_interno, idx)
 
 # coluna ao lado da manchete: 5 notícias (sem o cartão da rádio, que virou o player fixo)
-EXTRAS_LATERAL = ['Polícia sequestra apartamento', 'Bombeiros descartam barragem']
+EXTRAS_LATERAL = []  # 21/11/2026: a home passou a ter 2 destaques ao lado da manchete + faixa de 3 abaixo
 a = idx.index('<aside class="vfm-lateral"')
 b = idx.index('    </aside>', a)
 for comeco in EXTRAS_LATERAL:
