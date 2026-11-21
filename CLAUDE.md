@@ -32,7 +32,7 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 - Verde só como acento: `#17803A` (botões, links, etiquetas), `#EEF4F0` (fundos suaves), `#2DBE4E` só em detalhes decorativos. Rodapé grafite `#1B2420`.
 - Fontes (pedido do Luiz em 21/11/2026; substitui as tentativas Inter + Aeonik, Grtsk + Open Sans e Clash Display + Satoshi): **Sora** nos títulos (700) e **Manrope** no texto (400/500/600/700; menu em 600), do Google Fonts.
 - Cantos arredondados por igual, **pouco arredondados** (6, 8, 10 e 12 px; pedido do Luiz em 21/11/2026, antes 10–20 px); botões em pílula continuam. Linhas finas, sombras discretas.
-- Player: volume em trilho fino branco, sem contorno; equalizador **parado (barrinhas quietas) com a rádio parada e dançando com a rádio tocando** (auditoria de 21/11/2026, aprovada: substitui o "sempre se mexendo").
+- Player: volume em trilho fino branco, sem contorno; equalizador **sempre se mexendo: de leve com a rádio parada, forte com a rádio tocando** (Luiz pediu de volta em 21/11/2026, depois da auditoria; não deixar parado).
 - Protótipo aprovado (canvas): https://claude.ai/artifact/4QqTTzzLXqrU77uNBGwR7M
 
 ## Decisões aprovadas

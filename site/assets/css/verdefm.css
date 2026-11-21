@@ -479,11 +479,15 @@ html.vfm-radio-erro .vfm-barra-player .vfm-selo-aovivo { background: var(--vfm-t
 
 /* Equalizador: barrinhas que dançam enquanto a rádio toca */
 .vfm-eq { display: inline-flex; align-items: flex-end; gap: 3px; height: 22px; flex: 0 0 auto; }
-/* Parado: barrinhas quietas, em alturas diferentes. Tocando: dançam (o equalizador mostra o estado real da rádio) */
-.vfm-eq i { display: block; width: 3px; height: 100%; border-radius: 2px; background: var(--vfm-verde-marca); transform-origin: bottom; opacity: .55; transition: transform 300ms ease, opacity 300ms ease; }
-.vfm-eq i:nth-child(1) { transform: scaleY(.35); } .vfm-eq i:nth-child(2) { transform: scaleY(.6); } .vfm-eq i:nth-child(3) { transform: scaleY(.45); }
-.vfm-eq i:nth-child(4) { transform: scaleY(.7); } .vfm-eq i:nth-child(5) { transform: scaleY(.3); }
-html.vfm-tocando .vfm-eq i { opacity: 1; animation: vfm-eq 1s ease-in-out infinite; }
+/* Equalizador "ao vivo" (pedido do Luiz): sempre se mexendo; de leve com a rádio parada, forte com a rádio tocando */
+.vfm-eq i {
+  display: block; width: 3px; height: 100%; border-radius: 2px; background: var(--vfm-verde-marca); transform-origin: bottom;
+  opacity: .7; animation: vfm-eq-calmo 1.6s ease-in-out infinite;
+}
+.vfm-eq i:nth-child(2) { animation-delay: -.4s; } .vfm-eq i:nth-child(3) { animation-delay: -.8s; }
+.vfm-eq i:nth-child(4) { animation-delay: -1.2s; } .vfm-eq i:nth-child(5) { animation-delay: -.2s; }
+@keyframes vfm-eq-calmo { 0%, 100% { transform: scaleY(.2); } 50% { transform: scaleY(.55); } }
+html.vfm-tocando .vfm-eq i { opacity: 1; animation-name: vfm-eq; animation-duration: 1s; }
 html.vfm-tocando .vfm-eq i:nth-child(2) { animation-duration: .8s; animation-delay: -.3s; }
 html.vfm-tocando .vfm-eq i:nth-child(3) { animation-duration: 1.15s; animation-delay: -.6s; }
 html.vfm-tocando .vfm-eq i:nth-child(4) { animation-duration: .9s; animation-delay: -.15s; }
