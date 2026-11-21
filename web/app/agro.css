@@ -111,8 +111,18 @@ html.dark .agro .topo .logo-escuro{display:block}
 .agro .box.dolar{background:var(--degrade);color:#fff}
 .agro .box.dolar small{color:#F2E8E2}
 .agro .box.dolar b{color:#C9F59B}
-.agro .minha-praca label{display:block;font-size:12px;font-weight:700;color:var(--apoio);margin-bottom:6px}
-.agro .minha-praca select{width:100%;min-height:44px;border-radius:10px;border:1.5px solid var(--linha);background:var(--card);color:var(--ink);font:600 16px var(--font-montserrat),Montserrat,sans-serif;padding:0 12px}
+/* lista de praças (abre fora do .agro, por isso as cores ficam aqui) */
+.agro-praca-lista{--lista-sobe:#1F6B1A;--lista-cai:#B23B1E;--lista-terra:#96562A}
+html.dark .agro-praca-lista{--lista-sobe:#8EDB4A;--lista-cai:#FF9A82;--lista-terra:#D08A57}
+.agro .minha-praca__rotulo{display:block;font-size:12px;font-weight:700;color:var(--apoio);margin-bottom:6px}
+.agro .agro-praca-botao{display:flex;align-items:center;gap:12px;width:100%;height:auto;min-height:60px;padding:8px 14px 8px 8px;border:1.5px solid var(--linha);border-radius:14px;background:var(--card);color:var(--ink);font:700 17px var(--font-montserrat),Montserrat,sans-serif;cursor:pointer;transition:border-color .26s,box-shadow .26s}
+.agro .agro-praca-botao:hover{border-color:var(--terra-t)}
+.agro .agro-praca-botao[data-popup-open]{border-color:var(--folha);box-shadow:0 0 0 4px color-mix(in srgb,var(--folha) 22%,transparent)}
+.agro .agro-praca-botao [data-slot=select-value]{flex:1;text-align:left}
+.agro .agro-praca-pino{display:grid;place-items:center;width:42px;height:42px;border-radius:12px 12px 12px 4px;background:var(--terra);color:#fff;flex:none}
+.agro .agro-praca-preco{font:400 24px/1 var(--bebas);color:var(--terra-t);letter-spacing:.02em}
+.agro .agro-praca-botao > svg:last-child{width:18px;height:18px;color:var(--apoio);transition:transform .3s var(--chega,ease)}
+.agro .agro-praca-botao[data-popup-open] > svg:last-child{transform:rotate(180deg)}
 @media(max-width:900px){.agro .cot{grid-template-columns:minmax(0,1fr)}.agro .spark{width:64px}}
 @media(max-width:520px){.agro .tabela .col7{display:none}}
 

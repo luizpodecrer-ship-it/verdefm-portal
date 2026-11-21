@@ -4,6 +4,8 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { agoraEmCuiaba, useCidade, useRadio } from "./provedores";
+import { Check, MapPin } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { COTACOES, PRACAS } from "@/lib/agro";
 
 const brl = (v: number) => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -101,7 +103,7 @@ function Linha7Dias({ semana, sobe }: { semana: number[]; sobe: boolean }) {
 }
 
 /** Quadro de cotações do dia: produto em abas, 9 praças, variação, 7 dias, média, maior/menor e sua praça. */
-export function AgroCotacoes() {
+export function AgroCotacoes({ fontes = "" }: { fontes?: string }) {
   const [aba, setAba] = useState(0);
   const [praca, escolher] = usePraca();
   const abas = useRef<(HTMLButtonElement | null)[]>([]);
@@ -162,11 +164,37 @@ export function AgroCotacoes() {
           <div className="linha"><span>Maior</span><b>{maior.praca} · {brl(maior.preco)}</b></div>
           <div className="linha"><span>Menor</span><b>{menor.praca} · {brl(menor.preco)}</b></div>
         </div>
+        {/* Sua praça: escolha no visual da marca (shadcn Select). A lista abre fora do .agro, então leva as cores e fontes junto. */}
         <div className="minha-praca">
-          <label htmlFor="agro-praca">Sua praça</label>
-          <select id="agro-praca" value={praca} onChange={(e) => escolher(e.target.value)}>
-            {PRACAS.map((x) => <option key={x}>{x}</option>)}
-          </select>
+          <span className="minha-praca__rotulo" id="agro-praca-rotulo">Sua praça</span>
+          <Select value={praca} onValueChange={(v) => v && escolher(String(v))}>
+            <SelectTrigger aria-labelledby="agro-praca-rotulo" className="agro-praca-botao">
+              <span className="agro-praca-pino" aria-hidden="true"><MapPin size={18} /></span>
+              <SelectValue />
+              <span className="agro-praca-preco">{brl(p.linhas.find((l) => l.praca === praca)!.preco)}</span>
+            </SelectTrigger>
+            <SelectContent
+              alignItemWithTrigger={false}
+              sideOffset={8}
+              className={`${fontes} agro-praca-lista rounded-xl border-0 bg-white p-1.5 font-[family-name:var(--font-montserrat)] text-[#2A211B] shadow-[0_18px_48px_rgba(42,33,27,.22)] ring-1 ring-[#E2D6CF] dark:bg-[#2A211B] dark:text-[#F3ECE8] dark:ring-[#3A2F28]`}
+            >
+              <p className="px-3 pt-2 pb-1 text-[11px] font-bold tracking-[.06em] text-[#5E554F] uppercase dark:text-[#CDBFB6]">{p.nome} · {p.unidade}</p>
+              {p.linhas.map((l) => (
+                <SelectItem key={l.praca} value={l.praca}
+                  className="min-h-11 cursor-pointer gap-3 rounded-lg py-2 pr-3 pl-3 text-[15px] transition-colors focus:bg-[#F3ECE8] data-selected:font-bold dark:focus:bg-[#3A2F28] [&>span:last-child]:hidden">
+                  <span className="flex flex-1 items-center gap-2.5">
+                    <MapPin size={15} style={{ color: "var(--lista-terra)" }} aria-hidden="true" />
+                    {l.praca}
+                  </span>
+                  <span className="ml-auto flex items-center gap-3 tabular-nums">
+                    <span>{brl(l.preco)}</span>
+                    <span className="w-14 text-right text-[13px] font-bold max-[420px]:hidden" style={{ color: l.variacao >= 0 ? "var(--lista-sobe)" : "var(--lista-cai)" }}>{pct(l.variacao)}</span>
+                    <Check size={16} className={l.praca === praca ? "" : "invisible"} style={{ color: "#4DB336" }} aria-hidden="true" />
+                  </span>
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
       </div>
     </div>

@@ -94,7 +94,7 @@ export default function AgroNaVerde() {
       </div>
 
       <section className="sec" id="agro-cotacoes" aria-labelledby="agro-t-cot" style={{ paddingTop: 8 }}>
-        <div className="agro-wrap revela"><AgroCotacoes /></div>
+        <div className="agro-wrap revela"><AgroCotacoes fontes={`${bebas.variable} ${montserrat.variable}`} /></div>
       </section>
 
       <section className="programa" aria-labelledby="agro-t-prog">
