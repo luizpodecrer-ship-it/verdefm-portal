@@ -73,6 +73,8 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 
 - **21/11/2026** — Publicidade 300 × 250 da matéria **centralizada no celular** (pedido do Luiz).
 
+- **21/11/2026** — **Seção "Ao vivo e vídeos" em verde-escuro** (pedido do Luiz: "fundo verde bem clássico, surpreendente"): fundo `--vfm-verde-noite` com brilho verde nos cantos, **ondas de rádio** finas saindo de trás do vídeo (anéis que somem nas bordas) e grão leve; títulos em branco, apoio em `--vfm-verde-luz`/`--vfm-verde-nevoa`; lista "Últimos vídeos" em painel de vidro escuro (`.vfm-secao--tv`). Só CSS.
+
 ## Próximas etapas
 
 1. Luiz revisar as páginas internas no Netlify e pedir ajustes.

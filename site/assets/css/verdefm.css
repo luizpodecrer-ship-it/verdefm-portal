@@ -64,6 +64,10 @@
   --vfm-transicao: 260ms cubic-bezier(.25, .1, .25, 1);
   --vfm-transicao-foto: 900ms cubic-bezier(.2, .6, .2, 1);
   --vfm-sombra-mouse: 0 6px 22px rgba(27, 36, 32, .07);
+  --vfm-verde-noite: #0A3520;     /* fundo da seção de vídeos */
+  --vfm-verde-noite-claro: #0E4A2A;
+  --vfm-verde-luz: #8EE6AE;        /* textos de destaque sobre o verde-escuro (contraste 8:1) */
+  --vfm-verde-nevoa: #B9D6C3;      /* textos de apoio sobre o verde-escuro */
   --vfm-youtube-fundo: #FFF7F7;
   --vfm-youtube-borda: #F0D6D6;
 }
@@ -975,3 +979,53 @@ html.vfm-navegando #vfm-conteudo { opacity: .55; }
 .vfm-card--sem-foto { padding: 20px; border: 1px solid var(--vfm-linha); border-radius: var(--vfm-raio-m); background: var(--vfm-superficie); transition: box-shadow var(--vfm-transicao); }
 .vfm-card--sem-foto:hover { box-shadow: var(--vfm-sombra-mouse); }
 
+
+
+/* Seção "Ao vivo e vídeos" em verde-escuro (21/11/2026, pedido do Luiz: "fundo verde bem clássico, surpreendente").
+   Camadas: brilho verde nos cantos + ondas de transmissão saindo de trás do vídeo + grão leve. Só CSS. */
+.vfm-secao--tv {
+  position: relative; isolation: isolate; overflow: hidden; color: #fff;
+  background:
+    radial-gradient(55% 70% at 12% 0%, rgba(45, 190, 78, .30), transparent 62%),
+    radial-gradient(45% 60% at 100% 100%, rgba(45, 190, 78, .20), transparent 60%),
+    linear-gradient(160deg, var(--vfm-verde-noite-claro) 0%, var(--vfm-verde-noite) 55%, #072A19 100%);
+}
+/* ondas de rádio: anéis finos que saem do centro do vídeo e somem nas bordas */
+.vfm-secao--tv::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: repeating-radial-gradient(circle at 34% 58%, rgba(255, 255, 255, .07) 0 1px, transparent 1.5px 56px);
+  -webkit-mask-image: radial-gradient(70% 85% at 34% 58%, #000 20%, transparent 75%);
+          mask-image: radial-gradient(70% 85% at 34% 58%, #000 20%, transparent 75%);
+}
+/* grão de filme, bem leve */
+.vfm-secao--tv::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .12; mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+@media (min-width: 1024px) {
+  .vfm-secao--tv { padding-block: 64px 72px; }
+  .vfm-secao--tv::before { background: repeating-radial-gradient(circle at 34% 58%, rgba(255, 255, 255, .07) 0 1px, transparent 1.5px 72px); }
+}
+.vfm-secao--tv :focus-visible { outline-color: var(--vfm-verde-marca); }
+.vfm-secao--tv .vfm-titulo-secao h2 { color: #fff; }
+.vfm-secao--tv .vfm-chapeu, .vfm-secao--tv .vfm-link-mais { color: var(--vfm-verde-luz); }
+.vfm-secao--tv .vfm-link-mais:hover { color: #fff; }
+.vfm-secao--tv .vfm-tv__legenda h3 { color: #fff; }
+.vfm-secao--tv .vfm-tv__tela { box-shadow: 0 30px 60px rgba(0, 0, 0, .35), 0 0 0 1px rgba(255, 255, 255, .08); }
+.vfm-secao--tv .vfm-tv__lista-titulo { color: var(--vfm-verde-nevoa); }
+.vfm-secao--tv .vfm-tv__item { background: rgba(255, 255, 255, .05); border-color: rgba(255, 255, 255, .1); color: #fff; }
+.vfm-secao--tv .vfm-tv__item:hover { background: rgba(255, 255, 255, .1); }
+.vfm-secao--tv .vfm-tv__item[aria-current="true"] { background: rgba(255, 255, 255, .12); border-color: var(--vfm-verde-marca); }
+.vfm-secao--tv .vfm-tv__item-texto small { color: var(--vfm-verde-nevoa); }
+.vfm-secao--tv .vfm-tv__item--aovivo small { color: #FFB4AB; }
+.vfm-secao--tv .vfm-tv__miniatura--aovivo { background: rgba(0, 0, 0, .35); }
+@media (min-width: 1024px) {
+  .vfm-secao--tv .vfm-tv__painel {
+    background: rgba(255, 255, 255, .06); border-color: rgba(255, 255, 255, .12);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  }
+  .vfm-secao--tv .vfm-tv__item { background: transparent; border-color: transparent; }
+  .vfm-secao--tv .vfm-tv__item:hover { background: rgba(255, 255, 255, .08); }
+  .vfm-secao--tv .vfm-tv__item[aria-current="true"] { background: rgba(255, 255, 255, .12); border-color: transparent; box-shadow: inset 3px 0 0 var(--vfm-verde-marca); }
+  .vfm-secao--tv .vfm-tv__lista { scrollbar-color: rgba(255, 255, 255, .25) transparent; }
+}
