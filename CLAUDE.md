@@ -30,7 +30,7 @@ Portal de notícias da Rádio Verde FM, multi-cidade: cada cidade tem a sua rád
 
 - Claro e suave: fundo `#F7F8F6`, branco nos cartões, texto `#1B2420`, apoio `#55625A`.
 - Verde só como acento: `#17803A` (botões, links, etiquetas), `#EEF4F0` (fundos suaves), `#2DBE4E` só em detalhes decorativos. Rodapé grafite `#1B2420`.
-- Fontes (pedido do Luiz em 21/11/2026, substitui o teste Inter + Aeonik): **Grtsk** nos títulos (700) e **Open Sans** no texto (400/700; menu em 600). Open Sans vem do Google Fonts. Grtsk é comercial e não está no Google Fonts: até os arquivos `.woff2` licenciados irem para `site/assets/fonts/` (o `@font-face` está comentado no CSS), os títulos usam a **Schibsted Grotesk** (gratuita, mesmo estilo).
+- Fontes (pedido do Luiz em 21/11/2026; substitui Inter + Aeonik e Grtsk + Open Sans): **Clash Display** nos títulos (700) e **Satoshi** no texto (400/500/700; menu em 700). As duas vêm do **Fontshare** (gratuitas, uso comercial liberado), por `api.fontshare.com`. A Clash tem espaço entre palavras estreito: títulos sem letras apertadas (letter-spacing 0) e com `word-spacing: .12em`.
 - Cantos arredondados por igual, **pouco arredondados** (6, 8, 10 e 12 px; pedido do Luiz em 21/11/2026, antes 10–20 px); botões em pílula continuam. Linhas finas, sombras discretas.
 - Player: volume em trilho fino branco, sem contorno; equalizador **parado (barrinhas quietas) com a rádio parada e dançando com a rádio tocando** (auditoria de 21/11/2026, aprovada: substitui o "sempre se mexendo").
 - Protótipo aprovado (canvas): https://claude.ai/artifact/4QqTTzzLXqrU77uNBGwR7M
