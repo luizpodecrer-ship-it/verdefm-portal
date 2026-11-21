@@ -133,7 +133,7 @@ to{opacity:1;transform:none}
 .agro .canal svg{width:26px;height:26px}
 .agro .canal:hover{transform:translate(-50%,-50%) scale(1.06)}
 .agro .canal[aria-pressed=true]{background:#fff;color:#96562A}
-.agro .linhas{position:absolute;inset:0;width:100%;height:100%}
+.agro .linhas{position:absolute;inset:0;width:100%;height:100%;display:block;overflow:hidden;contain:strict}
 .agro .linhas line{stroke:rgba(255,255,255,.28);stroke-width:2;stroke-dasharray:4 8;animation:agro-flui 1.2s linear infinite}
 .agro .linhas line.on{stroke:var(--broto);stroke-dasharray:none;animation:none;stroke-width:3}
 @keyframes agro-flui{to{stroke-dashoffset:-24}

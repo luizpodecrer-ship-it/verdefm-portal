@@ -195,19 +195,12 @@ function Contador({ alvo }: { alvo: number }) {
 
 export function AgroEcossistema() {
   const [sel, setSel] = useState(0);
-  const mapa = useRef<HTMLDivElement>(null);
-  const [tam, setTam] = useState({ W: 0, H: 0 });
-  useEffect(() => {
-    const el = mapa.current; if (!el) return;
-    const ro = new ResizeObserver(() => setTam({ W: el.clientWidth, H: el.clientHeight }));
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
   return (
     <div className="eco">
-      <div className="mapa" ref={mapa}>
-        <svg className="linhas" aria-hidden="true" viewBox={`0 0 ${tam.W || 1} ${tam.H || 1}`}>
-          {CANAIS.map((x, k) => <line key={x.k} x1={tam.W / 2} y1={tam.H / 2} x2={(x.x / 100) * tam.W} y2={(x.y / 100) * tam.H} className={k === sel ? "on" : undefined} />)}
+      <div className="mapa">
+        {/* Linhas em porcentagem da caixa: não dependem de medir a caixa (no Safari, medir fazia a caixa tremer). */}
+        <svg className="linhas" aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none">
+          {CANAIS.map((x, k) => <line key={x.k} x1={50} y1={50} x2={x.x} y2={x.y} vectorEffect="non-scaling-stroke" className={k === sel ? "on" : undefined} />)}
         </svg>
         <div className="nucleo" aria-hidden="true"><div><small>Núcleo editorial</small><strong>Uma pauta central</strong></div></div>
         {CANAIS.map((x, k) => (
