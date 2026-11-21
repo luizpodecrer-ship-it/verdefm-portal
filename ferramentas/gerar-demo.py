@@ -81,6 +81,45 @@ def curto(t, limite=42):
     return t if len(t) <= limite else t[:limite].rsplit(' ', 1)[0].rstrip(',;:') + '…'
 
 
+def legenda_e_credito(m):
+    """Legenda e crédito da foto principal. No WordPress: legenda da mídia (wp_get_attachment_caption)
+    e campo de crédito da mídia. Na demonstração, sem dado real: nome da foto (se legível) ou o título,
+    e crédito "Foto: Reprodução"."""
+    leg = (m.get('legenda') or '').strip()
+    cred = ''
+    achou = re.search(r'\s*[(\[]?\s*((Foto|Fotos|Crédito|Imagem)s?\s*:\s*[^)\]]+)[)\]]?\s*$', leg, re.I)
+    if achou:
+        cred = achou.group(1).strip()
+        leg = leg[:achou.start()].strip(' -–|')
+    if not leg:
+        t = re.sub(r'[-_]+', ' ', m.get('foto_titulo') or '').strip()
+        t = re.sub(r'\s*\d+$', '', t)
+        legivel = len(t.split()) >= 2 and not re.search(r'whatsapp|image|img|php|thumb|screenshot|^\d|\d{3,}', t, re.I)
+        if legivel:
+            # o nome do arquivo vem sem acento: usa a grafia das palavras do título quando batem
+            import unicodedata
+            sem = lambda w: ''.join(ch for ch in unicodedata.normalize('NFD', w.lower()) if unicodedata.category(ch) != 'Mn')
+            do_titulo = {sem(w): w for w in re.findall(r"[\wÀ-ÿ]+", m['titulo'])}
+            t = ' '.join(do_titulo.get(sem(w), w) for w in t.split())
+        leg = (t[:1].upper() + t[1:]) if legivel else m['titulo']
+    return leg, cred or 'Foto: Reprodução'
+
+
+def figcaption(leg, cred):
+    texto = '<span class="vfm-legenda__texto">%s</span> ' % e(leg) if leg else ''
+    return '<figcaption class="vfm-legenda">%s<span class="vfm-legenda__credito">%s</span></figcaption>' % (texto, e(cred))
+
+
+def legendas_no_texto(html_):
+    """Fotos dentro do texto da matéria: toda imagem ganha legenda (o alt, se houver) e crédito."""
+    html_ = html_.replace('<figcaption>', '<figcaption class="vfm-legenda">')
+    def solta(mt):
+        alt = re.search(r'alt="([^"]*)"', mt.group(0))
+        return '<figure>%s%s</figure>' % (mt.group(0), figcaption(html.unescape(alt.group(1)) if alt else '', 'Foto: Reprodução'))
+    partes = re.split(r'(<figure>.*?</figure>)', html_, flags=re.S)
+    return ''.join(p if p.startswith('<figure>') else re.sub(r'<img [^>]*>', solta, p) for p in partes)
+
+
 def url_materia(m):
     return '/noticia/%s.html' % m['slug']
 
@@ -312,8 +351,8 @@ ultimas = MATERIAS[:8]
 for m in MATERIAS:
     figura = ''
     if m['foto_g']:
-        legenda = '<figcaption>%s</figcaption>' % e(m['legenda']) if m['legenda'] else ''
-        figura = '    <figure class="vfm-materia__foto"><img src="%s" alt="" width="1280" height="720" fetchpriority="high">%s</figure>\n' % (e(m['foto_g']), legenda)
+        leg, cred = legenda_e_credito(m)
+        figura = '    <figure class="vfm-materia__foto"><img src="%s" alt="%s" width="1280" height="720" fetchpriority="high">%s</figure>\n' % (e(m['foto_g']), e(leg), figcaption(leg, cred))
     rel = [x for x in MATERIAS if x['editoria'] == m['editoria'] and x['slug'] != m['slug']][:3]
     if len(rel) < 3:
         rel += [x for x in MATERIAS if x['slug'] != m['slug'] and x not in rel][:3 - len(rel)]
@@ -362,7 +401,7 @@ for m in MATERIAS:
 {rel}      </ul>
     </div>
   </section>'''.format(chap=chapeu(m), tit=e(m['titulo']), res=e(fina(m['resumo'])), mic=ICONE['microfone'], iso=m['data'], dh=data_hora(m['data']),
-                     comp=compartilhar(m), fig=figura, txt=m['conteudo'], ouca=OUCA, lat=lat, rel=''.join(card(x) for x in rel))
+                     comp=compartilhar(m), fig=figura, txt=legendas_no_texto(m['conteudo']), ouca=OUCA, lat=lat, rel=''.join(card(x) for x in rel))
     pagina('noticia/%s.html' % m['slug'], m['titulo'] + ' · Verde FM', m['resumo'], 'vfm-pagina-materia', corpo)
 
 # ======================================================================= 4. editorias

@@ -171,6 +171,7 @@ for arq in arquivos:
             'foto_g': tamanho(fm, 'large', 'full', 'medium_large') if fm else '',
             'foto_m': tamanho(fm, 'medium_large', 'large', 'full', 'medium') if fm else '',
             'legenda': texto((fm.get('caption') or {}).get('rendered', '')) if fm else '',
+            'foto_titulo': texto((fm.get('title') or {}).get('rendered', '')) if fm else '',
             'conteudo': limpar(p['content']['rendered']),
         }
 

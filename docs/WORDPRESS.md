@@ -177,6 +177,7 @@ Cada página da demonstração mostra o HTML que o template deve gerar. Cabeçal
 | Página da demonstração | Template WordPress | Observações |
 |---|---|---|
 | `/noticia/*.html` | `single.php` | trilha, chapéu (link da editoria), título, linha fina (`the_excerpt`, uma frase), autor e data, compartilhar (WhatsApp, Facebook, X, copiar), foto com legenda, `the_content()` dentro de `.vfm-texto`, chamada "Ouça a Verde", lateral com publicidade 300 × 250 e últimas notícias, "Leia também" (mesma editoria) |
+| (toda foto de matéria) | `single.php` e o conteúdo | **Legenda e crédito em toda foto** (pedido da rádio): `<figcaption class="vfm-legenda"><span class="vfm-legenda__texto">LEGENDA</span> <span class="vfm-legenda__credito">Foto: AUTOR/AGÊNCIA</span></figcaption>`. Legenda = `wp_get_attachment_caption()`; crédito = um campo "Crédito" na mídia (ACF ou `attachment_fields_to_edit`). Sem crédito preenchido: "Foto: Reprodução". Fotos dentro do texto: o filtro `img_caption_shortcode`/bloco de imagem deve gerar a mesma marcação. |
 | `/editoria/*.html` | `category.php` | primeira matéria em destaque (`.vfm-destaque`), demais em `.vfm-cards`, paginação `.vfm-paginacao` |
 | `/cidade/*.html` | `taxonomy-cidade.php` | logo e frequência da cidade; botão `data-vfm-ouvir-cidade="slug"` troca a cidade e toca a rádio dela |
 | `/videos.html` | `page-videos.php` | mesmo componente `[data-vfm-tv]` da home, com todos os vídeos do feed em `.vfm-videos` |
