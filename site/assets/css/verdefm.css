@@ -39,11 +39,9 @@
   --vfm-youtube: #FF0000;
 
   /* Letras */
-  /* Fontes (21/11/2026, pedido do Luiz): Clash Display nos títulos e Satoshi no texto.
-     As duas são do Fontshare (Indian Type Foundry), gratuitas inclusive para uso comercial;
-     carregadas de api.fontshare.com (no WordPress: wp_enqueue_style com o mesmo endereço). */
-  --vfm-fonte-titulo: "Clash Display", "Helvetica Neue", Arial, sans-serif;
-  --vfm-fonte-texto: "Satoshi", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* Fontes (21/11/2026, pedido do Luiz): Sora nos títulos e Manrope no texto, do Google Fonts. */
+  --vfm-fonte-titulo: "Sora", "Helvetica Neue", Arial, sans-serif;
+  --vfm-fonte-texto: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   /* Formas */
   /* Cantos (21/11/2026: menos arredondados, pedido do Luiz) */
@@ -265,7 +263,7 @@ html.vfm-rolou .vfm-logo img { height: 32px; }
   .vfm-nav ul { display: flex; flex-wrap: wrap; gap: 0 28px; margin: 0; padding: 0; list-style: none; }
   .vfm-nav a {
     display: flex; align-items: center; min-height: 48px;
-    font-size: 15px; font-weight: 700; color: var(--vfm-texto-3);
+    font-size: 15px; font-weight: 600; color: var(--vfm-texto-3);
     box-shadow: inset 0 -2px 0 transparent; transition: box-shadow var(--vfm-transicao), color var(--vfm-transicao);
   }
   .vfm-nav a:hover { color: var(--vfm-verde); }
@@ -944,8 +942,3 @@ html.vfm-navegando #vfm-conteudo { opacity: .55; }
 .vfm-card--sem-foto { padding: 20px; border: 1px solid var(--vfm-linha); border-radius: var(--vfm-raio-m); background: var(--vfm-superficie); transition: box-shadow var(--vfm-transicao); }
 .vfm-card--sem-foto:hover { box-shadow: var(--vfm-sombra-mouse); }
 
-/* Clash Display: o espaço entre palavras da fonte é estreito; abre um pouco em tudo que usa a fonte dos títulos */
-h1, h2, h3, h4, .vfm-editoria__principal, .vfm-promocao__nome, .vfm-barra-player__texto strong, .vfm-player-card__programa strong,
-.vfm-tv__item-texto strong, .vfm-lista-numerada a, .vfm-ouca__texto strong, .vfm-grade-programas strong, .vfm-promo-vazia strong {
-  word-spacing: .12em;
-}
