@@ -35,7 +35,7 @@ Hoje o site é **gerado por completo** a cada publicação (`npm run build` → 
 // Chama o Netlify quando algo é publicado, atualizado ou vai para a lixeira.
 function vfm_avisar_netlify($post_id) {
   if (wp_is_post_revision($post_id) || wp_is_post_autosave($post_id)) return;
-  $tipos = ['post', 'programa', 'anuncio', 'parada', 'cotacao', 'promocao'];
+  $tipos = ['post', 'programa', 'anuncio', 'parada', 'cotacao'];
   if (!in_array(get_post_type($post_id), $tipos, true)) return;
   if (get_transient('vfm_build_pendente')) return;          // junta várias edições seguidas
   set_transient('vfm_build_pendente', 1, 60);
@@ -69,7 +69,7 @@ Tudo com `show_in_rest => true`, para aparecer na API.
 ```php
 add_action('init', function () {
   // Cidades: cada rádio é um termo. Ligar uma cidade nova = criar o termo, sem mexer no site.
-  register_taxonomy('cidade', ['post', 'programa', 'anuncio', 'promocao', 'parada'], [
+  register_taxonomy('cidade', ['post', 'programa', 'anuncio', 'parada'], [
     'label' => 'Cidades', 'hierarchical' => true, 'show_in_rest' => true, 'rest_base' => 'cidades',
   ]);
   // Produto: marca as matérias que vão para o Agro na Verde (termo "agro-na-verde").
@@ -82,7 +82,6 @@ add_action('init', function () {
   register_post_type('anuncio', $cpt('Publicidade', 'anuncios'));
   register_post_type('parada', $cpt('Mais tocadas', 'paradas'));
   register_post_type('cotacao', $cpt('Cotações do dia', 'cotacoes'));
-  register_post_type('promocao', $cpt('Promoções', 'promocoes'));
 });
 ```
 
@@ -187,11 +186,9 @@ Um registro por semana (e por cidade, se a rádio decidir ter uma parada por cid
 
 Com `previa`, o play toca 30 s na própria página (e pausa a rádio). Sem `previa`, o play abre a música no YouTube Music. **Capas e prévias exigem cuidado com direitos:** usar as fornecidas pelas gravadoras ou por um serviço licenciado.
 
-## 7. Promoções (`promocao`)
+## 7. Promoções
 
-Campos: título, resumo, `regulamento` (texto), `fim_inscricoes`, imagem, `cidade`. Sem promoção ativa, a página mostra o aviso "Nenhuma promoção aberta agora".
-
-Inscrições: como o site não roda no WordPress, o formulário envia para a API de um plugin de formulário (ex.: Contact Form 7 aceita `POST /wp-json/contact-form-7/v1/contact-forms/{id}/feedback`) ou para uma função do Netlify. Campos: nome, WhatsApp (com DDD), cidade e o aceite do regulamento (LGPD). Liberar o domínio do site no CORS do WordPress só para essa rota.
+Saiu do site em 24/11/2026 (decisão do Luiz). Não criar o tipo `promocao`.
 
 ## 8. Vídeos (YouTube)
 
@@ -272,7 +269,7 @@ Quando o domínio for registrado (ex.: `agronaverde.com.br`):
 ## 13. Lista de entrega do desenvolvedor
 
 - [ ] WordPress em `painel.verdefm.com.br`, com HTTPS e as páginas públicas redirecionando para o site
-- [ ] Taxonomias `cidade` e `produto` e os tipos `programa`, `anuncio`, `parada`, `cotacao` e `promocao`, com `show_in_rest`
+- [ ] Taxonomias `cidade` e `produto` e os tipos `programa`, `anuncio`, `parada` e `cotacao`, com `show_in_rest`
 - [ ] Campos ACF de cada seção deste guia, visíveis na API REST
 - [ ] Campo "Crédito" na mídia
 - [ ] Páginas de opções "Página inicial" e "Agro na Verde"

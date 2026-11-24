@@ -21,7 +21,6 @@ function menuItens(cidade: string) {
     { rotulo: "Vídeos", href: "/videos" },
     { rotulo: "Mais tocadas", href: "/mais-tocadas" },
     { rotulo: "Programação", href: "/programacao" },
-    { rotulo: "Promoções", href: "/promocoes" },
   ];
 }
 

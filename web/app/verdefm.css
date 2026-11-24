@@ -669,10 +669,13 @@ html.vfm-tocando .vfm-eq i:nth-child(5) { animation-duration: 1.05s; animation-d
   .vfm-editoria__principal { font-size: 20px; }
 }
 
-/* Programação, entrevistas e promoções */
+/* Programação de hoje */
 .vfm-extras { display: grid; gap: 36px; }
-@media (min-width: 768px) { .vfm-extras { grid-template-columns: minmax(0, 3fr) minmax(280px, 2fr); } }
-@media (min-width: 1024px) { .vfm-extras { grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr); } }
+/* 24/11/2026: Promoções saiu do site; a programação de hoje ocupa a largura toda, em 2 colunas no computador */
+@media (min-width: 768px) {
+  .vfm-extras .vfm-programacao ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; }
+  .vfm-extras .vfm-programacao li:nth-last-child(2):nth-child(odd) { border-bottom: 0; }
+}
 .vfm-extras h2 { font-size: 22px; }
 .vfm-programacao { display: flex; flex-direction: column; gap: 4px; }
 .vfm-programacao > p { font-size: 14px; color: var(--vfm-texto-2); margin-bottom: 12px; }
@@ -684,11 +687,6 @@ html.vfm-tocando .vfm-eq i:nth-child(5) { animation-duration: 1.05s; animation-d
 .vfm-programacao li.vfm-no-ar time { color: var(--vfm-verde); }
 .vfm-programacao strong { font-weight: 600; }
 
-.vfm-promocao { display: flex; flex-direction: column; gap: 12px; padding: 24px; border-radius: var(--vfm-raio-gg); background: var(--vfm-verde-claro); }
-.vfm-promocao__nome { font-family: var(--vfm-fonte-titulo); font-weight: 700; font-size: 22px; line-height: 1.2; }
-.vfm-promocao p:not(.vfm-promocao__nome) { font-size: 15px; line-height: 1.55; color: var(--vfm-texto-3); }
-.vfm-promocao .vfm-botao { margin-top: auto; align-self: flex-start; }
-@media (min-width: 1024px) { .vfm-promocao { padding: 28px; } .vfm-promocao__nome { font-size: 24px; } }
 
 /* 8. Rodapé --------------------------------------------------------------- */
 .vfm-rodape { background: var(--vfm-grafite); color: #E6ECE8; font-size: 14px; }
@@ -771,7 +769,7 @@ html.vfm-navegando #vfm-conteudo { opacity: .55; }
 }
 
 /* 11. Páginas internas ------------------------------------------------------
-   Matéria, editoria, cidade, vídeos, programação, promoções, busca e 404.
+   Matéria, editoria, cidade, vídeos, programação, busca e 404.
    -------------------------------------------------------------------------- */
 
 /* Trilha (onde estou) */
@@ -933,12 +931,7 @@ html.vfm-navegando #vfm-conteudo { opacity: .55; }
 .vfm-grade-programas li.vfm-no-ar .vfm-selo-aovivo { display: inline-flex; }
 .vfm-fora-do-dia { display: none !important; }
 
-/* Promoções ------------------------------------------------------------ */
-.vfm-promo { display: grid; gap: 24px; padding: 24px; border-radius: var(--vfm-raio-gg); background: var(--vfm-superficie); border: 1px solid var(--vfm-linha); }
-@media (min-width: 1024px) { .vfm-promo { grid-template-columns: minmax(0, 1fr) minmax(320px, 420px); gap: 40px; padding: 40px; } }
-.vfm-promo__arte { display: flex; flex-direction: column; justify-content: center; gap: 12px; min-height: 220px; padding: 28px; border-radius: var(--vfm-raio-g); background: var(--vfm-verde-claro); }
-.vfm-promo__arte h2 { font-size: clamp(24px, 3vw, 34px); line-height: 1.15; }
-.vfm-promo__arte p { color: var(--vfm-texto-3); line-height: 1.6; }
+/* Formulários ---------------------------------------------------------- */
 .vfm-formulario { display: flex; flex-direction: column; gap: 14px; }
 .vfm-campo { display: flex; flex-direction: column; gap: 6px; }
 .vfm-campo label { font-size: 14px; font-weight: 600; }
@@ -951,8 +944,6 @@ html.vfm-navegando #vfm-conteudo { opacity: .55; }
 .vfm-aceite input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--vfm-verde); }
 .vfm-campo input[aria-invalid="true"], .vfm-campo select[aria-invalid="true"] { border-color: var(--vfm-vermelho-texto); box-shadow: 0 0 0 3px rgba(179, 38, 30, .12); }
 .vfm-erro-campo { margin: 0; font-size: 13px; font-weight: 500; color: var(--vfm-vermelho-texto); }
-.vfm-promo-vazia { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 40px; }
-.vfm-promo-vazia strong { font-family: var(--vfm-fonte-titulo); font-size: 22px; color: var(--vfm-texto); }
 .vfm-aviso-form { padding: 12px 14px; border-radius: var(--vfm-raio-p); background: var(--vfm-verde-claro); color: var(--vfm-verde-escuro); font-size: 14px; }
 
 /* Busca e página não encontrada ---------------------------------------- */

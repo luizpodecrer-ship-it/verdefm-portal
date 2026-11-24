@@ -97,12 +97,6 @@ export default function Home() {
       <section className="vfm-secao vfm-secao--branca">
         <div className="vfm-container vfm-extras">
           <ProgramacaoHoje />
-          <div className="vfm-promocao" id="promocoes">
-            <span className="vfm-chapeu">Promoções</span>
-            <p className="vfm-promocao__nome">Nenhuma promoção aberta agora</p>
-            <p>Fique ligado na Verde: a próxima é anunciada no ar e aparece aqui.</p>
-            <Link className="vfm-botao" href="/promocoes">Ver promoções</Link>
-          </div>
         </div>
       </section>
     </>
