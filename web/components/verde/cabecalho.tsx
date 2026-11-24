@@ -22,7 +22,6 @@ function menuItens(cidade: string) {
     { rotulo: "Mais tocadas", href: "/mais-tocadas" },
     { rotulo: "Programação", href: "/programacao" },
     { rotulo: "Promoções", href: "/promocoes" },
-    { rotulo: "Agro na Verde", href: "/agro-na-verde" },
   ];
 }
 
