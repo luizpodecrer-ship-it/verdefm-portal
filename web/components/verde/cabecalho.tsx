@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { ChevronDown, MapPin, Menu, Pause, Play, Search, X as Fechar } from "lucide-react";
+import { ChevronDown, MapPin, Menu, Search, X as Fechar } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { ThemeSwitcher } from "@/components/ui/theme-switcher-1";
 import { useCidade } from "./provedores";
 import { YouTubeOficial } from "./icones";
-import { RADIOS, type Materia, urlMateria } from "@/lib/conteudo";
+import { FaixaAgro } from "./faixa-agro";
+import { RADIOS } from "@/lib/conteudo";
 
 const AO_VIVO = "https://www.youtube.com/@VerdeFMoficial/live";
 
@@ -111,47 +112,7 @@ function SeletorCidade({ aberto, setAberto }: { aberto: boolean; setAberto: (v: 
   );
 }
 
-/** Faixa "Últimas": letreiro que corre; para com o mouse, com o foco e no botão; parado com "reduzir movimento". */
-function Letreiro({ ultimas }: { ultimas: Materia[] }) {
-  const lista = useRef<HTMLUListElement>(null);
-  const [ligado, setLigado] = useState(false);
-  const [pausado, setPausado] = useState(false);
-  const [tempo, setTempo] = useState(40);
-  useEffect(() => {
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    setLigado(true);
-    const medir = () => lista.current && setTempo(Math.max(18, Math.round(lista.current.scrollWidth / 2 / 55)));
-    requestAnimationFrame(medir);
-    addEventListener("resize", medir);
-    return () => removeEventListener("resize", medir);
-  }, []);
-  const itens = (copia: boolean) =>
-    ultimas.map((m) => (
-      <li key={(copia ? "c-" : "") + m.slug} aria-hidden={copia || undefined}>
-        <Link href={urlMateria(m)} tabIndex={copia ? -1 : undefined}>{m.titulo}</Link>
-      </li>
-    ));
-  return (
-    <div className="vfm-ultimas vfm-container">
-      <div
-        className={`vfm-ultimas__caixa ${ligado ? "vfm-letreiro--ligado" : ""} ${pausado ? "vfm-letreiro--pausado" : ""}`}
-        style={{ ["--vfm-letreiro-tempo" as string]: `${tempo}s` }}
-      >
-        <span className="vfm-ultimas__rotulo"><span className="vfm-ponto vfm-ponto--verde" aria-hidden="true" />Últimas</span>
-        <div className="vfm-ultimas__janela">
-          <ul className="vfm-ultimas__lista" ref={lista}>{itens(false)}{ligado && itens(true)}</ul>
-        </div>
-        {ligado && (
-          <button className="vfm-ultimas__pausa" type="button" aria-pressed={pausado} aria-label={pausado ? "Continuar as últimas notícias" : "Pausar as últimas notícias"} onClick={() => setPausado(!pausado)}>
-            {pausado ? <Play size={14} aria-hidden="true" fill="currentColor" /> : <Pause size={14} aria-hidden="true" fill="currentColor" />}
-          </button>
-        )}
-      </div>
-    </div>
-  );
-}
-
-export function Cabecalho({ ultimas }: { ultimas: Materia[] }) {
+export function Cabecalho() {
   const { cidade } = useCidade();
   const caminho = usePathname();
   const router = useRouter();
@@ -232,7 +193,7 @@ export function Cabecalho({ ultimas }: { ultimas: Materia[] }) {
         </nav>
       </header>
 
-      <Letreiro ultimas={ultimas} />
+      <FaixaAgro />
 
       <dialog className="vfm-janela vfm-menu" ref={menu} aria-label="Menu" onClick={fecharNoFundo}>
         <div className="vfm-menu__cabeca">

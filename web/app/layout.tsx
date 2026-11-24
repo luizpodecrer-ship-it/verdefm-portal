@@ -6,10 +6,10 @@ import { Cabecalho } from "@/components/verde/cabecalho";
 import { BarraPlayer, Rodape } from "@/components/verde/rodape";
 import { AoNavegar } from "@/components/verde/ao-navegar";
 import { SoNoPortal } from "@/components/verde/moldura";
-import { HOME, ENDERECO } from "@/lib/conteudo";
+import { ENDERECO } from "@/lib/conteudo";
 
 const sora = Sora({ variable: "--font-sora", subsets: ["latin"], weight: ["700"], display: "swap" });
-const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"], weight: ["400", "500", "600", "700"], display: "swap" });
+const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(ENDERECO),
@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Provedores>
           <a className="vfm-pular" href="#vfm-conteudo">Pular para o conteúdo</a>
-          <SoNoPortal><Cabecalho ultimas={HOME.ultimas} /></SoNoPortal>
+          <SoNoPortal><Cabecalho /></SoNoPortal>
           <main id="vfm-conteudo" tabIndex={-1}>{children}</main>
           <SoNoPortal><Rodape /></SoNoPortal>
           <BarraPlayer />

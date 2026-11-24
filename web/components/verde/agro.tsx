@@ -6,7 +6,8 @@ import Link from "next/link";
 import { agoraEmCuiaba, useCidade, useRadio } from "./provedores";
 import { Check, MapPin } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { COTACOES, PRACAS } from "@/lib/agro";
+import { COTACOES } from "@/lib/agro";
+import { usePraca } from "./agro-praca";
 
 const brl = (v: number) => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 const pct = (v: number) => `${v > 0 ? "▲ " : v < 0 ? "▼ " : ""}${Math.abs(v).toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%`;
@@ -58,22 +59,6 @@ export function AgroOuvir({ texto = "Ouvir ao vivo" }: { texto?: string }) {
 }
 
 /* ------------------------------------------------------------ praça do leitor (preferência) */
-const CHAVE = "agro_praca";
-function usePraca() {
-  const [praca, setPraca] = useState("Sorriso");
-  useEffect(() => {
-    try { const p = localStorage.getItem(CHAVE); if (p && PRACAS.includes(p)) setPraca(p); } catch {}
-    const ouvir = (e: Event) => setPraca((e as CustomEvent<string>).detail);
-    addEventListener("agro:praca", ouvir);
-    return () => removeEventListener("agro:praca", ouvir);
-  }, []);
-  const escolher = (p: string) => {
-    try { localStorage.setItem(CHAVE, p); } catch {}
-    dispatchEvent(new CustomEvent("agro:praca", { detail: p }));
-  };
-  return [praca, escolher] as const;
-}
-
 /** Letreiro com as cotações da praça do leitor e o dólar. */
 export function AgroLetreiro() {
   const [praca] = usePraca();
